@@ -1,3 +1,4 @@
+	const {t} = useTranslation();
 import {useTranslation} from '../../i18n';
 import type {WebRendererPageResponsiveness} from '@remotion/web-renderer';
 import type React from 'react';
@@ -52,6 +53,7 @@ const lastParagraph: React.CSSProperties = {
 };
 
 const PageResponsivenessDescription: React.FC = () => {
+	const {t} = useTranslation();
 	return (
 		<>
 			<p style={paragraph}>
@@ -59,12 +61,12 @@ const PageResponsivenessDescription: React.FC = () => {
 				can block the tab while Remotion captures frames.
 			</p>
 			<p style={paragraph}>
-				The default is <code>Medium</code>, which tries to free the event loop
+				The default is <code>{t('Medium')}</code>, which tries to free the event loop
 				every 33ms of rendering work so progress updates and UI interactions can
 				stay responsive.
 			</p>
 			<p style={lastParagraph}>
-				Choose <code>Disabled</code> to prioritize render speed, or{' '}
+				Choose <code>{t('Disabled')}</code> to prioritize render speed, or{' '}
 				<code>High</code> to give the browser more chances to update.
 			</p>
 		</>
@@ -84,7 +86,6 @@ export const WebRenderModalAdvanced: React.FC<WebRenderModalAdvancedProps> = ({
 	pageResponsiveness,
 	setPageResponsiveness,
 }) => {
-	const {t} = useTranslation();
 	const toggleCustomMediaCacheSizeInBytes = useCallback(() => {
 		setMediaCacheSizeInBytes((previous) => {
 			if (previous === null) {

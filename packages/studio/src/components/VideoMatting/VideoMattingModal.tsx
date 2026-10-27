@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {formatBytes} from '@remotion/studio-shared';
 import {
 	canUseVideoMatting,
@@ -109,6 +110,7 @@ export const VideoMattingModal: React.FC<VideoMattingModalState> = ({
 	src,
 	target,
 }) => {
+	const {t} = useTranslation();
 	const [tab, setTab] = useState<Tab>('remove');
 	const isModelCached = useCallback(
 		(selectedModel: VideoMattingModel) =>
@@ -314,7 +316,7 @@ export const VideoMattingModal: React.FC<VideoMattingModalState> = ({
 						/>
 						<RenderModalHr />
 						<div style={optionRow}>
-							<div style={label}>Model</div>
+							<div style={label}>{t('Model')}</div>
 							<div style={rightRow}>
 								<Combobox
 									values={modelOptions}
@@ -334,7 +336,7 @@ export const VideoMattingModal: React.FC<VideoMattingModalState> = ({
 							</div>
 						) : null}
 						<div style={optionRow}>
-							<div style={label}>Audio</div>
+							<div style={label}>{t('Audio')}</div>
 							<div style={rightRow}>
 								<Combobox
 									values={audioOptions}
@@ -345,7 +347,7 @@ export const VideoMattingModal: React.FC<VideoMattingModalState> = ({
 							</div>
 						</div>
 						<div style={optionRow}>
-							<div style={label}>Video quality</div>
+							<div style={label}>{t('Video quality')}</div>
 							<div style={rightRow}>
 								<Combobox
 									values={qualityOptions}

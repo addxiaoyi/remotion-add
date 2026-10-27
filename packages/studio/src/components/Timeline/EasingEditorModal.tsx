@@ -1411,7 +1411,7 @@ const EasingEditorUnmemoized: React.FC<{
 					{modeSwitcher}
 					<div style={coordinatesGrid}>
 						<div style={coordinateRow}>
-							<div style={coordinateLabel}>Damping</div>
+							<div style={coordinateLabel}>{t('Damping')}</div>
 							<div style={coordinateInputWrapper}>
 								<InputDragger
 									type="number"
@@ -1463,7 +1463,7 @@ const EasingEditorUnmemoized: React.FC<{
 							</div>
 						</div>
 						<div style={coordinateRow}>
-							<div style={coordinateLabel}>Stiffness</div>
+							<div style={coordinateLabel}>{t('Stiffness')}</div>
 							<div style={coordinateInputWrapper}>
 								<InputDragger
 									type="number"

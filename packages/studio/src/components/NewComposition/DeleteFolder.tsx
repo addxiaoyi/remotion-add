@@ -33,7 +33,7 @@ export const DeleteFolder: React.FC<{
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					Do you want to delete the{' '}
-					<code style={inlineCodeSnippet}>Folder</code> with ID {'"'}
+					<code style={inlineCodeSnippet}>{t('Folder')}</code> with ID {'"'}
 					{folderId}
 					{'"'}?
 					<br />

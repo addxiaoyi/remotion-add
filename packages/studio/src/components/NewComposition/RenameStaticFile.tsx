@@ -144,7 +144,7 @@ export const RenameStaticFileModal: React.FC<{
 				</div>
 				<ModalFooterContainer>
 					<Row align="center" justify="flex-end">
-						<Button onClick={() => setSelectedModal(null)}>Cancel</Button>
+						<Button onClick={() => setSelectedModal(null)}>{t('Cancel')}</Button>
 						<Spacing x={1} />
 						<Button onClick={onRename} disabled={!valid || submitting}>
 							Rename

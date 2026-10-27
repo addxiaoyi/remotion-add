@@ -337,7 +337,7 @@ const ModelSettings: React.FC<{
 	return (
 		<>
 			<div style={optionRow}>
-				<div style={label}>Whisper model</div>
+				<div style={label}>{t('Whisper model')}</div>
 				<div style={rightRow}>
 					<Combobox
 						values={modelOptions}
@@ -349,7 +349,7 @@ const ModelSettings: React.FC<{
 			</div>
 			{selectedModelInfo.multilingual ? (
 				<div style={optionRow}>
-					<div style={label}>Spoken language</div>
+					<div style={label}>{t('Spoken language')}</div>
 					<div style={rightRow}>
 						<Combobox
 							values={languageOptions}

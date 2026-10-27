@@ -59,7 +59,7 @@ export const ZodNotInstalled: React.FC<{
 }> = ({mode = 'full'}) => {
 	const {t} = useTranslation();
 	if (mode === 'compact') {
-		return <CompactSchemaError>Install zod to edit props.</CompactSchemaError>;
+		return <CompactSchemaError>{t('Install zod to edit props.')}</CompactSchemaError>;
 	}
 
 	return (
@@ -80,7 +80,7 @@ export const NoSchemaDefined: React.FC<{
 	const {t} = useTranslation();
 	if (mode === 'compact') {
 		return (
-			<CompactSchemaError>Add a schema prop to edit props.</CompactSchemaError>
+			<CompactSchemaError>{t('Add a schema prop to edit props.')}</CompactSchemaError>
 		);
 	}
 
@@ -88,7 +88,7 @@ export const NoSchemaDefined: React.FC<{
 		<div style={explainer}>
 			<div style={errorExplanation}>
 				Make the props of this composition interactively editable by adding a{' '}
-				<code style={inlineCodeSnippet}>schema</code> prop to the{' '}
+				<code style={inlineCodeSnippet}>{t('schema')}</code> prop to the{' '}
 				<code style={inlineCodeSnippet}>{'<Composition>'}</code> component.
 			</div>
 			<Spacing y={2} block />
@@ -156,16 +156,17 @@ export const InvalidDefaultProps: React.FC<{
 export const InvalidSchema: React.FC<{
 	zodValidationResult: ZodSafeParseResult;
 }> = ({zodValidationResult}) => {
+	const {t} = useTranslation();
 	return (
 		<div style={errorContainer}>
-			<div style={errorExplanation}>The data does not satisfy the schema:</div>
+			<div style={errorExplanation}>{t('The data does not satisfy the schema:')}</div>
 			<Spacing y={1} block />
 			<ZodErrorMessages
 				zodValidationResult={zodValidationResult}
 				viewTab="schema"
 			/>
 			<Spacing y={1} block />
-			<div style={errorExplanation}>Fix the schema using the JSON editor.</div>
+			<div style={errorExplanation}>{t('Fix the schema using the JSON editor.')}</div>
 		</div>
 	);
 };

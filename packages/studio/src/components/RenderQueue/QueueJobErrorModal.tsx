@@ -77,7 +77,7 @@ export const QueueJobErrorModal: React.FC<{
 				<div style={buttonRow}>
 					<CopyStackTrace errorText={errorDetails} />
 					<Flex />
-					<Button onClick={onClose}>Close</Button>
+					<Button onClick={onClose}>{t('Close')}</Button>
 				</div>
 			</div>
 		</ModalContainer>

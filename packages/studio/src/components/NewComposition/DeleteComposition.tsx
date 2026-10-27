@@ -74,7 +74,7 @@ const DeleteCompositionLoaded: React.FC<{
 					{unresolved.id}
 					{'"'}?
 					<br />
-					The associated <code style={inlineCodeSnippet}>component</code> will
+					The associated <code style={inlineCodeSnippet}>{t('component')}</code> will
 					{t('remain in your code.')}
 				</div>
 				<ModalFooterContainer>

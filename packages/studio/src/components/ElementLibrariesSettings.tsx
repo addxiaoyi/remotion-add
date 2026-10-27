@@ -238,7 +238,7 @@ export const ElementLibrariesSettings: React.FC = () => {
 						style={libraryIcon}
 					/>
 					<div style={libraryDetails}>
-						<div style={libraryName}>Remotion Elements</div>
+						<div style={libraryName}>{t('Remotion Elements')}</div>
 						<a
 							href={REMOTION_ELEMENTS_URL}
 							target="_blank"

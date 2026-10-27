@@ -754,7 +754,7 @@ export const TimelineFontFamilyField: React.FC<{
 											/>
 										</div>
 										{filteredOptions.length === 0 ? (
-											<div style={noResults}>No fonts found</div>
+											<div style={noResults}>{t('No fonts found')}</div>
 										) : (
 											<div
 												ref={listRef}

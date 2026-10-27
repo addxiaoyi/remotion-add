@@ -160,14 +160,14 @@ export const getOpenInMenuItems = ({
 					disabled: gitSourceDisabled,
 					id: 'open-in-github',
 					keyHint: null,
-					label: <span style={menuLabel}>GitHub.com</span>,
+					label: <span style={menuLabel}>{translate('GitHub')}</span>,
 					leftItem: <GitHubIcon size={16} />,
 					onClick: () => {
 						if (!gitSourceDisabled) {
 							onOpenInGitSource();
 						}
 					},
-					quickSwitcherLabel: 'Open in GitHub.com',
+					quickSwitcherLabel: translate('Open in GitHub.com'),
 					subMenu: null,
 					type: 'item' as const,
 					value: 'github',

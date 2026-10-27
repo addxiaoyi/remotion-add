@@ -1,3 +1,4 @@
+import {useTranslation} from '../../../i18n';
 import {useMemo, useRef} from 'react';
 import React, {useCallback} from 'react';
 import {WHITE_ALPHA_30} from '../../../helpers/colors';
@@ -61,6 +62,7 @@ export const ZodDateEditor: React.FC<{
 	readonly onRemove: null | (() => void);
 	readonly mayPad: boolean;
 }> = ({jsonPath, value, setValue, schema, onRemove, mayPad}) => {
+	const {t} = useTranslation();
 	const valueOnFocus = useRef(value.getTime());
 	const onChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
 		(e) => {
@@ -111,7 +113,7 @@ export const ZodDateEditor: React.FC<{
 					small
 				/>
 				<Spacing y={1} block />
-				<div style={explainer}>Date is in local format</div>
+				<div style={explainer}>{t('Date is in local format')}</div>
 				<ZodFieldValidation path={jsonPath} zodValidation={zodValidation} />
 			</div>
 		</Fieldset>
