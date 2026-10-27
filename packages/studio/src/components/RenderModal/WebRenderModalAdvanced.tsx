@@ -318,7 +318,7 @@ export const WebRenderModalAdvanced: React.FC<WebRenderModalAdvancedProps> = ({
 							<WebRendererCustomOptionExplainerBubble
 								apiName="pageResponsiveness"
 								description={<PageResponsivenessDescription />}
-								docLink="https://www.remotion.dev/docs/client-side-rendering/page-responsiveness"
+								docLink="https://example.com/docs"
 								name={t('Page responsiveness')}
 							/>
 						</div>

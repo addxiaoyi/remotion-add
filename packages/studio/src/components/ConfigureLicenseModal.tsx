@@ -254,7 +254,7 @@ export const LicenseSettings: React.FC = () => {
 								Visit{' '}
 								<a
 									style={externalDescriptionLink}
-									href="https://remotion.pro/license"
+									href="https://example.com/license"
 									target="_blank"
 									rel="noopener noreferrer"
 								>

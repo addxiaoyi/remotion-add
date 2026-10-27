@@ -96,7 +96,7 @@ export const BrowserStudioExperimentingNotice: React.FC = () => {
 					<p style={{...bodyTextStyle, margin: '0 0 12px'}}>
 						<a
 							className={`${HOVERABLE_CLASS_NAME} ${FOCUS_VISIBLE_ONLY_CLASS_NAME}`}
-							href="https://remotion.dev/docs/studio/remotion-dev-new"
+							href="https://example.com"
 							rel="noopener noreferrer"
 							style={linkStyle}
 							target="_blank"

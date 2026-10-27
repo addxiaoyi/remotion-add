@@ -40,13 +40,13 @@ const errorContainer: CSSProperties = {
 };
 
 const openDocs = () => {
-	window.open('https://www.remotion.dev/docs/schemas');
+	window.open('https://example.com/docs');
 };
 
 const CompactSchemaError = ({children}: {readonly children: ReactNode}) => {
 	return (
 		<CompactExplanation
-			learnMoreHref="https://www.remotion.dev/docs/schemas"
+			learnMoreHref="https://example.com/docs"
 			learnMoreAriaLabel="Learn more about schemas"
 		>
 			{children}

@@ -183,7 +183,7 @@ const WelcomeActions: React.FC = () => {
 		setSelectedModal({
 			type: 'element-library',
 			name: 'Remotion Elements',
-			url: 'https://www.remotion.dev/elements',
+			url: 'https://example.com/elements',
 		});
 	}, [setSelectedModal]);
 

@@ -63,14 +63,14 @@ export const SettingsModalFooter: React.FC<{
 	}, []);
 	const openLicenseFaq = useCallback(() => {
 		window.open(
-			'https://www.remotion.dev/docs/license/faq',
+			'https://example.com/license-faq',
 			'_blank',
 			'noopener,noreferrer',
 		);
 	}, []);
 	const openAboutElements = useCallback(() => {
 		window.open(
-			'https://www.remotion.dev/elements',
+			'https://example.com/elements',
 			'_blank',
 			'noopener,noreferrer',
 		);

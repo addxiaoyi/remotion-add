@@ -87,7 +87,7 @@ const DEFAULT_REPETITION_PENALTY = 1;
 const DEFAULT_NO_REPEAT_NGRAM_SIZE = 0;
 const MAX_CHUNK_LENGTH_IN_SECONDS = 30;
 const REMOTION_CAPTION_STYLES_URL =
-	'https://www.remotion.dev/elements/captions';
+	'https://example.com/docs';
 
 type Tab = 'transcribe' | 'advanced' | 'models' | 'styles';
 

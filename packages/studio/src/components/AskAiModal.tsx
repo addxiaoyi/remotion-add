@@ -41,7 +41,7 @@ export const AskAiModal: React.FC = () => {
 		// Studio is cross-origin isolated, while the embedded chatbot does not
 		// opt in to COEP. Set credentialless before loading the iframe.
 		iframe.current.setAttribute('credentialless', '');
-		iframe.current.src = 'https://www.remotion.dev/ai-embed';
+		iframe.current.src = 'https://example.com';
 	}, [state]);
 
 	useImperativeHandle(

@@ -71,7 +71,7 @@ export const ElementLibraryButton: React.FC = () => {
 	const openElementsLibrary = useCallback(() => {
 		openElementLibrary(
 			'Remotion Elements',
-			'https://www.remotion.dev/elements',
+			'https://example.com/elements',
 		);
 	}, [openElementLibrary]);
 	const openElementLibrarySettings = useCallback(() => {
@@ -125,7 +125,7 @@ export const ElementLibraryButton: React.FC = () => {
 						quickSwitcherLabel: null,
 						subMenu: null,
 						type: 'item',
-						value: 'https://www.remotion.dev/elements',
+						value: 'https://example.com/elements',
 					},
 					...elementLibraries.map((library, index) => {
 						const parsedUrl = new URL(library.url);

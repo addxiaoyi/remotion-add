@@ -349,7 +349,7 @@ const EffectPickerContent: React.FC<{
 			<div style={content}>
 				<div style={aboutEffectsRow}>
 					<a
-						href="https://remotion.dev/effects"
+						href="https://example.com/effects"
 						target="_blank"
 						rel="noopener noreferrer"
 						style={aboutEffectsLink}

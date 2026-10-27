@@ -50,7 +50,7 @@ export const NoRegisterRoot: React.FC = () => {
 				<a
 					target={'_blank'}
 					style={link}
-					href="https://www.remotion.dev/docs/register-root"
+					href="https://example.com/docs"
 				>
 					remotion.dev/docs/register-root
 				</a>
