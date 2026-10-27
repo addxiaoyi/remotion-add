@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useState} from 'react';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {CURRENT_COLOR, LIGHT_TEXT, WHITE} from '../helpers/colors';
@@ -121,6 +122,7 @@ const trashIcon: React.CSSProperties = {
 };
 
 export const ElementLibrariesSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const {studioRuntimeConfig} = useSettings();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
@@ -218,7 +220,7 @@ export const ElementLibrariesSettings: React.FC = () => {
 	const discoverThirdPartyElements = useCallback(() => {
 		setSelectedModal({
 			type: 'element-library',
-			name: 'Third-party Elements',
+			name: t('Third-party Elements'),
 			url: THIRD_PARTY_ELEMENTS_URL,
 		});
 	}, [setSelectedModal]);
@@ -226,7 +228,7 @@ export const ElementLibrariesSettings: React.FC = () => {
 	return (
 		<section style={container}>
 			<p style={description}>
-				Add libraries to browse their elements in Studio.
+				{t('Add libraries to browse their elements in Studio.')}
 			</p>
 			<div role="list" aria-label="Element Libraries">
 				<div role="listitem" style={libraryRow}>
@@ -299,7 +301,7 @@ export const ElementLibrariesSettings: React.FC = () => {
 					</div>
 				))}
 			</div>
-			<h3 style={addLibraryHeading}>Add new library</h3>
+			<h3 style={addLibraryHeading}>{t('Add new library')}</h3>
 			<div style={addLibraryActions}>
 				<Button
 					onClick={discoverThirdPartyElements}
@@ -323,7 +325,7 @@ export const ElementLibrariesSettings: React.FC = () => {
 						color={CURRENT_COLOR}
 						style={addLibraryButtonIcon}
 					/>
-					Add by URL
+					{t('Add by URL')}
 				</Button>
 			</div>
 			{isAddByUrlVisible ? (
@@ -331,7 +333,7 @@ export const ElementLibrariesSettings: React.FC = () => {
 					<div style={inputRow}>
 						<RemotionInput
 							aria-label="Element Library URL"
-							placeholder="https://example.com/elements"
+							placeholder={t('https://example.com/elements')}
 							status="ok"
 							rightAlign={false}
 							style={input}
@@ -340,7 +342,7 @@ export const ElementLibrariesSettings: React.FC = () => {
 						/>
 						<RemotionInput
 							aria-label="Element Library name"
-							placeholder="Name (optional)"
+							placeholder={t('Name (optional)')}
 							status="ok"
 							rightAlign={false}
 							style={input}

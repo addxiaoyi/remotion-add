@@ -1,3 +1,4 @@
+import {isSaasMode} from '../saas-mode';
 import type {EditorPickerId} from '@remotion/studio-shared';
 import {useContext, useEffect, useMemo} from 'react';
 import type {ResolvedStackLocation, _InternalTypes} from 'remotion';
@@ -16,6 +17,7 @@ import {showNotification} from '../components/Notifications/NotificationCenter';
 import type {TQuickSwitcherResult} from '../components/QuickSwitcher/QuickSwitcherResult';
 import {openInFileExplorer} from '../components/RenderQueue/actions';
 import {getSidebarMenuItems} from '../components/sidebar-menu-items';
+import {useTranslation} from '../i18n';
 import {getPreviewSizeLabel, getUniqueSizes} from '../components/SizeSelector';
 import {useResolvedStack} from '../components/Timeline/use-resolved-stack';
 import {inOutHandles} from '../components/TimelineInOutToggle';
@@ -60,6 +62,7 @@ const inheritColor: React.CSSProperties = {
 const ICON_SIZE = 14;
 
 export const getFileMenu = ({
+	t,
 	readOnlyStudio,
 	closeMenu,
 	editorName,
@@ -75,6 +78,7 @@ export const getFileMenu = ({
 	previewServerState: 'connected' | 'init' | 'disconnected';
 	setSelectedModal: (value: React.SetStateAction<ModalState | null>) => void;
 	newCompositionShortcut: string | null;
+	t: (k: string) => string;
 }) => {
 	const fileManagerName = getFileManagerName(
 		window.remotion_fileSystemPlatform,
@@ -86,7 +90,7 @@ export const getFileMenu = ({
 			: {
 					id: 'new-composition',
 					value: 'new-composition',
-					label: 'New composition...',
+					label: t('New composition...'),
 					onClick: () => {
 						closeMenu();
 						setSelectedModal({
@@ -101,7 +105,7 @@ export const getFileMenu = ({
 					keyHint: newCompositionShortcut,
 					leftItem: null,
 					subMenu: null,
-					quickSwitcherLabel: 'New composition...',
+					quickSwitcherLabel: t('New composition...'),
 					disabled: previewServerState !== 'connected',
 				},
 		readOnlyStudio
@@ -109,7 +113,7 @@ export const getFileMenu = ({
 			: {
 					id: 'new-folder',
 					value: 'new-folder',
-					label: 'New folder...',
+					label: t('New folder...'),
 					onClick: () => {
 						closeMenu();
 						setSelectedModal({
@@ -122,7 +126,7 @@ export const getFileMenu = ({
 					keyHint: null,
 					leftItem: null,
 					subMenu: null,
-					quickSwitcherLabel: 'New folder...',
+					quickSwitcherLabel: t('New folder...'),
 					disabled: previewServerState !== 'connected',
 				},
 	].filter(NoReactInternals.truthy);
@@ -131,7 +135,7 @@ export const getFileMenu = ({
 			? {
 					id: 'input-props-override',
 					value: 'input-props-override',
-					label: 'Set input props...',
+					label: t('Set input props...'),
 					onClick: () => {
 						closeMenu();
 						setSelectedModal({
@@ -142,7 +146,7 @@ export const getFileMenu = ({
 					keyHint: null,
 					leftItem: null,
 					subMenu: null,
-					quickSwitcherLabel: 'Override input props',
+					quickSwitcherLabel: t('Override input props'),
 				}
 			: null,
 		editorName && editorId && !readOnlyStudio
@@ -176,7 +180,7 @@ export const getFileMenu = ({
 					keyHint: null,
 					leftItem: null,
 					subMenu: null,
-					quickSwitcherLabel: 'Open in editor...',
+					quickSwitcherLabel: t('Open in editor...'),
 					disabled: previewServerState !== 'connected',
 				}
 			: null,
@@ -223,7 +227,7 @@ export const getFileMenu = ({
 
 	return {
 		id: 'file' as const,
-		label: 'File',
+		label: t('File'),
 		leaveLeftPadding: false,
 		items,
 		quickSwitcherLabel: null,
@@ -231,6 +235,7 @@ export const getFileMenu = ({
 };
 
 export const getRenderMenuItems = ({
+	t,
 	closeMenu,
 	previewServerState,
 	readOnlyStudio,
@@ -242,6 +247,7 @@ export const getRenderMenuItems = ({
 	readOnlyStudio: boolean;
 	renderShortcut: string;
 	compositionSelected: boolean;
+	t: (k: string) => string;
 }): ComboboxValue[] => {
 	return [
 		readOnlyStudio
@@ -249,7 +255,7 @@ export const getRenderMenuItems = ({
 			: {
 					id: 'render',
 					value: 'render',
-					label: 'Render...',
+					label: t('Render...'),
 					onClick: () => {
 						closeMenu();
 						if (previewServerState !== 'connected') {
@@ -269,13 +275,13 @@ export const getRenderMenuItems = ({
 						: renderShortcut || null,
 					leftItem: null,
 					subMenu: null,
-					quickSwitcherLabel: 'Render...',
+					quickSwitcherLabel: t('Render...'),
 					disabled: !compositionSelected,
 				},
 		{
 			id: 'render-on-web',
 			value: 'render-on-web',
-			label: 'Render in browser...',
+			label: t('Render in browser...'),
 			onClick: () => {
 				closeMenu();
 
@@ -289,7 +295,7 @@ export const getRenderMenuItems = ({
 			keyHint: null,
 			leftItem: null,
 			subMenu: null,
-			quickSwitcherLabel: 'Render in browser...',
+			quickSwitcherLabel: t('Render in browser...'),
 			disabled: !compositionSelected,
 		},
 		{
@@ -371,6 +377,7 @@ const useMenuStructureBase = ({
 	const {size, setSize} = useContext(Internals.PreviewSizeContext);
 	const {connectionStatus: type, openInApps} = useOpenInMenuApps();
 	const {defaultEditorId, defaultEditorName} = openInApps;
+	const {t} = useTranslation();
 	const keyboardShortcutsDisabled = areKeyboardShortcutsDisabled();
 	const resetZoomShortcut = useKeyboardShortcutLabel('resetZoom');
 	const newCompositionShortcut = useKeyboardShortcutLabel('newComposition');
@@ -438,35 +445,35 @@ const useMenuStructureBase = ({
 					{
 						id: 'about',
 						value: 'about',
-						label: 'About Remotion',
+						label: t('关于本产品'),
 						onClick: () => {
 							closeMenu();
-							openExternal('https://remotion.dev');
+							openExternal('https://example.com');
 						},
 						type: 'item' as const,
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Help: About Remotion',
+						quickSwitcherLabel: t('关于本产品'),
 					},
 					{
 						id: 'changelog',
 						value: 'changelog',
-						label: 'Changelog',
+						label: t('Changelog'),
 						onClick: () => {
 							closeMenu();
-							openExternal('https://github.com/remotion-dev/remotion/releases');
+							openExternal('https://example.com/changelog');
 						},
 						type: 'item' as const,
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Help: Changelog',
+						quickSwitcherLabel: t('Changelog'),
 					},
 					{
 						id: 'settings',
 						value: 'settings',
-						label: 'Settings...',
+						label: t('Settings...'),
 						onClick: () => {
 							closeMenu();
 							setSelectedModal({
@@ -481,21 +488,21 @@ const useMenuStructureBase = ({
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Settings...',
+						quickSwitcherLabel: t('Settings...'),
 					},
 					{
 						id: 'acknowledgements',
 						value: 'acknowledgements',
-						label: 'Acknowledgements',
+						label: t('Acknowledgements'),
 						onClick: () => {
 							closeMenu();
-							openExternal('https://remotion.dev/acknowledgements');
+							openExternal('https://example.com/acknowledgements');
 						},
 						type: 'item' as const,
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Help: Acknowledgements',
+						quickSwitcherLabel: t('Acknowledgements'),
 					},
 					studioConfigEditable
 						? {
@@ -507,7 +514,7 @@ const useMenuStructureBase = ({
 						? {
 								id: 'restart-studio',
 								value: 'restart-studio',
-								label: 'Restart Studio Server',
+								label: t('Restart Studio Server'),
 								onClick: () => {
 									closeMenu();
 									restartStudio();
@@ -516,13 +523,14 @@ const useMenuStructureBase = ({
 								keyHint: null,
 								leftItem: null,
 								subMenu: null,
-								quickSwitcherLabel: 'Restart Studio Server',
+								quickSwitcherLabel: t('Restart Studio Server'),
 							}
 						: null,
 				].filter(NoReactInternals.truthy),
 				quickSwitcherLabel: null,
 			},
 			getFileMenu({
+				t,
 				readOnlyStudio,
 				closeMenu,
 				editorId: defaultEditorId,
@@ -535,13 +543,13 @@ const useMenuStructureBase = ({
 			}),
 			{
 				id: 'view' as const,
-				label: 'View',
+				label: t('View'),
 				leaveLeftPadding: true,
 				items: [
 					{
 						id: 'preview-size',
 						keyHint: null,
-						label: 'Preview size',
+						label: t('Preview size'),
 						onClick: () => undefined,
 						type: 'item' as const,
 						value: 'preview-size',
@@ -576,7 +584,7 @@ const useMenuStructureBase = ({
 					{
 						id: 'editor-zoom-gestures',
 						keyHint: null,
-						label: 'Zoom and Pan Gestures',
+						label: t('Zoom and Pan Gestures'),
 						onClick: () => {
 							closeMenu();
 							setEditorZoomGestures((c) => !c);
@@ -594,7 +602,7 @@ const useMenuStructureBase = ({
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: pixelGridShortcut || null,
-						label: 'Pixel Grid',
+						label: t('Pixel Grid'),
 						onClick: () => {
 							closeMenu();
 							setEditorShowPixelGrid((c) => !c);
@@ -610,7 +618,7 @@ const useMenuStructureBase = ({
 					{
 						id: 'show-rulers',
 						keyHint: null,
-						label: 'Show Rulers',
+						label: t('Show Rulers'),
 						onClick: () => {
 							closeMenu();
 							setEditorShowRulers((c) => !c);
@@ -626,7 +634,7 @@ const useMenuStructureBase = ({
 					{
 						id: 'show-guides',
 						keyHint: null,
-						label: 'Show Guides',
+						label: t('Show Guides'),
 						onClick: () => {
 							closeMenu();
 							setEditorShowGuides((c) => !c);
@@ -644,7 +652,7 @@ const useMenuStructureBase = ({
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: toggleSnappingShortcut || null,
-						label: 'Enable Snapping',
+						label: t('Enable Snapping'),
 						onClick: () => {
 							closeMenu();
 							setEditorSnapping((c) => !c);
@@ -663,7 +671,7 @@ const useMenuStructureBase = ({
 					},
 					{
 						id: 'left-sidebar',
-						label: 'Left Sidebar',
+						label: t('Left Sidebar'),
 						keyHint: null,
 						type: 'item' as const,
 						value: 'preview-size',
@@ -685,7 +693,7 @@ const useMenuStructureBase = ({
 					},
 					{
 						id: 'right-sidebar',
-						label: 'Right Sidebar',
+						label: t('Right Sidebar'),
 						keyHint: null,
 						type: 'item' as const,
 						value: 'preview-size',
@@ -714,7 +722,7 @@ const useMenuStructureBase = ({
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: checkerboardShortcut || null,
-						label: 'Transparency as checkerboard',
+						label: t('Transparency as checkerboard'),
 						onClick: () => {
 							closeMenu();
 							setCheckerboard((c) => !c);
@@ -736,7 +744,7 @@ const useMenuStructureBase = ({
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: quickSwitcherShortcut || null,
-						label: 'Quick Switcher',
+						label: t('Quick Switcher'),
 						onClick: () => {
 							closeMenu();
 							setSelectedModal({
@@ -751,7 +759,7 @@ const useMenuStructureBase = ({
 						value: 'quick-switcher',
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Switch composition',
+						quickSwitcherLabel: t('Switch composition'),
 					},
 					{
 						id: 'in-out-divider-5',
@@ -762,7 +770,7 @@ const useMenuStructureBase = ({
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: setInPointShortcut || null,
-						label: 'In Mark',
+						label: t('In Mark'),
 						leftItem: null,
 						onClick: () => {
 							closeMenu();
@@ -771,14 +779,14 @@ const useMenuStructureBase = ({
 						subMenu: null,
 						type: 'item' as const,
 						value: 'in-mark',
-						quickSwitcherLabel: 'Timeline: Set In Mark',
+						quickSwitcherLabel: t('Set In Mark'),
 					},
 					{
 						id: 'out-mark',
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: setOutPointShortcut || null,
-						label: 'Out Mark',
+						label: t('Out Mark'),
 						leftItem: null,
 						onClick: () => {
 							closeMenu();
@@ -787,14 +795,14 @@ const useMenuStructureBase = ({
 						subMenu: null,
 						type: 'item' as const,
 						value: 'out-mark',
-						quickSwitcherLabel: 'Timeline: Set Out Mark',
+						quickSwitcherLabel: t('Set Out Mark'),
 					},
 					{
 						id: 'x-mark',
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: clearInOutPointsShortcut || null,
-						label: 'Clear In/Out Marks',
+						label: t('Clear In/Out Marks'),
 						leftItem: null,
 						onClick: () => {
 							closeMenu();
@@ -803,14 +811,14 @@ const useMenuStructureBase = ({
 						subMenu: null,
 						type: 'item' as const,
 						value: 'clear-marks',
-						quickSwitcherLabel: 'Timeline: Clear In and Out Mark',
+						quickSwitcherLabel: t('Clear In/Out Marks'),
 					},
 					{
 						id: 'goto-time',
 						keyHint: keyboardShortcutsDisabled
 							? null
 							: goToFrameShortcut || null,
-						label: 'Go to frame',
+						label: t('Go to frame'),
 						leftItem: null,
 						onClick: () => {
 							closeMenu();
@@ -819,7 +827,7 @@ const useMenuStructureBase = ({
 						subMenu: null,
 						type: 'item' as const,
 						value: 'clear-marks',
-						quickSwitcherLabel: 'Timeline: Go to frame',
+						quickSwitcherLabel: t('Go to frame'),
 					},
 					{
 						id: 'fullscreen-divider',
@@ -829,7 +837,7 @@ const useMenuStructureBase = ({
 						? {
 								id: 'fullscreen',
 								keyHint: null,
-								label: 'Fullscreen',
+								label: t('Fullscreen'),
 								leftItem: null,
 								onClick: () => {
 									closeMenu();
@@ -838,19 +846,20 @@ const useMenuStructureBase = ({
 								subMenu: null,
 								type: 'item' as const,
 								value: 'fullscreen',
-								quickSwitcherLabel: 'Go Fullscreen',
+								quickSwitcherLabel: t('Fullscreen'),
 							}
 						: null,
 				].filter(Internals.truthy),
 			},
 			{
 				id: 'composition' as const,
-				label: 'Composition',
+				label: t('Composition'),
 				leaveLeftPadding: false,
 				items: [
 					...(buildCompositionMenu
 						? [
 								...getRenderMenuItems({
+									t,
 									closeMenu,
 									previewServerState: type,
 									readOnlyStudio,
@@ -874,14 +883,14 @@ const useMenuStructureBase = ({
 			},
 			{
 				id: 'tools' as const,
-				label: 'Tools',
+				label: t('Tools'),
 				leaveLeftPadding: false,
 				items: [
-					studioAskAIEnabled
+					studioAskAIEnabled && !isSaasMode()
 						? {
 								id: 'ask-ai',
 								value: 'ask-ai',
-								label: 'Ask AI',
+								label: t('Ask AI'),
 								onClick: () => {
 									closeMenu();
 									askAiModalRef.current?.toggle();
@@ -892,14 +901,14 @@ const useMenuStructureBase = ({
 									: askAIShortcut || null,
 								subMenu: null,
 								type: 'item' as const,
-								quickSwitcherLabel: 'Ask AI',
+								quickSwitcherLabel: t('Ask AI'),
 							}
 						: null,
 					'EyeDropper' in window
 						? {
 								id: 'color-picker',
 								value: 'color-picker',
-								label: 'Color Picker',
+								label: t('Color Picker'),
 								onClick: () => {
 									closeMenu();
 									pickColor();
@@ -910,17 +919,17 @@ const useMenuStructureBase = ({
 									: colorPickerShortcut || null,
 								subMenu: null,
 								type: 'item' as const,
-								quickSwitcherLabel: 'Show Color Picker',
+								quickSwitcherLabel: t('Color Picker'),
 							}
 						: null,
-					!canInstallPackages() ||
+					!canInstallPackages() || isSaasMode() ||
 					(browserStudioOperations === null &&
 						(remotion_packageManager === 'unknown' || type !== 'connected'))
 						? null
 						: {
 								id: 'install-packages',
 								value: 'install-packages',
-								label: 'Install package...',
+								label: t('Install package...'),
 								onClick: () => {
 									closeMenu();
 									setSelectedModal({
@@ -942,7 +951,7 @@ const useMenuStructureBase = ({
 			},
 			{
 				id: 'help' as const,
-				label: 'Help',
+				label: t('Help'),
 				leaveLeftPadding: false,
 				items: [
 					{
@@ -975,21 +984,21 @@ const useMenuStructureBase = ({
 					{
 						id: 'docs',
 						value: 'docs',
-						label: 'Docs',
+						label: t('Docs'),
 						onClick: () => {
 							closeMenu();
-							openExternal('https://remotion.dev/docs');
+							openExternal('https://example.com/help');
 						},
 						type: 'item' as const,
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Visit Documentation',
+						quickSwitcherLabel: t('Docs'),
 					},
 					{
 						id: 'file-issue',
 						value: 'file-issue',
-						label: 'File an issue',
+						label: t('File an issue'),
 						onClick: () => {
 							closeMenu();
 							openExternal(
@@ -1000,12 +1009,12 @@ const useMenuStructureBase = ({
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'File GitHub issue',
+						quickSwitcherLabel: t('File an issue'),
 					},
 					{
 						id: 'discord',
 						value: 'discord',
-						label: 'Join Discord community',
+						label: t('Join Discord community'),
 						onClick: () => {
 							closeMenu();
 							openExternal('https://discord.com/invite/6VzzNDwUwV');
@@ -1032,7 +1041,7 @@ const useMenuStructureBase = ({
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Follow Remotion on Instagram',
+						quickSwitcherLabel: t('Instagram'),
 					},
 					{
 						id: 'x',
@@ -1046,7 +1055,7 @@ const useMenuStructureBase = ({
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Follow Remotion on X',
+						quickSwitcherLabel: t('X (Twitter)'),
 					},
 					{
 						id: 'youtube',
@@ -1060,7 +1069,7 @@ const useMenuStructureBase = ({
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Watch Remotion on YouTube',
+						quickSwitcherLabel: t('YouTube'),
 					},
 					{
 						id: 'linkedin',
@@ -1074,7 +1083,7 @@ const useMenuStructureBase = ({
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Follow Remotion on LinkedIn',
+						quickSwitcherLabel: t('LinkedIn'),
 					},
 					{
 						id: 'tiktok',
@@ -1088,7 +1097,7 @@ const useMenuStructureBase = ({
 						keyHint: null,
 						leftItem: null,
 						subMenu: null,
-						quickSwitcherLabel: 'Follow Remotion on TikTok',
+						quickSwitcherLabel: t('TikTok'),
 					},
 				],
 			},

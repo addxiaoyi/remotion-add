@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {RenderJob} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
@@ -21,6 +22,7 @@ import type {VideoMattingJob} from './video-matting-job-types';
 export const RenderQueueRepeatItem: React.FC<{
 	readonly job: AnyRenderJob | CaptionJob | VideoMattingJob;
 }> = ({job}) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 
 	const onClick: React.MouseEventHandler = useCallback(
@@ -79,9 +81,9 @@ export const RenderQueueRepeatItem: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label="Retry" shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip label={t('Retry')} shortcut={null} delay={800} dismissOnClick>
 			<InlineAction
-				aria-label="Retry"
+				aria-label={t('Retry')}
 				onClick={onClick}
 				renderAction={renderAction}
 				variant={null}

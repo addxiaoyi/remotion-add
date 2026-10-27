@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import type {_InternalTypes} from 'remotion';
 import {Internals} from 'remotion';
@@ -48,11 +49,12 @@ export const useConnectedCompositions = ({
 export const ConnectedCompositionsSection: React.FC<{
 	readonly connectedCompositions: readonly _InternalTypes['AnyComposition'][];
 }> = ({connectedCompositions}) => {
+	const {t} = useTranslation();
 	return (
 		<CollapsibleInspectorSection
 			bodyPaddingBottom={0}
 			collapsible
-			label="Connected compositions"
+			label={t('Connected compositions')}
 			sectionId="connected-compositions"
 		>
 			<div style={compositionListStyle}>

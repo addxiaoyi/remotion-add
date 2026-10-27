@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useRef} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -42,6 +43,7 @@ type State = Extract<ModalState, {type: 'precompose-refactor'}>;
 export const PrecomposeRefactorModal: React.FC<{readonly state: State}> = ({
 	state,
 }) => {
+	const {t} = useTranslation();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const {error, remotionSkillsInfo} = useSettings();
 	const annotationTarget = useRef<HTMLDivElement>(null);
@@ -104,7 +106,7 @@ export const PrecomposeRefactorModal: React.FC<{readonly state: State}> = ({
 						action={
 							canAnnotate ? (
 								<ModalButton size="compact" onClick={onSendToChatGPT}>
-									Send to ChatGPT
+									{t('Send to ChatGPT')}
 								</ModalButton>
 							) : null
 						}

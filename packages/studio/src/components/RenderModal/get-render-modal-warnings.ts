@@ -1,3 +1,5 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import {NoReactInternals} from 'remotion/no-react';
 import type {PropsEditType} from './DataEditor';
 
@@ -45,7 +47,7 @@ const getInputPropsWarning = ({
 		Object.keys(cliProps as object).length > 0 &&
 		propsEditType === 'default-props'
 	) {
-		return 'The data that was passed using --props takes priority over the data you enter here.';
+		return t('The data that was passed using --props takes priority over the data you enter here.');
 	}
 
 	return null;

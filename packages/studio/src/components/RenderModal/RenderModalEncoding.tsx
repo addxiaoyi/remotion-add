@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {
 	ColorSpace,
 	Codec,
@@ -102,6 +103,7 @@ export const RenderModalEncoding: React.FC<{
 	disallowParallelEncoding,
 	setDisallowParallelEncoding,
 }) => {
+	const {t} = useTranslation();
 	const colorSpaceOptions = useMemo((): ComboboxValue[] => {
 		return BrowserSafeApis.validColorSpaces.map((option) => {
 			return {
@@ -242,7 +244,7 @@ export const RenderModalEncoding: React.FC<{
 		<div style={container} className={VERTICAL_SCROLLBAR_CLASSNAME}>
 			{shouldDisplayQualityControlPicker && renderMode === 'video' ? (
 				<div style={optionRow}>
-					<div style={label}>Quality control</div>
+					<div style={label}>{t('')}</div>
 
 					<div style={rightRow}>
 						<SegmentedControl items={qualityControlOptions} needsWrapping />
@@ -263,7 +265,7 @@ export const RenderModalEncoding: React.FC<{
 			{qualityControlType === 'bitrate' && renderMode === 'video' ? (
 				<div style={optionRow}>
 					<div style={label}>
-						Target video bitrate
+						{t('Target video bitrate')}
 						<Spacing x={0.5} />
 						<OptionExplainerBubble id="videoBitrateOption" />
 					</div>
@@ -285,7 +287,7 @@ export const RenderModalEncoding: React.FC<{
 				<>
 					<div style={optionRow}>
 						<div style={label}>
-							Custom FFmpeg -bufsize
+							{t('Custom FFmpeg -bufsize')}
 							<Spacing x={0.5} />
 							<OptionExplainerBubble id="encodingBufferSizeOption" />
 						</div>
@@ -315,7 +317,7 @@ export const RenderModalEncoding: React.FC<{
 					)}
 					<div style={optionRow}>
 						<div style={label}>
-							Custom FFmpeg -maxrate
+							{t('Custom FFmpeg -maxrate')}
 							<Spacing x={0.5} />
 							<OptionExplainerBubble id="encodingMaxRateOption" />
 						</div>
@@ -345,7 +347,8 @@ export const RenderModalEncoding: React.FC<{
 					)}
 					<RenderModalHr />
 					<div style={optionRow}>
-						<div style={label}>Pixel format</div>
+						<div style={label}>{t('')}</div>
+
 						<div style={rightRow}>
 							<Combobox
 								values={pixelFormatOptions}
@@ -356,7 +359,7 @@ export const RenderModalEncoding: React.FC<{
 					</div>
 					<div style={optionRow}>
 						<div style={label}>
-							Color space
+							{t('Color space')}
 							<Spacing x={0.5} />
 							<OptionExplainerBubble id="colorSpaceOption" />
 						</div>
@@ -388,7 +391,7 @@ export const RenderModalEncoding: React.FC<{
 					{codec !== 'gif' ? (
 						<div style={optionRow}>
 							<div style={label}>
-								Custom GOP size
+								{t('Custom GOP size')}
 								<Spacing x={0.5} />
 								<OptionExplainerBubble id="gopSizeOption" />
 							</div>
@@ -406,7 +409,7 @@ export const RenderModalEncoding: React.FC<{
 							min={1}
 							max={10000}
 							step={1}
-							name="GOP size"
+							name={t('GOP size')}
 							formatter={(value) => `${value} frames`}
 							onValueChanged={changeGopSize}
 							value={gopSize}
@@ -414,7 +417,7 @@ export const RenderModalEncoding: React.FC<{
 					) : null}
 					<div style={optionRow}>
 						<div style={label}>
-							Hardware acceleration
+							{t('Hardware acceleration')}
 							<Spacing x={0.5} />
 							<OptionExplainerBubble id="hardwareAccelerationOption" />
 						</div>
@@ -432,7 +435,8 @@ export const RenderModalEncoding: React.FC<{
 				<>
 					{renderMode === 'video' ? <RenderModalHr /> : null}
 					<div style={optionRow}>
-						<div style={label}>No parallel encoding</div>
+						<div style={label}>{t('')}</div>
+
 						<div style={rightRow}>
 							<Checkbox
 								checked={disallowParallelEncoding}

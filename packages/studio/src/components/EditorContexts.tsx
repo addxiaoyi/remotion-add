@@ -2,6 +2,7 @@ import {PlayerInternals} from '@remotion/player';
 import React from 'react';
 import {PreviewServerConnection} from '../helpers/client-id';
 import {FolderContextProvider} from '../state/folders';
+import {I18nProvider} from '../i18n';
 import {HighestZIndexProvider} from '../state/highest-z-index';
 import {KeybindingContextProvider} from '../state/keybindings';
 import {PreviewSizeProvider} from '../state/preview-size';
@@ -30,6 +31,7 @@ export const EditorContexts: React.FC<{
 	readonly children: React.ReactNode;
 }> = ({children}) => {
 	return (
+		<I18nProvider>
 		<ZodProvider>
 			<VisualControlsProvider>
 				<PreviewServerConnection>
@@ -81,5 +83,6 @@ export const EditorContexts: React.FC<{
 				</PreviewServerConnection>
 			</VisualControlsProvider>
 		</ZodProvider>
+		</I18nProvider>
 	);
 };

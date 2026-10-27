@@ -1,3 +1,5 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import {
 	parseKeyframeClipboardDataResult,
 	parseEasingClipboardDataResult,
@@ -725,7 +727,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 								selection.type !== 'keyframe' && selection.type !== 'easing',
 						)
 					) {
-						showNotification('Select only keyframes and easings to copy', 3000);
+						showNotification(t(''), 3000);
 						return;
 					}
 
@@ -758,7 +760,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 						easingSelections.length !== 1 ||
 						easingSelections.length !== selectedItems.length
 					) {
-						showNotification('Select one easing to copy', 3000);
+						showNotification(t(''), 3000);
 						return;
 					}
 
@@ -777,7 +779,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 
 					copyText(makeClipboardText(payload))
 						.then(() => {
-							showNotification('Copied easing to clipboard', 1000);
+							showNotification(t(''), 1000);
 						})
 						.catch((err) => {
 							showNotification(
@@ -796,7 +798,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 						selectedItems.length !== 1 ||
 						selectedItems[0]?.type !== 'sequence-prop'
 					) {
-						showNotification('Select one property to copy its value', 3000);
+						showNotification(t(''), 3000);
 						return;
 					}
 
@@ -815,7 +817,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 
 					copyText(makeClipboardText(payload))
 						.then(() => {
-							showNotification('Copied property value', 1000);
+							showNotification(t(''), 1000);
 						})
 						.catch((err) => {
 							showNotification(
@@ -836,7 +838,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 						selectedItems.length !== 1 ||
 						selectedItems[0]?.type !== 'sequence-effect-prop'
 					) {
-						showNotification('Select one effect prop to copy its value', 3000);
+						showNotification(t(''), 3000);
 						return;
 					}
 
@@ -854,7 +856,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 
 					copyText(makeClipboardText(payload))
 						.then(() => {
-							showNotification('Copied effect prop to clipboard', 1000);
+							showNotification(t(''), 1000);
 						})
 						.catch((err) => {
 							showNotification(
@@ -1173,7 +1175,7 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 							easingSelections.length === 0 ||
 							easingSelections.length !== selectedItems.length
 						) {
-							showNotification('Select an easing to paste onto', 3000);
+							showNotification(t(''), 3000);
 							return;
 						}
 
@@ -1420,12 +1422,12 @@ const TimelineClipboardKeybindingsUnmemoized: React.FC = () => {
 					}
 
 					if (target.type === 'none') {
-						showNotification('Select a sequence to paste effects onto', 3000);
+						showNotification(t(''), 3000);
 						return;
 					}
 
 					if (target.type === 'unsupported') {
-						showNotification('This sequence does not support effects', 3000);
+						showNotification(t(''), 3000);
 						return;
 					}
 

@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {
 	ConfigUpdate,
 	EditorPickerId,
@@ -77,6 +78,7 @@ const appName: React.CSSProperties = {
 const NO_PREFERENCE_ID = 'no-preference';
 
 export const DefaultEditorSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {
 		codingAgentInfo,
 		editorInfo,
@@ -241,14 +243,14 @@ export const DefaultEditorSettings: React.FC = () => {
 		<div style={container}>
 			<div style={content}>
 				<div style={optionRow}>
-					<div style={label}>Default editor</div>
+					<div style={label}>{t('Default editor')}</div>
 					<div style={rightColumn}>
 						{editorInfo === null && displayedError === null ? (
-							<p style={rightDescription}>Loading installed editors...</p>
+							<p style={rightDescription}>{t('Loading installed editors...')}</p>
 						) : null}
 						{editorInfo?.installedEditors.length === 0 ? (
 							<p style={rightDescription}>
-								No supported editors were found on this computer.
+								{t('No supported editors were found on this computer.')}
 							</p>
 						) : null}
 						{editorInfo === null ? null : (
@@ -262,14 +264,14 @@ export const DefaultEditorSettings: React.FC = () => {
 					</div>
 				</div>
 				<div style={optionRow}>
-					<div style={label}>Default coding agent</div>
+					<div style={label}>{t('Default coding agent')}</div>
 					<div style={rightColumn}>
 						{codingAgentInfo === null && displayedError === null ? (
-							<p style={rightDescription}>Loading installed coding agents...</p>
+							<p style={rightDescription}>{t('Loading installed coding agents...')}</p>
 						) : null}
 						{codingAgentInfo?.installedCodingAgents.length === 0 ? (
 							<p style={rightDescription}>
-								No supported coding agents were found on this computer.
+								{t('No supported coding agents were found on this computer.')}
 							</p>
 						) : null}
 						{codingAgentInfo === null ? null : (

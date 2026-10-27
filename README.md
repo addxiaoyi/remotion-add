@@ -1,97 +1,82 @@
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+# VisualForge Studio
 
-[![Discord Shield](https://img.shields.io/discord/809501355504959528?color=000000&label=Discord&logo=fdgssdf)](https://remotion.dev/discord)
-[![NPM Version](https://img.shields.io/npm/v/remotion.svg?style=flat&color=black)](https://www.npmjs.org/package/remotion)
-[![NPM Downloads](https://img.shields.io/npm/dm/remotion.svg?style=flat&color=black&label=Downloads)](https://npmcharts.com/compare/remotion?minimal=true)
-<a href="https://twitter.com/remotion"><img src="https://img.shields.io/twitter/follow/remotion?label=Twitter&color=black" alt="Twitter"></a>
+基于 [Remotion](https://remotion.dev) 深度中文化改造的可视化视频创作工作台。
 
-Video tools for the agent era.
+React 代码即视频 —— 用组件的方式创作视频，预览、编辑、渲染一站式完成。
 
-## Video Creation
+## ✨ 特性
 
-- **Make videos agentically**: Turn your idea into a video using your coding agent.
-- **Make videos interactively**: Edit and animate using drag and drop.
-- **Make videos programmatically**: Connect to data, and manage complexity with code.
+- **完整中文界面** —— 菜单、时间线、属性面板、渲染、设置、通知、错误提示全部中文化
+- **可视化编辑** —— 时间线拖拽、逐帧预览、属性实时调整、关键帧缓动编辑
+- **智能创作助手** —— 自然语言描述需求，自动应用参数修改（SaaS 模式）
+- **字幕与语音** —— 内置 Whisper 转录、字幕编辑、背景移除
+- **多端渲染** —— 本地渲染 / 浏览器端渲染 / 云端渲染（Lambda、CloudRun、Vercel）
+- **效果库** —— 内置数十种效果、转场、LUT 调色、曲线控制
 
-React Code is the source of truth. Switch your workflow at any point.
+## 🚀 快速开始
 
-## Video Automation
+```bash
+# 安装依赖（需要 Bun >= 1.4.3）
+bun install
 
-- **Design systems**: Create a library of animated assets for your organization.
-- **Batch rendering**: Render millions of videos on your own infrastructure.
-- **Applications**: Publish a simple tool or a complex video editor.
+# 构建核心包
+bun run build-fast
 
-## Get started
-
-If you already have Node.JS installed, type
-
-```console
-npx create-video@latest
+# 启动开发环境（示例项目）
+cd packages/example
+bunx remotion studio
 ```
 
-to get started. Otherwise, read the [installation page](https://www.remotion.dev/docs/) in the documentation.
+浏览器打开 `http://localhost:3000` 即可使用。
 
-## Discover Remotion
+## 🧩 SaaS 模式
 
-Remotion is extensively documented over more than 1000 pages.
+本项目内置 SaaS 部署模式，启用后自动隐藏许可证限制的功能入口：
 
-- Get Started
-  - [Installation](https://remotion.dev/docs)
-  - [Agent Skills](https://www.remotion.dev/docs/ai/skills)
-  - [Prompts](https://www.remotion.dev/prompts)
-  - [Templates](https://remotion.dev/templates)
-- Components
-  - [Elements](https://remotion.dev/elements)
-  - [Effects](https://remotion.dev/effects)
-  - [Shapes](https://remotion.dev/docs/shapes)
-  - [Transitions](https://remotion.dev/transitions)
-  - [Sound Effects](https://remotion.dev/docs/sfx)
-  - [Captions](https://remotion.dev/docs/captions)
-  - [Fonts](https://remotion.dev/docs/fonts)
-- Rendering
-  - [Node.js APIs](https://www.remotion.dev/docs/ssr)
-  - [Lambda](https://www.remotion.dev/docs/lambda)
-  - [Vercel](https://www.remotion.dev/docs/vercel-sandbox)
-  - [Client-side rendering](https://www.remotion.dev/docs/client-side-rendering/)
-  - [Comparison of options](https://remotion.dev/docs/compare-ssr)
-- Making apps
-  - [Player](https://remotion.dev/docs/player)
-  - [Editor Starter](https://remotion.dev/editor-starter)
-  - [Mediabunny](https://remotion.dev/docs/mediabunny)
-- Community
-  - [Discord](https://remotion.dev/discord)
-  - [Experts](https://remotion.dev/experts)
-  - [Resources](https://remotion.dev/resources)
-  - [Contributing](https://remotion.dev/contributing)
-  - Follow us on [X](https://x.com/remotion), [YouTube](https://youtube.com/@remotion_dev), [Instagram](https://instagram.com/remotion), [LinkedIn](https://linkedin.com/company/remotion)
-- Commercial
-  - [License](https://remotion.dev/license)
-  - [Store](https://remotion.pro/store)
-  - [About Remotion](https://remotion.dev/about)
-  - [Showcase](https://remotion.dev/showcase)
-- Help
-  - [Support](https://remotion.dev/support)
-  - [Discord](https://remotion.dev/discord)
-  - [Search](https://remotion.dev/search)
-  - [Ask AI](https://remotion.dev/ai)
-  - [GitHub Issues](https://github.com/remotion-dev/remotion/issues)
+```js
+// 桌面端 / 宿主应用注入
+window.remotion_saasMode = true;
+// 或 URL 参数
+http://localhost:3000?saas=1
+```
 
-## Documentation
+SaaS 模式下禁用：下载工程源码、外部 AI 智能体接入、npm 包安装、第三方元素库、原生代码重构入口。
 
-Documentation: [**remotion.dev/docs**](https://www.remotion.dev/docs)  
-API Reference: [**remotion.dev/api**](https://www.remotion.dev/api)
+替代能力（`saas-features.ts` / `SaasAssistantModal.tsx`）：
+- **作品导出** —— 导出渲染成品 + 模板参数 JSON（不含代码）
+- **创作助手 API** —— 服务端 AI 将自然语言约束为结构化参数操作
 
-## License
+## 📦 目录结构
 
-Be aware of that Remotion has a special license and requires obtaining a company license in some cases. Read the [LICENSE](LICENSE.md) page for more information.
+```
+packages/
+├── studio          # 可视化编辑器（本项目核心汉化对象）
+├── core            # remotion 核心库
+├── cli             # 命令行工具
+├── player          # 可嵌入播放器
+├── renderer        # 服务端渲染
+├── lambda          # AWS Lambda 分布式渲染
+└── ...             # 100+ 配套包
+```
 
-## Contributing
+## 🛠️ 常用命令
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) to learn about contributing to this project.
+```bash
+bun run build-fast        # 快速构建（跳过部分重型包）
+bun run watchcore         # 监听核心包变更
+bun run watchstudio       # 监听 Studio 变更
+bun run test              # 运行测试
+bunx turbo run make --filter='@remotion/studio'   # 只构建 Studio
+```
+
+## 📄 许可证
+
+本项目基于 Remotion 源码，遵循 [Remotion License](LICENSE.md)：
+
+- 个人及 ≤3 人团队可免费商用
+- 更大规模的组织需获取 [Remotion Company License](https://www.remotion.pro/license)
+- 请勿将本项目的 Remotion 源码本身作为产品出售
+
+## 🙏 致谢
+
+- [Remotion](https://remotion.dev) — Remotion AG 及社区贡献者

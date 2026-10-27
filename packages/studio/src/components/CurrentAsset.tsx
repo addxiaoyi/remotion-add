@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {NewCompositionAsset} from '@remotion/studio-shared';
 import {formatBytes} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
@@ -192,6 +193,7 @@ export const AssetInfo: React.FC<{
 	readonly onAssetClick?: () => void;
 	readonly readOnlyStudio: boolean;
 }> = ({assetName, contentSized = false, onAssetClick, readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const {compositions, currentAssetMetadata} = useContext(
 		Internals.CompositionManager,
 	);
@@ -403,7 +405,7 @@ export const AssetInfo: React.FC<{
 	}, [assetName]);
 	const onShowInFileManager = useCallback(() => {
 		if (assetName === null || !window.remotion_publicFolderExists) {
-			showNotification('Could not find the public folder', 2000);
+			showNotification(t(''), 2000);
 			return;
 		}
 
@@ -513,7 +515,7 @@ export const AssetInfo: React.FC<{
 					sectionId="asset-audio"
 				>
 					{mediaSections.audio.length === 0 ? (
-						<div style={assetEmptyStateStyle}>None</div>
+						<div style={assetEmptyStateStyle}>{t('None')}</div>
 					) : (
 						<div style={assetMetadataStyle}>
 							{mediaSections.audio.map((detail) => (

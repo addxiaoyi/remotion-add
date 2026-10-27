@@ -1,4 +1,5 @@
 import React, {useContext, useMemo} from 'react';
+import {useTranslation} from '../i18n';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {useKeyboardShortcutLabel} from '../helpers/use-keyboard-shortcut-label';
 import {
@@ -25,10 +26,12 @@ export const FileToolbarMenuItem: React.FC<ToolbarMenuItemProps> = React.memo(
 	({closeMenu, readOnlyStudio, ...menuItemProps}) => {
 		const {setSelectedModal} = useContext(SetSelectedModalContext);
 		const {connectionStatus, openInApps} = useOpenInMenuApps();
+		const {t} = useTranslation();
 		const newCompositionShortcut = useKeyboardShortcutLabel('newComposition');
 		const menu = useMemo(
 			() =>
 				getFileMenu({
+					t,
 					readOnlyStudio,
 					closeMenu,
 					editorId: openInApps.defaultEditorId,
@@ -71,6 +74,7 @@ export const CompositionToolbarMenuItem: React.FC<ToolbarMenuItemProps> =
 		const {currentComposition, resolvedCompositionLocation} =
 			useCurrentCompositionMenuData();
 		const {connectionStatus, openInApps} = useOpenInMenuApps();
+		const {t} = useTranslation();
 		const {setSelectedModal} = useContext(SetSelectedModalContext);
 		const renderShortcut = useKeyboardShortcutLabel('render');
 		const menu = useMemo(
@@ -80,6 +84,7 @@ export const CompositionToolbarMenuItem: React.FC<ToolbarMenuItemProps> =
 				leaveLeftPadding: false,
 				items: [
 					...getRenderMenuItems({
+						t,
 						closeMenu,
 						previewServerState: connectionStatus,
 						readOnlyStudio,

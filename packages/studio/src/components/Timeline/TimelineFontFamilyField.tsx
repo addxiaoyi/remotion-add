@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {PlayerInternals} from '@remotion/player';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
@@ -303,6 +304,7 @@ export const TimelineFontFamilyField: React.FC<{
 	onDragValueChange,
 	onDragEnd,
 }) => {
+	const {t} = useTranslation();
 	const {fieldSchema} = field;
 	if (fieldSchema.type !== 'font-family') {
 		throw new Error(
@@ -747,7 +749,7 @@ export const TimelineFontFamilyField: React.FC<{
 													}
 												}}
 												onKeyDown={onKeyDown}
-												placeholder="Search fonts"
+												placeholder={t('Search fonts')}
 												style={searchInput}
 											/>
 										</div>
@@ -831,8 +833,7 @@ export const TimelineFontFamilyField: React.FC<{
 												fontSize: 10,
 											}}
 										>
-											Hover or use arrow keys to preview. Fonts are saved to
-											your composition only when selected.
+													{t('Hover or use arrow keys to preview. Fonts are saved to your composition only when selected.')}
 										</div>
 									</div>
 								</HigherZIndex>

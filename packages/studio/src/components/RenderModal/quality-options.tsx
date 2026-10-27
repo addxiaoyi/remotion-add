@@ -1,13 +1,15 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import type {WebRendererQuality} from '@remotion/web-renderer';
 import {Checkmark} from '../../icons/Checkmark';
 import type {ComboboxValue} from '../NewComposition/ComboBox';
 
 const QUALITY_OPTIONS: {value: WebRendererQuality; label: string}[] = [
-	{value: 'very-low', label: 'Very Low'},
-	{value: 'low', label: 'Low'},
-	{value: 'medium', label: 'Medium'},
-	{value: 'high', label: 'High'},
-	{value: 'very-high', label: 'Very High'},
+	{value: 'very-low', label: t('Very Low')},
+	{value: 'low', label: t('Low')},
+	{value: 'medium', label: t('Medium')},
+	{value: 'high', label: t('High')},
+	{value: 'very-high', label: t('Very High')},
 ];
 
 export const getQualityOptions = (

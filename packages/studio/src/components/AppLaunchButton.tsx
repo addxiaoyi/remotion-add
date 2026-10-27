@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react';
+import {useTranslation} from '../i18n';
 import {LIGHT_TEXT} from '../helpers/colors';
 import {CaretDown} from '../icons/caret';
 import {getConfigureDefaultAppsMenuItems} from './get-open-in-menu-items';
@@ -53,10 +54,12 @@ export const AppLaunchButton: React.FC<{
 	size,
 	style,
 }) => {
+	const {t} = useTranslation();
 	const items = useMemo(() => {
 		return [
 			...menuItems,
 			...getConfigureDefaultAppsMenuItems({
+				t,
 				hasPreviousItems: menuItems.length > 0,
 				onConfigureApps,
 			}),

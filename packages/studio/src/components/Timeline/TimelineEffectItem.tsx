@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo, useRef, useState} from 'react';
 import type {SequencePropsSubscriptionKey, InteractivitySchema} from 'remotion';
 import {Internals} from 'remotion';
@@ -149,6 +150,7 @@ export const TimelineEffectItem: React.FC<{
 	getIsExpanded,
 	toggleTrack,
 }) => {
+	const {t} = useTranslation();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const annotationTarget = useRef<HTMLDivElement>(null);
 	const {remotionSkillsInfo} = useSettings();
@@ -245,7 +247,7 @@ export const TimelineEffectItem: React.FC<{
 							type: 'item' as const,
 							id: 'open-effect-docs',
 							keyHint: null,
-							label: 'Open effect docs',
+							label: t('Open effect docs'),
 							leftItem: null,
 							disabled: false,
 							onClick: () => {
@@ -295,7 +297,7 @@ export const TimelineEffectItem: React.FC<{
 			type: 'item',
 			id: 'delete-effect',
 			keyHint: null,
-			label: 'Delete',
+			label: t('Delete'),
 			leftItem: null,
 			disabled: deleteDisabled,
 			onClick: () => {

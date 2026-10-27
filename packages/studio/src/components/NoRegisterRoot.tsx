@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useEffect, useState} from 'react';
 import {Internals} from 'remotion';
 import {WHITE} from '../helpers/colors';
@@ -23,6 +24,7 @@ const link: React.CSSProperties = {
 };
 
 export const NoRegisterRoot: React.FC = () => {
+	const {t} = useTranslation();
 	const [show, setShow] = useState(() => false);
 
 	useEffect(() => {
@@ -42,7 +44,7 @@ export const NoRegisterRoot: React.FC = () => {
 
 	return (
 		<Internals.AbsoluteFillElement style={container}>
-			<div style={label}>Waiting for registerRoot() to get called.</div>
+			<div style={label}>{t('Waiting for registerRoot() to get called.')}</div>
 			<div style={label}>
 				Learn more:{' '}
 				<a

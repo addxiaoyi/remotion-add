@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {InsertCompositionElementRequest} from '@remotion/studio-shared';
 import React, {
 	useCallback,
@@ -100,6 +101,7 @@ const noop = () => undefined;
 const TimelineContextMenuArea: React.FC<{
 	readonly children: React.ReactNode;
 }> = ({children}) => {
+	const {t} = useTranslation();
 	const assetDropFrame = useTimelineAssetDrop();
 	const {compositions, canvasContent} = useContext(
 		Internals.CompositionManager,
@@ -238,7 +240,7 @@ const TimelineContextMenuArea: React.FC<{
 			{
 				type: 'item',
 				id: 'insert-solid',
-				label: 'Add <Solid>',
+				label: t('Add <Solid>'),
 				value: 'insert-solid',
 				onClick: insertSolid,
 				keyHint: null,
@@ -250,7 +252,7 @@ const TimelineContextMenuArea: React.FC<{
 			{
 				type: 'item',
 				id: 'insert-asset',
-				label: 'Add asset',
+				label: t('Add asset'),
 				value: 'insert-asset',
 				onClick: insertAsset,
 				keyHint: null,

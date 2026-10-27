@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {RenderJob} from '@remotion/studio-shared';
 import React, {useCallback, useContext} from 'react';
 import {RENDER_STATUS_BACKGROUND} from '../../helpers/colors';
@@ -52,6 +53,7 @@ const buttonRow: React.CSSProperties = {
 export const RenderStatusModal: React.FC<{readonly jobId: string}> = ({
 	jobId,
 }) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const {jobs, removeClientJob, cancelClientJob} =
 		useContext(RenderQueueContext);
@@ -117,11 +119,11 @@ export const RenderStatusModal: React.FC<{readonly jobId: string}> = ({
 
 	return (
 		<ModalContainer onOutsideClick={onQuit} onEscape={onQuit}>
-			<ModalHeader title={`Render ${job.compositionId}`} />
+			<ModalHeader title={`${t('Render')} ${job.compositionId}`} />
 			<div style={container}>
 				{job.status === 'failed' ? (
 					<>
-						<p>The render failed because of the following error:</p>
+						<p>{t('The render failed because of the following error:')}</p>
 						<div className={HORIZONTAL_SCROLLBAR_CLASSNAME} style={codeBlock}>
 							{errorDetails}
 						</div>
@@ -136,16 +138,16 @@ export const RenderStatusModal: React.FC<{readonly jobId: string}> = ({
 				<div style={spacer} />
 				<div style={buttonRow}>
 					{job.status === 'running' ? (
-						<Button onClick={onClickOnCancel}>Cancel render</Button>
+						<Button onClick={onClickOnCancel}>{t('Cancel render')}</Button>
 					) : (
-						<Button onClick={onClickOnRemove}>Remove render</Button>
+						<Button onClick={onClickOnRemove}>{t('Remove render')}</Button>
 					)}
 					<Flex />
 					{job.status === 'failed' ? (
-						<Button onClick={onRetry}>Retry</Button>
+						<Button onClick={onRetry}>{t('Retry')}</Button>
 					) : null}
 					<div style={spacer} />
-					<Button onClick={onQuit}>Close</Button>
+					<Button onClick={onQuit}>{t('Close')}</Button>
 				</div>
 			</div>
 		</ModalContainer>

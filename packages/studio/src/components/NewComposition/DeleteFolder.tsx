@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback} from 'react';
 import {getFolderId} from '../../helpers/get-folder-id';
 import {inlineCodeSnippet} from '../Menu/styles';
@@ -19,6 +20,7 @@ export const DeleteFolder: React.FC<{
 	readonly parentName: string | null;
 	readonly stack: string | null;
 }> = ({folderName, parentName, stack}) => {
+	const {t} = useTranslation();
 	const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback((e) => {
 		e.preventDefault();
 	}, []);
@@ -35,7 +37,7 @@ export const DeleteFolder: React.FC<{
 					{folderId}
 					{'"'}?
 					<br />
-					The compositions and nested folders inside it will stay in your code.
+					{t('The compositions and nested folders inside it will stay in your code.')}
 				</div>
 				<ModalFooterContainer>
 					<CompositionEditFooter

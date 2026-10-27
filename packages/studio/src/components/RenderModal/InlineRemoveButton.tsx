@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {useCallback} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
 import {ActionTooltip} from '../ActionTooltip';
@@ -12,6 +13,7 @@ const clearIcon: React.CSSProperties = {
 export const InlineRemoveButton: React.FC<{
 	onClick: () => void;
 }> = ({onClick}) => {
+	const {t} = useTranslation();
 	const renderAction: RenderInlineAction = useCallback((color) => {
 		return (
 			<svg
@@ -28,12 +30,12 @@ export const InlineRemoveButton: React.FC<{
 	}, []);
 
 	return (
-		<ActionTooltip label="Remove" shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip label={t('Remove')} shortcut={null} delay={800} dismissOnClick>
 			<InlineAction
 				renderAction={renderAction}
 				onClick={onClick}
 				variant={null}
-				aria-label="Remove"
+				aria-label={t('Remove')}
 			/>
 		</ActionTooltip>
 	);

@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useMemo} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
 import {downloadBlob} from '../../helpers/download-blob';
@@ -10,6 +11,7 @@ import type {ClientRenderJob} from './client-side-render-types';
 export const RenderQueueDownloadItem: React.FC<{
 	readonly job: ClientRenderJob;
 }> = ({job}) => {
+	const {t} = useTranslation();
 	const onClick: React.MouseEventHandler = useCallback(
 		(e) => {
 			e.stopPropagation();
@@ -55,9 +57,9 @@ export const RenderQueueDownloadItem: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label="Download" shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip label={t('Download')} shortcut={null} delay={800} dismissOnClick>
 			<InlineAction
-				aria-label="Download"
+				aria-label={t('Download')}
 				variant={null}
 				renderAction={renderAction}
 				onClick={onClick}

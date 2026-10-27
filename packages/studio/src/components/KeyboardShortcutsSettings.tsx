@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {
 	ConfigUpdate,
 	ConfigValue,
@@ -162,15 +163,16 @@ const isSameShortcut = (
 const ShortcutChords: React.FC<{
 	readonly values: readonly (readonly string[])[];
 }> = ({values}) => {
+	const {t} = useTranslation();
 	if (values.length === 0) {
-		return <span style={emptyShortcut}>Unassigned</span>;
+		return <span style={emptyShortcut}>{t('Unassigned')}</span>;
 	}
 
 	return (
 		<span style={chords}>
 			{values.map((keys, chordIndex) => (
 				<React.Fragment key={keys.join('-')}>
-					{chordIndex > 0 ? <span style={alternative}>or</span> : null}
+					{chordIndex > 0 ? <span style={alternative}>{t('or')}</span> : null}
 					<span style={chord}>
 						{keys.map((keyboardKey) => (
 							<kbd key={keyboardKey} style={key}>
@@ -185,6 +187,7 @@ const ShortcutChords: React.FC<{
 };
 
 export const KeyboardShortcutsSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {error: settingsError, revision, studioRuntimeConfig} = useSettings();
 	const isBrowserStudio = getBrowserStudioOperations() !== null;
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
@@ -278,9 +281,9 @@ export const KeyboardShortcutsSettings: React.FC = () => {
 		<div style={container}>
 			{canEdit ? (
 				<>
-					<p style={dividerLabel}>General</p>
+					<p style={dividerLabel}>{t('General')}</p>
 					<label style={optionRow}>
-						<div style={label}>Keyboard shortcuts</div>
+						<div style={label}>{t('Keyboard shortcuts')}</div>
 						<div style={rightRow}>
 							<Checkbox
 								checked={enabled}

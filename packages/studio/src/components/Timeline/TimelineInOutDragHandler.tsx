@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {PlayerInternals} from '@remotion/player';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {Internals, useVideoConfig} from 'remotion';
@@ -33,9 +34,9 @@ const getClientXWithScroll = (x: number) => {
 };
 
 export const TimelineInOutDragHandler: React.FC = () => {
-	const video = Internals.useUnsafeVideoConfig();
 	const {canvasContent} = useContext(Internals.CompositionManager);
 
+	const video = Internals.useUnsafeVideoConfig();
 	if (!canvasContent || canvasContent.type !== 'composition') {
 		return null;
 	}
@@ -44,6 +45,7 @@ export const TimelineInOutDragHandler: React.FC = () => {
 };
 
 const TimelineInOutDragHandlerInner: React.FC = () => {
+	const {t} = useTranslation();
 	const videoConfig = useVideoConfig();
 	const size = PlayerInternals.useElementSize(scrollableRef, {
 		triggerOnWindowResize: true,
@@ -352,7 +354,7 @@ const TimelineInOutDragHandlerInner: React.FC = () => {
 			{
 				id: 'hide-in',
 				keyHint: null,
-				label: 'Clear In marker',
+				label: t('Clear In marker'),
 				leftItem: null,
 				onClick: (_, e) => {
 					e?.stopPropagation();
@@ -378,7 +380,7 @@ const TimelineInOutDragHandlerInner: React.FC = () => {
 			{
 				id: 'hide-out',
 				keyHint: null,
-				label: 'Clear Out marker',
+				label: t('Clear Out marker'),
 				leftItem: null,
 				onClick: (_, e) => {
 					e?.stopPropagation();

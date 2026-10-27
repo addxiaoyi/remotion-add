@@ -1,4 +1,5 @@
 import type {SVGProps} from 'react';
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {WHITE_ALPHA_80} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
@@ -22,7 +23,8 @@ const clickButton = (id: string) => {
 	(document.getElementById(id) as HTMLButtonElement | null)?.click();
 };
 
-export const PreviewToolbarOverflowButton: React.FC<{
+export const PreviewToolbarOverflowButton: React.FC<
+{
 	readonly showFullscreen: boolean;
 	readonly showPlaybackRate: boolean;
 	readonly showLoop: boolean;
@@ -33,6 +35,7 @@ export const PreviewToolbarOverflowButton: React.FC<{
 	readonly loop: boolean;
 	readonly setLoop: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({
+
 	showFullscreen,
 	showPlaybackRate,
 	showLoop,
@@ -43,6 +46,7 @@ export const PreviewToolbarOverflowButton: React.FC<{
 	loop,
 	setLoop,
 }) => {
+	const {t} = useTranslation();
 	const keyboardShortcutsDisabled = areKeyboardShortcutsDisabled();
 	const fullscreenShortcut = useKeyboardShortcutLabel('enterFullscreen');
 	const loopShortcut = useKeyboardShortcutLabel('toggleLoop');
@@ -273,7 +277,7 @@ export const PreviewToolbarOverflowButton: React.FC<{
 
 	return (
 		<ActionTooltip
-			label="View options"
+			label={t('View options')}
 			shortcut={null}
 			delay={800}
 			dismissOnClick

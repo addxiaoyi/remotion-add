@@ -6,6 +6,7 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
+import {useTranslation} from '../../i18n';
 import {Internals} from 'remotion';
 import {WHITE_ALPHA_40} from '../../helpers/colors';
 import {isCompositionStill} from '../../helpers/is-composition-still';
@@ -210,6 +211,7 @@ const CompositionMetadataValue: React.FC<{
 	readonly pendingValue: PendingCompositionMetadataValue | null;
 	readonly value: number;
 }> = ({computed, disabled, field, onSave, pendingValue, value}) => {
+	const {t} = useTranslation();
 	const [dragValue, setDragValue] = useState<number | null>(null);
 	const {showFrames, setShowFrames} = useContext(TimelineTickFormatContext);
 	const fps = Internals.useVideo()?.fps ?? null;
@@ -285,7 +287,7 @@ const CompositionMetadataValue: React.FC<{
 					? String(Math.round(Number(newValue)))
 					: formatValue(newValue),
 			parse: (text: string) => parseCompositionDuration(text, fps, showFrames),
-			invalidMessage: 'Enter a duration such as 5s, 1:30, or 150f.',
+			invalidMessage: t('Enter a duration such as 5s, 1:30, or 150f.'),
 			onCancel: () => setDragValue(null),
 		};
 	}, [field, formatValue, fps, showFrames]);
@@ -334,6 +336,7 @@ export const CompositionMetadata: React.FC<{
 	readonly disabled: boolean;
 	readonly stack: string | null;
 }> = ({compositionId, disabled, stack}) => {
+	const {t} = useTranslation();
 	const video = Internals.useVideo();
 	const {showFrames} = useContext(TimelineTickFormatContext);
 	const resolvedVideoConfig = Internals.useResolvedVideoConfig(compositionId);
@@ -556,7 +559,7 @@ export const CompositionMetadata: React.FC<{
 			<InspectorDetailRow
 				label={(hovered) => (
 					<div style={metadataLabelControls}>
-						<span style={metadataLabelText}>Dimensions</span>
+						<span style={metadataLabelText}>{t('Dimensions')}</span>
 						{disabled || widthIsComputed || heightIsComputed ? null : (
 							<PresetDropdown
 								disabled={
@@ -595,7 +598,7 @@ export const CompositionMetadata: React.FC<{
 					<InspectorDetailRow
 						label={(hovered) => (
 							<div style={metadataLabelControls}>
-								<span style={metadataLabelText}>Frame rate</span>
+								<span style={metadataLabelText}>{t('Frame rate')}</span>
 								{disabled || fpsIsComputed ? null : (
 									<PresetDropdown
 										disabled={pendingValues.fps !== undefined}
@@ -621,7 +624,7 @@ export const CompositionMetadata: React.FC<{
 					<InspectorDetailRow
 						label={(hovered) => (
 							<div style={metadataLabelControls}>
-								<span style={metadataLabelText}>Duration</span>
+								<span style={metadataLabelText}>{t('Duration')}</span>
 								{disabled || durationIsComputed ? null : (
 									<PresetDropdown
 										disabled={pendingValues.durationInFrames !== undefined}

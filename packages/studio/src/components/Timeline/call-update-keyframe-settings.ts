@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import {
 	optimisticUpdateEffectKeyframeSettings,
 	optimisticUpdateSequenceKeyframeSettings,
@@ -13,6 +14,8 @@ import {showNotification} from '../Notifications/NotificationCenter';
 import {applyEffectResponseToPropStatuses} from './apply-effect-response-to-prop-statuses';
 import {enqueueSavePropChange} from './save-prop-queue';
 import type {SetPropStatuses} from './save-sequence-prop';
+
+const t = getStaticT();
 
 const updateSequenceKeyframeSettings = (
 	request: UpdateSequenceKeyframeSettingsRequest,
@@ -88,7 +91,7 @@ export const callUpdateSequenceKeyframeSettings = ({
 				schema,
 				clientId,
 			}),
-		errorLabel: 'Could not update keyframe settings',
+		errorLabel: t('Could not update keyframe settings'),
 	});
 };
 
@@ -133,7 +136,7 @@ export const callUpdateEffectKeyframeSettings = ({
 				schema,
 				clientId,
 			}),
-		errorLabel: 'Could not update keyframe settings',
+		errorLabel: t('Could not update keyframe settings'),
 	});
 };
 

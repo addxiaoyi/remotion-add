@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import {
 	optimisticDeleteEffectKeyframe,
 	optimisticDeleteEffectKeyframes,
@@ -10,6 +11,8 @@ import {getBrowserStudioOperations} from '../../helpers/browser-studio-operation
 import {callApi} from '../call-api';
 import {enqueueSavePropChange} from './save-prop-queue';
 import type {SetPropStatuses} from './save-sequence-prop';
+
+const t = getStaticT();
 
 export type DeleteSequenceKeyframeChange = {
 	fileName: string;
@@ -90,7 +93,7 @@ export const callDeleteSequenceKeyframe = ({
 				effectKeyframes: [],
 				clientId,
 			}),
-		errorLabel: 'Could not delete keyframe',
+		errorLabel: t('Could not delete keyframe'),
 	});
 };
 
@@ -139,7 +142,7 @@ export const callDeleteEffectKeyframe = ({
 				],
 				clientId,
 			}),
-		errorLabel: 'Could not delete keyframe',
+		errorLabel: t('Could not delete keyframe'),
 	});
 };
 

@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {
 	createRef,
 	useCallback,
@@ -28,6 +29,7 @@ type AskAiModalRef = {
 export const askAiModalRef = createRef<AskAiModalRef>();
 
 export const AskAiModal: React.FC = () => {
+	const {t} = useTranslation();
 	const [state, setState] = useState<State>('never-opened');
 	const iframe = useRef<HTMLIFrameElement>(null);
 
@@ -110,7 +112,7 @@ export const AskAiModal: React.FC = () => {
 				onOutsideClick={onQuit}
 				onEscape={onQuit}
 			>
-				<ModalHeader title="Ask AI" onClose={onQuit} />
+`				<ModalHeader title={t('Ask AI')} onClose={onQuit} />
 				<iframe
 					ref={iframe}
 					frameBorder={0}

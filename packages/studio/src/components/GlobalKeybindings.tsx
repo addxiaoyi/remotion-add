@@ -1,3 +1,5 @@
+import {getStaticT} from '../i18n';
+const t = getStaticT();
 import type {StudioKeyboardShortcutAction} from '@remotion/studio-shared';
 import type React from 'react';
 import {useCallback, useContext, useEffect} from 'react';
@@ -225,7 +227,7 @@ export const GlobalKeybindings: React.FC = () => {
 			event: 'keydown',
 			key: 's',
 			callback: () => {
-				showNotification('Remotion saves automatically', 2000);
+				showNotification(t(''), 2000);
 			},
 			triggerIfInputFieldFocused: true,
 			keepRegisteredWhenNotHighestContext: false,

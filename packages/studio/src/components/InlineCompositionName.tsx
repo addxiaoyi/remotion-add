@@ -1,3 +1,5 @@
+import {getStaticT} from '../i18n';
+const t = getStaticT();
 import type * as React from 'react';
 import {useCallback, useMemo} from 'react';
 import type {_InternalTypes} from 'remotion';
@@ -46,7 +48,7 @@ export const InlineCompositionName: React.FC<{
 				return;
 			}
 
-			const notification = showNotification('Renaming...', null);
+			const notification = showNotification(t(''), null);
 
 			renameComposition({
 				newCompositionId: newId,

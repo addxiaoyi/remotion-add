@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {
 	isSchemaFieldHoldOnly,
 	isSchemaFieldKeyframable,
@@ -661,6 +662,7 @@ export const TimelineSequencePropItem: React.FC<{
 	keyframeControlsMode,
 	runtimeValueStore,
 }) => {
+	const {t} = useTranslation();
 	const {propStatuses: visualModePropStatuses} = useContext(
 		Internals.VisualModePropStatusesContext,
 	);
@@ -819,7 +821,7 @@ export const TimelineSequencePropItem: React.FC<{
 				type: 'item',
 				id: 'reset-sequence-field',
 				keyHint: null,
-				label: 'Reset',
+				label: t('Reset'),
 				leftItem: null,
 				disabled: !canShowReset,
 				onClick: onReset,

@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {PlayerInternals} from '@remotion/player';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
@@ -99,6 +100,7 @@ type PreviewState =
 	| {readonly type: 'loaded'};
 
 export const LutPreview: React.FC<{readonly src: string}> = ({src}) => {
+	const {t} = useTranslation();
 	const containerRef = useRef<HTMLDivElement>(null);
 	const beforeRef = useRef<HTMLCanvasElement>(null);
 	const afterRef = useRef<HTMLCanvasElement>(null);
@@ -231,7 +233,7 @@ export const LutPreview: React.FC<{readonly src: string}> = ({src}) => {
 				</div>
 			) : state.type === 'loading' ? (
 				<div style={message} role="status">
-					Loading LUT preview...
+					{t('Loading LUT preview...')}
 				</div>
 			) : null}
 			<div

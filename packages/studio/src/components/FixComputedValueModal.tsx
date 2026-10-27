@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {SymbolicatedStackFrame} from '@remotion/studio-shared';
 import React, {
 	useCallback,
@@ -80,6 +81,7 @@ type SourcePreviewState =
 export const FixComputedValueModal: React.FC<{
 	readonly state: FixComputedValueModalState;
 }> = ({state}) => {
+	const {t} = useTranslation();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const {remotionSkillsInfo} = useSettings();
 	const annotationTarget = useRef<HTMLDivElement>(null);
@@ -162,10 +164,10 @@ export const FixComputedValueModal: React.FC<{
 
 	return (
 		<DismissableModal panelStyle={panelStyle}>
-			<ModalHeader title="Fix computed value" />
+			<ModalHeader title={t('Fix computed value')} />
 			<div style={container}>
 				<div style={text}>
-					This value cannot be interactively edited because it is computed:
+					{t('This value cannot be interactively edited because it is computed:')}
 				</div>
 				{sourcePreview.type === 'loaded' ? (
 					<div ref={annotationTarget} style={sourcePreviewContainer}>
@@ -203,21 +205,19 @@ export const FixComputedValueModal: React.FC<{
 				) : (
 					<div style={sourcePreviewStatus}>
 						{sourcePreview.type === 'loading'
-							? 'Loading code preview...'
-							: `Could not load code preview: ${sourcePreview.message}`}
+							? t('Loading code preview...')
+							: t('Could not load code preview: ' + sourcePreview.message)}
 					</div>
 				)}
 				{isBrowserStudio ? (
 					<>
 						<div style={text}>
-							This value requires a code change to become editable. Code editing
-							and agent-assisted refactoring are unavailable in
-							remotion.dev/new. Download the project to continue locally.
+							{t('此值需要修改代码才能编辑。remotion.dev/new 中无法使用代码编辑和智能体重构。下载项目以在本地继续。')}
 						</div>
 						{downloadProject ? (
 							<div style={{marginTop: 16}}>
 								<ModalButton onClick={downloadProject}>
-									Download project
+								{t('Download project')}
 								</ModalButton>
 							</div>
 						) : null}
@@ -227,11 +227,11 @@ export const FixComputedValueModal: React.FC<{
 						action={
 							canAnnotate ? (
 								<ModalButton size="compact" onClick={onSendToChatGPT}>
-									Send to ChatGPT
+									{t('Send to ChatGPT')}
 								</ModalButton>
 							) : null
 						}
-						availableText="Use this prompt to make this value editable:"
+						availableText={t('Use this prompt to make this value editable:')}
 						promptDetails={promptDetails}
 						skillId="remotion-interactivity"
 					/>

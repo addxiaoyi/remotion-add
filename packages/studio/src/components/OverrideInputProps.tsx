@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {useCallback, useContext, useMemo, useState} from 'react';
 import {Internals} from 'remotion';
 import {BLUE, LIGHT_TEXT} from '../helpers/colors';
@@ -46,6 +47,7 @@ const isValidJSON = (value: string) => {
 };
 
 const Inner: React.FC<{}> = () => {
+	const {t} = useTranslation();
 	const [value, setValue] = useState<string | null>(() => {
 		const override = Internals.getInputPropsOverride();
 		if (override) {
@@ -109,11 +111,11 @@ const Inner: React.FC<{}> = () => {
 				style={textAreaStyle}
 			/>
 			<div style={row}>
-				<Button onClick={onReset}>Reset</Button>
+				<Button onClick={onReset}>{t('Reset')}</Button>
 				<Spacing x={0.5} />
-				<Button onClick={onReloadPage}>Reload page</Button>
+				<Button onClick={onReloadPage}>{t('Reload page')}</Button>
 				<Flex />
-				<Button onClick={onDone}>Done</Button>
+				<Button onClick={onDone}>{t('Done')}</Button>
 			</div>
 		</div>
 	);

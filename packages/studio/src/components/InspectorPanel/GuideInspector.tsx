@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext} from 'react';
 import type {Guide} from '../../state/editor-guides';
 import {
@@ -46,6 +47,7 @@ const updateGuidePosition = ({
 export const GuideInspector: React.FC<{
 	readonly selection: Extract<TimelineSelection, {type: 'guide'}>;
 }> = ({selection}) => {
+	const {t} = useTranslation();
 	const {guidesList, setGuidesList} = useContext(EditorShowGuidesContext);
 	const guide = guidesList.find(
 		(candidate) => candidate.id === selection.guideId,
@@ -76,7 +78,7 @@ export const GuideInspector: React.FC<{
 	);
 
 	if (!guide) {
-		return <InspectorMessage>Guide unavailable</InspectorMessage>;
+		return <InspectorMessage>{t('Guide unavailable')}</InspectorMessage>;
 	}
 
 	return (

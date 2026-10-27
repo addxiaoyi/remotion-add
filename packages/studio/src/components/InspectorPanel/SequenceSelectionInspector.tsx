@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {Internals} from 'remotion';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
@@ -127,6 +128,7 @@ const SequenceSourceQuickActions: React.FC<{
 		readonly line: number;
 	};
 }> = ({selection, track, validatedLocation}) => {
+	const {t} = useTranslation();
 	const timelinePosition = Internals.Timeline.useTimelinePosition();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
@@ -310,7 +312,7 @@ const SequenceSourceQuickActions: React.FC<{
 						/>
 					)}
 				>
-					Remove background
+					{t('Remove background')}
 				</InspectorQuickAction>
 			) : null}
 			{track.sequence.type === 'video' ? (
@@ -328,7 +330,7 @@ const SequenceSourceQuickActions: React.FC<{
 						/>
 					)}
 				>
-					Separate audio
+					{t('Separate audio')}
 				</InspectorQuickAction>
 			) : null}
 			{mediaSequence !== null && mediaMetadata?.hasAudioTrack !== false ? (
@@ -345,7 +347,7 @@ const SequenceSourceQuickActions: React.FC<{
 						/>
 					)}
 				>
-					Generate captions
+					{t('Generate captions')}
 				</InspectorQuickAction>
 			) : null}
 			<InspectorQuickAction
@@ -408,6 +410,7 @@ const SequenceExpandedInspector: React.FC<{
 	readonly track: TimelineTrackData;
 	readonly readOnlyStudio: boolean;
 }> = ({track, readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const {selectedItems, selectItems} = useTimelineSelection();
 	const sourceLocation = useSequenceInspectorSourceLocation(track.sequence);
@@ -455,7 +458,7 @@ const SequenceExpandedInspector: React.FC<{
 		previewServerState.type !== 'connected' &&
 		!window.remotion_isReadOnlyStudio
 	) {
-		return <InspectorMessage>Studio server disconnected</InspectorMessage>;
+		return <InspectorMessage>{t('Studio server disconnected')}</InspectorMessage>;
 	}
 
 	if (
@@ -463,7 +466,7 @@ const SequenceExpandedInspector: React.FC<{
 		sequenceSelection === null ||
 		!hasSequenceControls(track.sequence)
 	) {
-		return <InspectorMessage>Sequence inspector unavailable</InspectorMessage>;
+		return <InspectorMessage>{t('Sequence inspector unavailable')}</InspectorMessage>;
 	}
 
 	return (
@@ -488,7 +491,7 @@ const SequenceExpandedInspector: React.FC<{
 					<CollapsibleInspectorSection
 						bodyPaddingBottom={8}
 						collapsible
-						label="Actions"
+						label={t('Actions')}
 						sectionId="sequence-actions"
 					>
 						<InspectorQuickActionsSection>
@@ -506,11 +509,11 @@ const SequenceExpandedInspector: React.FC<{
 				</>
 			) : (
 				<>
-					<InspectorMessage>Source controls unavailable</InspectorMessage>
+					<InspectorMessage>{t('Source controls unavailable')}</InspectorMessage>
 					<CollapsibleInspectorSection
 						bodyPaddingBottom={8}
 						collapsible
-						label="Actions"
+						label={t('Actions')}
 						sectionId="sequence-actions"
 					>
 						<InspectorQuickActionsSection>
@@ -543,10 +546,11 @@ export const SequenceSelectionInspector: React.FC<{
 	readonly selection: SequenceSectionSelection;
 	readonly readOnlyStudio: boolean;
 }> = ({selection, readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const track = useTrackForSelection(selection);
 
 	if (!track) {
-		return <InspectorMessage>Sequence inspector unavailable</InspectorMessage>;
+		return <InspectorMessage>{t('Sequence inspector unavailable')}</InspectorMessage>;
 	}
 
 	return (

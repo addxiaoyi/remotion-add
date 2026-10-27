@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {formatBytes} from '@remotion/studio-shared';
 import React, {useEffect, useState} from 'react';
 import {LIGHT_TEXT, WHITE} from '../helpers/colors';
@@ -45,6 +46,7 @@ let fontPreviewId = 0;
 const FontPreview: React.FC<{
 	readonly src: string;
 }> = ({src}) => {
+	const {t} = useTranslation();
 	const [fontFamily] = useState(() => {
 		fontPreviewId++;
 		return `RemotionStudioFontPreview${fontPreviewId}`;
@@ -81,11 +83,11 @@ const FontPreview: React.FC<{
 	}, [fontFamily, src]);
 
 	if (fontLoadFailed) {
-		return <div style={msgStyle}>Could not preview font</div>;
+		return <div style={msgStyle}>{t('Could not preview font')}</div>;
 	}
 
 	if (!fontLoaded) {
-		return <div style={msgStyle}>Loading font preview...</div>;
+		return <div style={msgStyle}>{t('Loading font preview...')}</div>;
 	}
 
 	return (

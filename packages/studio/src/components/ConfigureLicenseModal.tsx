@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {ConfigUpdate} from '@remotion/studio-shared';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {BLUE, LIGHT_TEXT} from '../helpers/colors';
@@ -74,6 +75,7 @@ const inputLabel: React.CSSProperties = {
 };
 
 export const LicenseSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {error: settingsError, publicLicenseKey, revision} = useSettings();
 	const initialLicenseType: LicenseType =
 		publicLicenseKey === 'free-license'
@@ -272,10 +274,10 @@ export const LicenseSettings: React.FC = () => {
 										/>
 									</svg>
 								</a>{' '}
-								to obtain a license key. Then enter it here.
+								{t('获取许可证密钥，然后在此处输入。')}
 							</p>
 							<label style={inputLabel}>
-								Public license key
+								{t('Public license key')}
 								<RemotionInput
 									status={
 										localLicenseKeyValidation.message ||
@@ -294,7 +296,7 @@ export const LicenseSettings: React.FC = () => {
 									onBlur={() => {
 										setCompanyLicenseKeyToSave(companyLicenseKey.trim());
 									}}
-									placeholder="rm_pub_..."
+									placeholder={t('rm_pub_...')}
 									autoFocus
 								/>
 							</label>
@@ -321,7 +323,7 @@ export const LicenseSettings: React.FC = () => {
 							{isValidatingLicenseKey ? (
 								<>
 									<Spacing y={1} />
-									<p style={description}>Loading license key details...</p>
+									<p style={description}>{t('Loading license key details...')}</p>
 								</>
 							) : null}
 							{licenseKeyDetails ? (

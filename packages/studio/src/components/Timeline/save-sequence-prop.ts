@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import {
 	optimisticAddSequenceKeyframe,
 	optimisticUpdateForPropStatuses,
@@ -17,6 +18,8 @@ import {
 	type MoveSequenceKeyframeChange,
 } from './call-move-keyframe';
 import {enqueueSavePropChange} from './save-prop-queue';
+
+const t = getStaticT();
 
 export type SetPropStatuses = (
 	nodePath: SequencePropsSubscriptionKey,
@@ -98,7 +101,7 @@ export const saveInlineCaptionPatches = ({
 				undoLabel,
 				redoLabel,
 			}),
-		errorLabel: 'Could not save captions',
+		errorLabel: t('Could not save captions'),
 	});
 };
 
@@ -171,7 +174,7 @@ export const saveSequenceProps = ({
 					undoLabel,
 					redoLabel,
 				}),
-			errorLabel: 'Could not save sequence prop',
+			errorLabel: t('Could not save sequence prop'),
 		});
 	}
 

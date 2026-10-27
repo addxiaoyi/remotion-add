@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {AudioCodec, Codec} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import type {ChangeEvent} from 'react';
@@ -76,6 +77,7 @@ export const RenderModalAudio: React.FC<{
 	sampleRate,
 	setSampleRate,
 }) => {
+	const {t} = useTranslation();
 	const onShouldHaveTargetAudioBitrateChanged = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
 			setShouldHaveCustomTargetAudioBitrate(e.target.checked);
@@ -185,7 +187,7 @@ export const RenderModalAudio: React.FC<{
 			{audioCodec === 'aac' && !muted ? (
 				<div style={optionRow}>
 					<div style={label}>
-						For seamless AAC concatenation
+						{t('For seamless AAC concatenation')}
 						<Spacing x={0.5} />
 						<OptionExplainerBubble id="forSeamlessAacConcatenationOption" />
 					</div>
@@ -221,7 +223,7 @@ export const RenderModalAudio: React.FC<{
 			renderMode !== 'still' &&
 			!muted ? (
 				<div style={optionRow}>
-					<div style={label}>Target audio bitrate</div>
+					<div style={label}>{t('')}</div>
 
 					<div style={rightRow}>
 						<div>

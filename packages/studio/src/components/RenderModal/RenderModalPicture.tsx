@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {StillImageFormat, VideoImageFormat} from '@remotion/renderer';
 import React from 'react';
 import {VERTICAL_SCROLLBAR_CLASSNAME} from '../Menu/is-menu-item';
@@ -39,11 +40,13 @@ export const RenderModalPicture: React.FC<{
 	compositionWidth,
 	compositionHeight,
 }) => {
+	const {t} = useTranslation();
 	return (
 		<div style={container} className={VERTICAL_SCROLLBAR_CLASSNAME}>
 			{renderMode === 'video' && !usesSharedMemoryCapture ? (
 				<div style={optionRow}>
-					<div style={label}>Image Format</div>
+					<div style={label}>{t('')}</div>
+
 					<div style={rightRow}>
 						<SegmentedControl
 							items={imageFormatOptions}

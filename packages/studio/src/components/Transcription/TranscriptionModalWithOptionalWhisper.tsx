@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import React, {Suspense} from 'react';
 import {LIGHT_TEXT, TRANSPARENT, WHITE} from '../../helpers/colors';
 import {
@@ -73,6 +74,8 @@ const modelSizes = [
 	{model: 'large-v3-turbo', size: '~1.6 GB'},
 ];
 
+const tStatic = getStaticT();
+
 const INSTALL_MESSAGE = (
 	<>
 		Generate captions on-device with{' '}
@@ -84,7 +87,7 @@ const INSTALL_MESSAGE = (
 				className={`${HOVERABLE_CLASS_NAME} ${FOCUS_VISIBLE_ONLY_CLASS_NAME}`}
 				style={summaryStyle}
 			>
-				Model options and download sizes
+				{tStatic('Model options and download sizes')}
 			</summary>
 			<ul style={listStyle}>
 				{modelSizes.map(({model, size}) => (
@@ -102,7 +105,6 @@ const LazyTranscriptionModal = React.lazy(async () => {
 	const {TranscriptionModal} = await import('./TranscriptionModal');
 	return {default: TranscriptionModal};
 });
-
 export const TranscriptionModalWithOptionalWhisper: React.FC<{
 	readonly state: TranscriptionModalState;
 }> = ({state}) => {

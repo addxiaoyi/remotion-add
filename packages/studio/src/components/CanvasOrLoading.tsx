@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {Size} from '@remotion/player';
 import React, {useCallback, useContext, useEffect} from 'react';
 import {Internals} from 'remotion';
@@ -62,6 +63,7 @@ const welcomeLabel: React.CSSProperties = {
 };
 
 const WelcomeActions: React.FC = () => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const {compositions} = useContext(Internals.CompositionManager);
@@ -213,7 +215,7 @@ const WelcomeActions: React.FC = () => {
 								<SearchIcon color={color} style={inspectorActionIconStyle} />
 							)}
 						>
-							Open composition
+							{t('Open composition')}
 						</InspectorQuickAction>
 					) : null}
 					{canMutateProject ? (
@@ -225,7 +227,7 @@ const WelcomeActions: React.FC = () => {
 									<FilmIcon color={color} style={inspectorActionIconStyle} />
 								)}
 							>
-								New composition
+								{t('New composition')}
 							</InspectorQuickAction>
 							<InspectorQuickAction
 								disabled={false}
@@ -234,7 +236,7 @@ const WelcomeActions: React.FC = () => {
 									<UploadIcon color={color} style={inspectorActionIconStyle} />
 								)}
 							>
-								Import asset
+								{t('Import asset')}
 							</InspectorQuickAction>
 							<InspectorQuickAction
 								disabled={false}
@@ -247,13 +249,13 @@ const WelcomeActions: React.FC = () => {
 									/>
 								)}
 							>
-								Browse Elements
+								{t('Browse Elements')}
 							</InspectorQuickAction>
 						</>
 					) : null}
 				</div>
 			) : (
-				<div style={welcomeLabel}>Select a composition to get started.</div>
+				<div style={welcomeLabel}>{t('Select a composition to get started.')}</div>
 			)}
 		</div>
 	);

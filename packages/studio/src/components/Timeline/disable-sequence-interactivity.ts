@@ -1,6 +1,9 @@
+import {getStaticT} from '../../i18n';
 import type {SequencePropsSubscriptionKey} from 'remotion';
 import {NoReactInternals} from 'remotion/no-react';
 import {saveSequenceProps, type SetPropStatuses} from './save-sequence-prop';
+
+const t = getStaticT();
 
 export const disableSequenceInteractivity = ({
 	clientId,
@@ -28,7 +31,7 @@ export const disableSequenceInteractivity = ({
 		],
 		setPropStatuses,
 		clientId,
-		undoLabel: 'Disable interactivity',
-		redoLabel: 'Disable interactivity again',
+		undoLabel: t('Disable interactivity'),
+		redoLabel: t('Disable interactivity again'),
 	});
 };

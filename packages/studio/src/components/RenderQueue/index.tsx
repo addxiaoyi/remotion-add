@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useContext, useEffect, useMemo} from 'react';
 import {Internals} from 'remotion';
 import {BACKGROUND, LIGHT_TEXT} from '../../helpers/colors';
@@ -38,6 +39,7 @@ const renderQueue: React.CSSProperties = {
 };
 
 export const RenderQueue: React.FC = () => {
+	const {t} = useTranslation();
 	const {jobs, captionJobs, videoMattingJobs} = useContext(RenderQueueContext);
 	const {canvasContent} = useContext(Internals.CompositionManager);
 	const allJobs = useMemo(
@@ -116,7 +118,7 @@ export const RenderQueue: React.FC = () => {
 			<div style={explainer}>
 				<Spacing y={5} />
 				<div style={errorExplanation}>
-					Renders, transcriptions and background removal jobs will show up here.
+					{t('Renders, transcriptions and background removal jobs will show up here.')}
 				</div>
 				<Spacing y={2} block />
 			</div>

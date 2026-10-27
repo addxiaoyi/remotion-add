@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useRef} from 'react';
 import type {_InternalTypes} from 'remotion';
 import {Internals} from 'remotion';
@@ -25,6 +26,7 @@ const content: React.CSSProperties = {
 const DeleteCompositionLoaded: React.FC<{
 	readonly compositionId: string;
 }> = ({compositionId}) => {
+	const {t} = useTranslation();
 	const context = useContext(ResolvedCompositionContext);
 	if (!context) {
 		throw new Error('Resolved composition context');
@@ -73,7 +75,7 @@ const DeleteCompositionLoaded: React.FC<{
 					{'"'}?
 					<br />
 					The associated <code style={inlineCodeSnippet}>component</code> will
-					remain in your code.
+					{t('remain in your code.')}
 				</div>
 				<ModalFooterContainer>
 					<CompositionEditFooter

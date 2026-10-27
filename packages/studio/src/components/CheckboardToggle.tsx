@@ -1,4 +1,5 @@
 import React, {useCallback, useContext} from 'react';
+import {useTranslation} from '../i18n';
 import {BLUE} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {
@@ -12,6 +13,7 @@ import {ControlButton} from './ControlButton';
 const buttonStyle: React.CSSProperties = {width: 26};
 
 export const CheckboardToggle: React.FC = () => {
+	const {t} = useTranslation();
 	const {checkerboard, setCheckerboard} = useContext(CheckerboardContext);
 
 	const onClick = useCallback(() => {
@@ -27,7 +29,7 @@ export const CheckboardToggle: React.FC = () => {
 
 	return (
 		<ActionTooltip
-			label="Checkerboard"
+			label={t('Checkerboard')}
 			shortcut={shortcutsDisabled ? null : shortcut}
 			delay={800}
 			dismissOnClick={false}

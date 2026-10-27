@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useEffect, useState} from 'react';
 import {
 	BLACK_HEX,
@@ -39,6 +40,7 @@ const linkStyle: React.CSSProperties = {
 export const MediaPlaybackErrorExplainer: React.FC<{
 	readonly src: string;
 }> = ({src}) => {
+	const {t} = useTranslation();
 	const [result, setResult] = useState<ProbeResult>({type: 'loading'});
 
 	useEffect(() => {
@@ -72,10 +74,10 @@ export const MediaPlaybackErrorExplainer: React.FC<{
 	if (result.type === 'not-found') {
 		return (
 			<div style={container}>
-				The file <code style={codeStyle}>{src}</code> was not found (404).
+				{t('The file')} <code style={codeStyle}>{src}</code> {t('was not found (404).')}
 				<br />
-				If the file is in your <code style={codeStyle}>public/</code> folder,
-				make sure to use{' '}
+				{t('If the file is in your')} <code style={codeStyle}>public/</code> {t('folder,')}
+				{t('make sure to use')}{' '}
 				<a
 					style={linkStyle}
 					href="https://remotion.dev/docs/staticfile"
@@ -83,14 +85,14 @@ export const MediaPlaybackErrorExplainer: React.FC<{
 				>
 					<code style={codeStyle}>staticFile()</code>
 				</a>{' '}
-				to reference it.
+				{t('to reference it.')}
 				<br />
 				<a
 					style={linkStyle}
 					href="https://remotion.dev/docs/media-playback-error"
 					target="_blank"
 				>
-					Learn more
+					{t('Learn more')}
 				</a>
 			</div>
 		);
@@ -107,7 +109,7 @@ export const MediaPlaybackErrorExplainer: React.FC<{
 					href="https://remotion.dev/docs/media-playback-error"
 					target="_blank"
 				>
-					Learn more
+					{t('Learn more')}
 				</a>
 			</div>
 		);
@@ -117,11 +119,11 @@ export const MediaPlaybackErrorExplainer: React.FC<{
 		return (
 			<div style={container}>
 				⚠️ Fetching <code style={codeStyle}>{src}</code> returned a{' '}
-				<code style={codeStyle}>{result.contentType}</code> content type.
+				<code style={codeStyle}>{result.contentType}</code> {t('content type.')}
 				<br />👉 If the file is in your <code style={codeStyle}>
 					public/
 				</code>{' '}
-				folder, make sure to use{' '}
+				folder, {t('make sure to use')}{' '}
 				<a
 					style={linkStyle}
 					href="https://remotion.dev/docs/staticfile"
@@ -129,14 +131,14 @@ export const MediaPlaybackErrorExplainer: React.FC<{
 				>
 					<code style={codeStyle}>staticFile()</code>
 				</a>{' '}
-				to reference it.
+				{t('to reference it.')}
 				<br />
 				<a
 					style={linkStyle}
 					href="https://remotion.dev/docs/media-playback-error"
 					target="_blank"
 				>
-					Learn more
+					{t('Learn more')}
 				</a>
 			</div>
 		);

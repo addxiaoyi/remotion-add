@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useState} from 'react';
 import {ShortcutHint} from '../error-overlay/remotion-overlay/ShortcutHint';
 import {LIGHT_TEXT, TRANSPARENT, WHITE} from '../helpers/colors';
@@ -55,6 +56,7 @@ const buttonTextStyle: React.CSSProperties = {
 };
 
 export const BrowserStudioExperimentingNotice: React.FC = () => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const [keyboardNavigation, setKeyboardNavigation] = useState(false);
 
@@ -89,7 +91,7 @@ export const BrowserStudioExperimentingNotice: React.FC = () => {
 				onOutsideClick={onClose}
 				panelStyle={panelStyle}
 			>
-				<ModalHeader title="Before you start" onClose={onClose} />
+				<ModalHeader title={t('Before you start')} onClose={onClose} />
 				<div style={{padding: 16, minHeight: 0, overflowY: 'auto'}}>
 					<p style={{...bodyTextStyle, margin: '0 0 12px'}}>
 						<a
@@ -101,7 +103,7 @@ export const BrowserStudioExperimentingNotice: React.FC = () => {
 						>
 							remotion.dev/new
 						</a>{' '}
-						is a playground for experimenting with Remotion.
+						{t('is a playground for experimenting with Remotion.')}
 					</p>
 					<p
 						style={{
@@ -122,7 +124,7 @@ export const BrowserStudioExperimentingNotice: React.FC = () => {
 							}}
 						/>
 						<span style={bodyTextStyle}>
-							Projects aren’t saved between visits.
+							{t('Projects aren’t saved between visits.')}
 						</span>
 					</p>
 					<p
@@ -167,7 +169,7 @@ export const BrowserStudioExperimentingNotice: React.FC = () => {
 							}}
 						/>
 						<span style={bodyTextStyle}>
-							Only browser rendering is available.
+							{t('Only browser rendering is available.')}
 						</span>
 					</p>
 					<p style={{...bodyTextStyle, margin: 0}}>
@@ -175,7 +177,7 @@ export const BrowserStudioExperimentingNotice: React.FC = () => {
 						<strong style={{...bodyTextStyle, fontWeight: 'bold'}}>
 							Download project
 						</strong>{' '}
-						and continue locally.
+						{t('and continue locally.')}
 					</p>
 				</div>
 				<ModalFooterContainer style={{minWidth: 0, flex: 'none'}}>

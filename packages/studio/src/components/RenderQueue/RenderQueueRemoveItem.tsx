@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {Internals} from 'remotion';
 import {unregisterClientRender} from '../../api/save-render-output';
@@ -13,6 +14,7 @@ import {isClientRenderJob, RenderQueueContext} from './context';
 export const RenderQueueRemoveItem: React.FC<{
 	readonly job: AnyRenderJob;
 }> = ({job}) => {
+	const {t} = useTranslation();
 	const isClientJob = isClientRenderJob(job);
 	const {removeClientJob} = useContext(RenderQueueContext);
 	const compositionManagerRef = useContext(
@@ -79,9 +81,9 @@ export const RenderQueueRemoveItem: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label="Clear" shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip label={t('Clear')} shortcut={null} delay={800} dismissOnClick>
 			<InlineAction
-				aria-label="Clear"
+				aria-label={t('Clear')}
 				renderAction={renderAction}
 				onClick={onClick}
 				variant={null}

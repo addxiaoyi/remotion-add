@@ -12,6 +12,7 @@ import {useMobileLayout} from '../helpers/mobile-layout';
 import {resolvedStackToSymbolicated} from '../helpers/resolved-stack-to-symbolicated';
 import {useZodIfPossible, useZodTypesIfPossible} from './get-zod-if-possible';
 import {InspectorPanel} from './InspectorPanel';
+import {useTranslation} from '../i18n';
 import {
 	getSameSequenceInspectorSelection,
 	isSequenceSectionSelection,
@@ -56,9 +57,12 @@ export const persistSelectedOptionsSidebarPanel = (
 	localStorage.setItem(localStorageKey, panel);
 };
 
-export const OptionsPanel: React.FC<{
+export const OptionsPanel: React.FC<
+{
 	readonly readOnlyStudio: boolean;
-}> = ({readOnlyStudio}) => {
+}> = ({
+readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const {props, updateProps} = useContext(Internals.EditorPropsContext);
 
 	const isMobileLayout = useMobileLayout();
@@ -121,10 +125,10 @@ export const OptionsPanel: React.FC<{
 	const inspectorTitle = useMemo(() => {
 		if (selectedItems.length === 0) {
 			if (canvasContent?.type === 'asset') {
-				return 'Asset';
+				return t('Asset');
 			}
 
-			return composition === null ? 'Selection' : 'Composition';
+			return composition === null ? t('Selection') : t('Composition');
 		}
 
 		const selection =
@@ -202,7 +206,7 @@ export const OptionsPanel: React.FC<{
 				schema === 'no-composition' ||
 				z === null
 			) {
-				showNotification('Cannot update default props: No Zod schema', 2000);
+				showNotification(t(''), 2000);
 				return;
 			}
 

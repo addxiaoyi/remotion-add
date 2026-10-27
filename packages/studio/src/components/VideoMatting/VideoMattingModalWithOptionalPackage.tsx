@@ -1,3 +1,5 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import React, {Suspense} from 'react';
 import type {VideoMattingModalState} from '../../state/modals';
 import {OptionalPackageModal} from '../OptionalPackageModal';
@@ -16,7 +18,7 @@ export const VideoMattingModalWithOptionalPackage: React.FC<{
 		installButtonText="Continue"
 		installMessage={null}
 		packageName={VIDEO_MATTING_PACKAGE}
-		title="Remove background"
+		title={t('')}
 	>
 		<Suspense fallback={null}>
 			<LazyVideoMattingModal {...state} />

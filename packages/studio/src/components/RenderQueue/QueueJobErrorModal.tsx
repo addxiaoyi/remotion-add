@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext} from 'react';
 import {CopyStackTrace} from '../../error-overlay/remotion-overlay/CopyStackTrace';
 import {LIGHT_TEXT, RENDER_STATUS_BACKGROUND} from '../../helpers/colors';
@@ -49,6 +50,7 @@ export const QueueJobErrorModal: React.FC<{
 	readonly title: string;
 	readonly error: {message: string; stack: string | null};
 }> = ({title, error}) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const onClose = useCallback(() => {
 		setSelectedModal(null);
@@ -66,7 +68,7 @@ export const QueueJobErrorModal: React.FC<{
 			<ModalHeader title={title} />
 			<div style={container}>
 				<p style={description}>
-					The job failed because of the following error:
+					{t('The job failed because of the following error:')}
 				</p>
 				<div className={HORIZONTAL_SCROLLBAR_CLASSNAME} style={codeBlock}>
 					{errorDetails}

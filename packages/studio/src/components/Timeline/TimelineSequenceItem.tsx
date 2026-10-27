@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {
 	getCanvasSequenceReorderInsertionIndex,
 	getCanvasSequenceReorderSelection,
@@ -377,6 +378,7 @@ const TimelineSequenceItemInner: React.FC<{
 	numberOfHiddenDuplicates,
 	showProvisionalVisibilityToggle,
 }) => {
+	const {t} = useTranslation();
 	const isPackedTrack = sequence.timelineTrack?.role === 'track';
 	const nodePath = nodePathInfo?.sequenceSubscriptionKey ?? null;
 	const calculateTimeline = useTimelineCalculator();
@@ -1506,7 +1508,7 @@ const TimelineSequenceItemInner: React.FC<{
 									type: 'item' as const,
 									id: 'rename-sequence',
 									keyHint: null,
-									label: 'Rename...',
+									label: t('Rename...'),
 									leftItem: null,
 									disabled: !canRenameThisSequence,
 									onClick: () => {
@@ -1565,7 +1567,7 @@ const TimelineSequenceItemInner: React.FC<{
 													type: 'item' as const,
 													id: 'add-effect',
 													keyHint: null,
-													label: 'Add effect...',
+													label: t('Add effect...'),
 													leftItem: null,
 													disabled: !canAddEffect,
 													onClick: onAddEffect,

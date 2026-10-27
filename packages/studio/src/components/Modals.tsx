@@ -1,3 +1,6 @@
+import {isSaasMode} from '../saas-mode';
+import {getStaticT} from '../i18n';
+const t = getStaticT();
 import {
 	StudioProtocolInternals,
 	type AddElementLibraryToStudioResult,
@@ -68,7 +71,7 @@ export const Modals: React.FC<{
 			readonly url: string;
 		}) => {
 			const confirmed = await confirm({
-				title: 'Add Element Library',
+				title: t(''),
 				message: (
 					<ElementLibraryAddConfirmation
 						origin={origin}
@@ -424,18 +427,19 @@ export const Modals: React.FC<{
 				<VideoMattingModalWithOptionalPackage state={modalContextType} />
 			) : null}
 
-			{modalContextType && modalContextType.type === 'fix-computed-value' && (
+			{modalContextType && modalContextType.type === 'fix-computed-value' && !isSaasMode() && (
 				<FixComputedValueModal state={modalContextType} />
 			)}
-			{modalContextType && modalContextType.type === 'precompose-refactor' && (
+			{modalContextType && modalContextType.type === 'precompose-refactor' && !isSaasMode() && (
 				<PrecomposeRefactorModal state={modalContextType} />
 			)}
-			{modalContextType && modalContextType.type === 'generate-with-agent' ? (
+			{modalContextType && modalContextType.type === 'generate-with-agent' && !isSaasMode() ? (
 				<GenerateWithAgentModal state={modalContextType} />
 			) : null}
 			{modalContextType &&
 			(modalContextType.type === 'wrap-refactor' ||
-				modalContextType.type === 'unwrap-refactor') ? (
+				modalContextType.type === 'unwrap-refactor') &&
+			!isSaasMode() ? (
 				<WrapperRefactorModal state={modalContextType} />
 			) : null}
 			{modalContextType &&
@@ -480,7 +484,7 @@ export const Modals: React.FC<{
 			{modalContextType && modalContextType.type === 'svg-import-dialog' && (
 				<SvgImportDialog state={modalContextType} />
 			)}
-			{getStudioAskAIEnabled() && <AskAiModal />}
+			{getStudioAskAIEnabled() && !isSaasMode() && <AskAiModal />}
 		</>
 	);
 };

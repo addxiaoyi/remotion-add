@@ -30,7 +30,7 @@ export const setCurrentModal = (modal: ModalState | null) => {
 	updateTitle();
 };
 
-const productName = 'Remotion Studio';
+const productName = 'VisualForge Studio';
 const suffix = `- ${productName}`;
 
 const updateTitle = () => {

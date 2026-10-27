@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback} from 'react';
 import {Row, Spacing} from '../layout';
 import {RemotionInput} from '../NewComposition/RemInput';
@@ -36,6 +37,7 @@ export const EnvInput: React.FC<{
 	isDuplicate,
 }) => {
 	const [showInPlainText, setShowInPlainText] = React.useState(false);
+	const {t} = useTranslation();
 	const [initialWarningKeyMissing, setKeyWarningEligible] = React.useState(
 		() => {
 			return envKey.trim() === '' && envVal.trim() !== '';
@@ -92,7 +94,7 @@ export const EnvInput: React.FC<{
 						isNodeEnvKey || isDuplicate || isKeyMissing ? 'warning' : 'ok'
 					}
 					type="text"
-					placeholder="Key"
+					placeholder={t('Key')}
 					style={input}
 					value={envKey}
 					onBlur={makeKeyWarningEligible}
@@ -103,7 +105,7 @@ export const EnvInput: React.FC<{
 				<Spacing x={1} />
 				<RemotionInput
 					status={isValMissing ? 'warning' : 'ok'}
-					placeholder="Value"
+					placeholder={t('Value')}
 					type={showInPlainText ? 'text' : 'password'}
 					style={input}
 					value={envVal}

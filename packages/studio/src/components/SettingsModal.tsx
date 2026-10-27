@@ -1,3 +1,4 @@
+import {isSaasMode} from '../saas-mode';
 import React, {
 	useCallback,
 	useContext,
@@ -114,7 +115,7 @@ export const SettingsModal: React.FC<{
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const isBrowserStudio = getBrowserStudioOperations() !== null;
 	const {upgradeState} = useUpdateStatus();
-	const showUpdates =
+	const showUpdates = !isSaasMode() &&
 		upgradeState !== 'idle' ||
 		canShowUpdates({
 			connectionStatus: previewServerState.type,

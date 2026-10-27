@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {CanvasInternals} from '@remotion/sdk';
 import {
 	canMoveKeyframesWithoutCollisions,
@@ -147,6 +148,7 @@ const TrashIcon: React.FC<{readonly color: string}> = ({color}) => {
 export const KeyframeInspector: React.FC<{
 	readonly selection: Extract<TimelineSelection, {type: 'keyframe'}>;
 }> = ({selection}) => {
+	const {t} = useTranslation();
 	const track = useTrackForSelection(selection);
 	const runtimeValues = useRuntimeValues(track?.sequence.controls ?? null);
 	const videoConfig = useVideoConfig();
@@ -528,7 +530,7 @@ export const KeyframeInspector: React.FC<{
 	);
 
 	if (details === null || track === null) {
-		return <InspectorMessage>Keyframe unavailable</InspectorMessage>;
+		return <InspectorMessage>{t('Keyframe unavailable')}</InspectorMessage>;
 	}
 
 	return (
@@ -537,7 +539,7 @@ export const KeyframeInspector: React.FC<{
 			<InspectorBackAction
 				disabled={parentSelection === null}
 				onClick={onSelectParent}
-				aria-label="Back to property"
+				aria-label={t('Back to property')}
 			>
 				{details.fieldLabel}
 			</InspectorBackAction>
@@ -561,7 +563,7 @@ export const KeyframeInspector: React.FC<{
 			/>
 			<div style={detailsWithInlineAction}>
 				<div style={detailsBeforeInlineAction}>
-					<InspectorDetailRow label="Frame">
+					<InspectorDetailRow label={t('Frame')}>
 						<InputDragger
 							type="number"
 							value={draftFrame}
@@ -608,7 +610,7 @@ export const KeyframeInspector: React.FC<{
 						onClick={onRemoveKeyframe}
 						renderIcon={(color) => <TrashIcon color={color} />}
 					>
-						Remove keyframe
+						{t('Remove keyframe')}
 					</InspectorQuickAction>
 				</InspectorQuickActionsSection>
 			</div>

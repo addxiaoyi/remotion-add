@@ -1,6 +1,9 @@
+import {getStaticT} from '../../i18n';
 import {copyText} from '../../helpers/copy-text';
 import type {ComboboxValue} from '../NewComposition/ComboBox';
 import {showNotification} from '../Notifications/NotificationCenter';
+
+const t = getStaticT();
 
 export const getCopyContextForAgentsMenuItem = ({
 	contextForAgents,
@@ -12,7 +15,7 @@ export const getCopyContextForAgentsMenuItem = ({
 		type: 'item',
 		id: 'copy-context-for-agents',
 		keyHint: null,
-		label: 'Copy context for agents',
+		label: t('Copy context for agents'),
 		leftItem: null,
 		disabled: !contextForAgents,
 		onClick: () => {

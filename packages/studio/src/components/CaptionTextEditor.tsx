@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {Caption} from '@remotion/captions';
 import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 import {
@@ -67,6 +68,7 @@ export const CaptionTextEditor: React.FC<{
 	readonly onCancel: (() => void) | null;
 	readonly readOnly: boolean;
 }> = React.memo(({captions, onChange, onSave, onCancel, readOnly}) => {
+	const {t} = useTranslation();
 	const listRef = useRef<HTMLDivElement>(null);
 	const cancelledBlurIndexes = useRef(new Set<number>());
 	const dirtyRef = useRef(false);
@@ -227,7 +229,7 @@ export const CaptionTextEditor: React.FC<{
 	return (
 		<div style={container}>
 			<div ref={listRef} style={list}>
-				{captions.length === 0 ? <div style={empty}>No captions</div> : null}
+				{captions.length === 0 ? <div style={empty}>{t('No captions')}</div> : null}
 				{captionRows.map(({caption, key}, index) => {
 					const hasPageBreakAfter = Boolean(caption.pageBreakAfter);
 					const pageBreakTitle = hasPageBreakAfter

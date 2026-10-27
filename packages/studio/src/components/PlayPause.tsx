@@ -1,4 +1,6 @@
+
 import {PlayerInternals} from '@remotion/player';
+import {useTranslation} from '../i18n';
 import React, {useCallback, useEffect, useState} from 'react';
 import {Internals} from 'remotion';
 import {useIsStill} from '../helpers/is-current-selected-still';
@@ -70,6 +72,7 @@ const PlayPauseInner: React.FC<{
 	muted,
 	hideNavigationControls,
 }) => {
+	const {t} = useTranslation();
 	const {inFrame, outFrame} = useTimelineInOutFramePosition();
 	const videoConfig = Internals.useUnsafeVideoConfig();
 	const [showBufferIndicator, setShowBufferState] = useState<boolean>(false);
@@ -276,13 +279,13 @@ const PlayPauseInner: React.FC<{
 			/>
 			{hideNavigationControls ? null : (
 				<ActionTooltip
-					label="Go to beginning"
+					label={t('Go to beginning')}
 					shortcut={jumpToBeginningShortcut}
 					delay={800}
 					dismissOnClick
 				>
 					<ControlButton
-						aria-label="Go to beginning"
+						aria-label={t('Go to beginning')}
 						aria-keyshortcuts={jumpToBeginningAriaShortcut || undefined}
 						disabled={!videoConfig}
 						onClick={jumpToStart}
@@ -293,7 +296,7 @@ const PlayPauseInner: React.FC<{
 			)}
 			{hideNavigationControls ? null : (
 				<ActionTooltip
-					label="Previous frame"
+					label={t('Previous frame')}
 					shortcut="←"
 					delay={800}
 					dismissOnClick
@@ -310,13 +313,13 @@ const PlayPauseInner: React.FC<{
 			)}
 
 			<ActionTooltip
-				label={playing ? 'Pause' : 'Play'}
+				label={playing ? t('Pause') : t('Play')}
 				shortcut={playPauseShortcut}
 				delay={800}
 				dismissOnClick={false}
 			>
 				<ControlButton
-					aria-label={playing ? 'Pause' : 'Play'}
+					aria-label={playing ? t('Pause') : t('Play')}
 					aria-keyshortcuts={playPauseAriaShortcut || undefined}
 					onClick={playing ? pause : play}
 					disabled={!videoConfig}
@@ -340,7 +343,7 @@ const PlayPauseInner: React.FC<{
 
 			{hideNavigationControls ? null : (
 				<ActionTooltip
-					label="Next frame"
+					label={t('Next frame')}
 					shortcut="→"
 					delay={800}
 					dismissOnClick

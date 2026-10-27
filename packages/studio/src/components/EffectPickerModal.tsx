@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {
 	EFFECT_CATALOG,
 	getEffectDocumentationLink,
@@ -223,6 +224,7 @@ const EffectPickerResult: React.FC<{
 const EffectPickerContent: React.FC<{
 	readonly state: AddEffectModalState;
 }> = ({state}) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const [query, setQuery] = useState('');
 	const [selectedIndex, setSelectedIndex] = useState(0);
@@ -353,7 +355,7 @@ const EffectPickerContent: React.FC<{
 						style={aboutEffectsLink}
 						className={HOVERABLE_CLASS_NAME}
 					>
-						<span style={aboutEffectsLabel}>About effects</span>
+						<span style={aboutEffectsLabel}>{t('About effects')}</span>
 						<ExternalLinkIcon
 							aria-hidden="true"
 							color={CURRENT_COLOR}
@@ -369,13 +371,13 @@ const EffectPickerContent: React.FC<{
 					status="ok"
 					value={query}
 					onChange={onTextChange}
-					placeholder="Search effects..."
+					placeholder={t('Search effects...')}
 					rightAlign={false}
 				/>
 			</div>
 			<div style={resultList} className={VERTICAL_SCROLLBAR_CLASSNAME}>
 				{results.length === 0 ? (
-					<div style={noResults}>No effects found</div>
+					<div style={noResults}>{t('No effects found')}</div>
 				) : (
 					results.map((item, i) => {
 						return (

@@ -1,4 +1,5 @@
 import type {CSSProperties} from 'react';
+import {useTranslation} from '../i18n';
 import {useCallback} from 'react';
 import {BLUE} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
@@ -22,10 +23,13 @@ export const toggleMute = (
 	});
 };
 
-export const MuteToggle: React.FC<{
+export const MuteToggle: React.FC<
+{
 	muted: boolean;
 	setMuted: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({muted, setMuted}) => {
+}> = ({
+muted, setMuted}) => {
+	const {t} = useTranslation();
 	const shortcut = useKeyboardShortcutLabel('toggleMute');
 	const ariaShortcut = useKeyboardShortcutAriaKeyShortcuts('toggleMute');
 	const shortcutsDisabled = areKeyboardShortcutsDisabled();
@@ -36,7 +40,7 @@ export const MuteToggle: React.FC<{
 
 	return (
 		<ActionTooltip
-			label="Mute"
+			label={t('Mute')}
 			shortcut={shortcutsDisabled ? null : shortcut}
 			delay={800}
 			dismissOnClick={false}

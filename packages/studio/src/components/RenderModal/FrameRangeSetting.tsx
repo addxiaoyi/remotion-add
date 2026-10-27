@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback} from 'react';
 import {InputDragger} from '../NewComposition/InputDragger';
 import {label, optionRow, rightRow} from './layout';
@@ -18,6 +19,7 @@ export const FrameRangeSetting: React.FC<{
 	readonly setStartFrame: React.Dispatch<React.SetStateAction<number | null>>;
 	readonly durationInFrames: number;
 }> = ({startFrame, endFrame, setEndFrame, durationInFrames, setStartFrame}) => {
+	const {t} = useTranslation();
 	const minStartFrame = 0;
 
 	const maxEndFrame = durationInFrames - 1;
@@ -51,13 +53,13 @@ export const FrameRangeSetting: React.FC<{
 	);
 	return (
 		<div style={optionRow}>
-			<div style={label}>Frame range</div>
+			<div style={label}>{t('Frame range')}</div>
 			<div style={rightRow}>
 				<div style={startFrameInputContainer}>
 					<InputDragger
 						min={minStartFrame}
 						max={endFrame - 1}
-						name="Start frame"
+						name={t('Start frame')}
 						value={startFrame}
 						step={1}
 						onTextChange={onStartFrameChanged}
@@ -80,7 +82,7 @@ export const FrameRangeSetting: React.FC<{
 					<InputDragger
 						min={startFrame + 1}
 						max={maxEndFrame}
-						name="End frame"
+						name={t('End frame')}
 						value={endFrame}
 						step={1}
 						onTextChange={onEndFrameChanged}

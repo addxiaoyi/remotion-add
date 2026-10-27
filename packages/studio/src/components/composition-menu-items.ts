@@ -39,6 +39,7 @@ export const getCompositionMenuItems = ({
 	readOnlyStudio,
 	includeCompositionManagementItems,
 	openInApps,
+	t,
 }: {
 	composition: _InternalTypes['AnyComposition'] | null;
 	connectionStatus: PreviewServerConnectionState['type'];
@@ -48,7 +49,9 @@ export const getCompositionMenuItems = ({
 	readOnlyStudio: boolean;
 	includeCompositionManagementItems: boolean;
 	openInApps: OpenInMenuApps;
+	t?: (k: string) => string;
 }): ComboboxValue[] => {
+	const translate = t ?? ((k: string) => k);
 	const {
 		canOpenDesktopApps,
 		canOpenInEditor,
@@ -193,6 +196,7 @@ export const getCompositionMenuItems = ({
 		onOpenInTerminal: null,
 	};
 	const compositionOpenInMenuItems = getOpenInMenuItems({
+		t: translate,
 		...commonOpenInMenuItems,
 		editorDisabled: openCompositionInEditorDisabled,
 		fileManagerDisabled:
@@ -208,6 +212,7 @@ export const getCompositionMenuItems = ({
 		},
 	});
 	const componentOpenInMenuItems = getOpenInMenuItems({
+		t: translate,
 		...commonOpenInMenuItems,
 		editorDisabled: openComponentInEditorDisabled,
 		fileManagerDisabled:
@@ -232,7 +237,7 @@ export const getCompositionMenuItems = ({
 							? 'show-in-editor'
 							: 'open-composition-in-git-source',
 					keyHint: null,
-					label: `Open composition in ${defaultOpenInName}`,
+					label: translate(`Open composition in ${defaultOpenInName}`),
 					leftItem: null,
 					onClick: () => {
 						if (defaultOpenInTarget === 'editor' && defaultEditorId !== null) {
@@ -242,7 +247,7 @@ export const getCompositionMenuItems = ({
 							openGitSource({folder: false, location: resolvedLocation});
 						}
 					},
-					quickSwitcherLabel: `Composition: Open in ${defaultOpenInName}`,
+					quickSwitcherLabel: translate(`Open composition in ${defaultOpenInName}`),
 					subMenu: null,
 					type: 'item' as const,
 					value:
@@ -259,11 +264,11 @@ export const getCompositionMenuItems = ({
 			? {
 					id: 'open-composition-in-another-app',
 					keyHint: null,
-					label: 'Open composition in...',
+					label: translate('Open composition in...'),
 					leftItem: null,
 					disabled: !resolvedLocation?.source,
 					onClick: () => undefined,
-					quickSwitcherLabel: 'Composition',
+					quickSwitcherLabel: translate('Composition'),
 					subMenu: {
 						items: compositionOpenInMenuItems,
 						leaveLeftSpace: true,
@@ -280,7 +285,7 @@ export const getCompositionMenuItems = ({
 							? 'open-component-in-editor'
 							: 'open-component-in-git-source',
 					keyHint: null,
-					label: `Open component in ${defaultOpenInName}`,
+					label: translate(`Open component in ${defaultOpenInName}`),
 					leftItem: null,
 					onClick: () => {
 						if (defaultOpenInTarget === 'editor' && defaultEditorId !== null) {
@@ -289,7 +294,7 @@ export const getCompositionMenuItems = ({
 							openComponentInGitSource().catch(() => undefined);
 						}
 					},
-					quickSwitcherLabel: `Component: Open in ${defaultOpenInName}`,
+					quickSwitcherLabel: translate(`Open component in ${defaultOpenInName}`),
 					subMenu: null,
 					type: 'item' as const,
 					value:
@@ -306,11 +311,11 @@ export const getCompositionMenuItems = ({
 			? {
 					id: 'open-component-in-another-app',
 					keyHint: null,
-					label: 'Open component in...',
+					label: translate('Open component in...'),
 					leftItem: null,
 					disabled: !resolvedLocation?.source,
 					onClick: () => undefined,
-					quickSwitcherLabel: 'Component',
+					quickSwitcherLabel: translate('Component'),
 					subMenu: {
 						items: componentOpenInMenuItems,
 						leaveLeftSpace: true,
@@ -323,7 +328,7 @@ export const getCompositionMenuItems = ({
 		{
 			id: 'copy-context-for-agents',
 			keyHint: null,
-			label: `Copy context for agents`,
+			label: translate('Copy context for agents'),
 			leftItem: null,
 			onClick: () => {
 				closeMenu();
@@ -369,7 +374,7 @@ export const getCompositionMenuItems = ({
 		{
 			id: 'copy-file-location',
 			keyHint: null,
-			label: `Copy file location`,
+			label: translate('Copy file location'),
 			leftItem: null,
 			onClick: () => {
 				closeMenu();
@@ -388,7 +393,7 @@ export const getCompositionMenuItems = ({
 						);
 					});
 			},
-			quickSwitcherLabel: 'Copy composition file location',
+			quickSwitcherLabel: translate('Copy file location'),
 			subMenu: null,
 			type: 'item' as const,
 			value: 'copy-file-location',
@@ -397,7 +402,7 @@ export const getCompositionMenuItems = ({
 		{
 			id: 'copy-id',
 			keyHint: null,
-			label: `Copy ID`,
+			label: translate('Copy ID'),
 			leftItem: null,
 			onClick: () => {
 				if (!composition) {
@@ -416,7 +421,7 @@ export const getCompositionMenuItems = ({
 						);
 					});
 			},
-			quickSwitcherLabel: 'Copy composition ID',
+			quickSwitcherLabel: translate('Copy ID'),
 			subMenu: null,
 			type: 'item' as const,
 			value: 'copy-id',
@@ -432,7 +437,7 @@ export const getCompositionMenuItems = ({
 			? {
 					id: 'rename',
 					keyHint: null,
-					label: `Rename...`,
+					label: translate('Rename...'),
 					leftItem: null,
 					onClick: () => {
 						if (!composition) {
@@ -445,7 +450,7 @@ export const getCompositionMenuItems = ({
 							compositionId: composition.id,
 						});
 					},
-					quickSwitcherLabel: 'Rename composition...',
+					quickSwitcherLabel: translate('Rename...'),
 					subMenu: null,
 					type: 'item' as const,
 					value: 'rename',
@@ -456,7 +461,7 @@ export const getCompositionMenuItems = ({
 			? {
 					id: 'duplicate',
 					keyHint: null,
-					label: `Duplicate...`,
+					label: translate('Duplicate...'),
 					leftItem: null,
 					onClick: () => {
 						if (!composition) {
@@ -471,7 +476,7 @@ export const getCompositionMenuItems = ({
 								composition.durationInFrames === 1 ? 'still' : 'composition',
 						});
 					},
-					quickSwitcherLabel: 'Duplicate composition...',
+					quickSwitcherLabel: translate('Duplicate...'),
 					subMenu: null,
 					type: 'item' as const,
 					value: 'duplicate',
@@ -482,7 +487,7 @@ export const getCompositionMenuItems = ({
 			? {
 					id: 'delete',
 					keyHint: null,
-					label: `Delete...`,
+					label: translate('Delete...'),
 					leftItem: null,
 					onClick: () => {
 						if (!composition) {
@@ -495,7 +500,7 @@ export const getCompositionMenuItems = ({
 							compositionId: composition.id,
 						});
 					},
-					quickSwitcherLabel: 'Delete composition...',
+					quickSwitcherLabel: translate('Delete...'),
 					subMenu: null,
 					type: 'item' as const,
 					value: 'delete',

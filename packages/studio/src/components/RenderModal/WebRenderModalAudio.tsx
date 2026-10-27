@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {
 	WebRendererAudioCodec,
 	WebRendererContainer,
@@ -87,6 +88,7 @@ export const WebRenderModalAudio: React.FC<{
 	encodableCodecs,
 	effectiveAudioCodec,
 }) => {
+	const {t} = useTranslation();
 	const containerSupported = useMemo(
 		() => getSupportedAudioCodecsForContainer(videoContainer),
 		[videoContainer],
@@ -133,7 +135,7 @@ export const WebRenderModalAudio: React.FC<{
 					{isAudioOnly ? null : <RenderModalHr />}
 					<div style={optionRow}>
 						<div style={label}>
-							Audio Quality
+							{t('Audio Quality')}
 							<Spacing x={0.5} />
 						</div>
 						<div style={rightRow}>
@@ -147,7 +149,7 @@ export const WebRenderModalAudio: React.FC<{
 					{showAudioCodecSetting ? (
 						<div style={optionRow}>
 							<div style={label}>
-								Audio Codec
+								{t('Audio Codec')}
 								<Spacing x={0.5} />
 							</div>
 							<div style={rightRow}>

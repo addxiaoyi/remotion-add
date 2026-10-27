@@ -7,6 +7,7 @@ import type {
 	X264Preset,
 } from '@remotion/renderer';
 import type {SVGProps} from 'react';
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import type {_InternalTypes} from 'remotion';
 import {Internals} from 'remotion';
@@ -26,11 +27,14 @@ const revealStyle: React.CSSProperties = {
 	display: 'flex',
 };
 
-export const SidebarRenderButton: React.FC<{
+export const SidebarRenderButton: React.FC<
+{
 	readonly composition: _InternalTypes['AnyCompMetadata'];
 	readonly visible: boolean;
 	readonly readOnlyStudio: boolean;
-}> = ({composition, visible, readOnlyStudio}) => {
+}> = ({
+composition, visible, readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 
 	const iconStyle: SVGProps<SVGSVGElement> = useMemo(() => {
@@ -132,14 +136,14 @@ export const SidebarRenderButton: React.FC<{
 
 	return (
 		<div className={HOVER_GROUP_REVEAL_CLASS_NAME} style={revealStyle}>
-			<ActionTooltip label="Render" shortcut={null} delay={800} dismissOnClick>
+			<ActionTooltip label={t('Render')} shortcut={null} delay={800} dismissOnClick>
 				<InlineAction
 					renderAction={renderAction}
 					onClick={onClick}
 					variant={null}
 					style={NO_HOVER_BACKGROUND_STYLE}
 					className={FOCUS_VISIBLE_ONLY_CLASS_NAME}
-					aria-label="Render"
+					aria-label={t('Render')}
 				/>
 			</ActionTooltip>
 		</div>

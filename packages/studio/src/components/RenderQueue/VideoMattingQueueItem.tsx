@@ -1,3 +1,5 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {
 	CURRENT_COLOR,
@@ -197,7 +199,7 @@ export const VideoMattingQueueItem: React.FC<{
 					) : job.status === 'failed' ? (
 						<QueueJobError
 							error={job.error}
-							modalTitle="Background removal failed"
+							modalTitle={t('')}
 						/>
 					) : (
 						messages.map((message) => (

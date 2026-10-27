@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {GetRemotionSkillsInfoResponse} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
@@ -325,6 +326,7 @@ export const SkillSettingsRow: React.FC<{
 };
 
 export const SkillsSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {error, remotionSkillsInfo, skillActionError} = useSettings();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const canInstall = canEditStudioConfig({
@@ -360,7 +362,7 @@ export const SkillsSettings: React.FC = () => {
 	return (
 		<div style={container}>
 			{remotionSkillsInfo === null && error === null ? (
-				<p style={loading}>Checking installed skills...</p>
+				<p style={loading}>{t('Checking installed skills...')}</p>
 			) : null}
 			{remotionSkillsInfo === null && error ? (
 				<div style={{marginTop: 14}}>
@@ -369,7 +371,7 @@ export const SkillsSettings: React.FC = () => {
 			) : null}
 			{missingSkills > 0 && canInstall ? (
 				<p style={description}>
-					Install skills in this project to use them with your coding agent.
+					{t('Install skills in this project to use them with your coding agent.')}
 				</p>
 			) : null}
 			{skillActionError ? (
@@ -384,7 +386,7 @@ export const SkillsSettings: React.FC = () => {
 			{missingSkills > 0 && !canInstall ? (
 				<div>
 					<p style={description}>
-						Not all skills are installed. Run this command in the project
+						{t('并非所有技能都已安装。请在项目中运行此命令')}
 						directory, then reload Studio and restart your coding agent.
 					</p>
 					<div style={commandField}>

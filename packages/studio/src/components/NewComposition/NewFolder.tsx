@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -64,6 +65,7 @@ export const NewFolder: React.FC<{
 	readonly parentName: string | null;
 	readonly stack: string | null;
 }> = ({parentName, stack}) => {
+	const {t} = useTranslation();
 	const {folders} = useContext(Internals.CompositionManager);
 	const {setCompositionFoldersExpanded} = useContext(FolderContext);
 	const [newName, setName] = useState(() =>
@@ -87,7 +89,7 @@ export const NewFolder: React.FC<{
 	const folderName = slugifyName(newName);
 	const folderNameErrMessage = folderName
 		? validateNewFolderName({folders, newName: folderName, parentName})
-		: 'Enter a name containing letters or numbers.';
+		: t('Enter a name containing letters or numbers.');
 	const valid = folderNameErrMessage === null;
 
 	const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback((e) => {
@@ -125,12 +127,12 @@ export const NewFolder: React.FC<{
 				<div style={content}>
 					{parentName ? (
 						<div style={optionRow}>
-							<div style={label}>Parent</div>
+`							<div style={label}>{t('Parent')}</div>
 							<div style={parentNameStyle}>{parentName}</div>
 						</div>
 					) : null}
 					<div style={optionRow}>
-						<div style={label}>Name</div>
+`						<div style={label}>{t('Name')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput
@@ -139,7 +141,7 @@ export const NewFolder: React.FC<{
 									onChange={onNameChange}
 									type="text"
 									autoFocus
-									placeholder="Folder name"
+									placeholder={t('Folder name')}
 									status="ok"
 									rightAlign
 								/>

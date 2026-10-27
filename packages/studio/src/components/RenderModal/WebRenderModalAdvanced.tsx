@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {WebRendererPageResponsiveness} from '@remotion/web-renderer';
 import type React from 'react';
 import {useCallback, useMemo} from 'react';
@@ -83,6 +84,7 @@ export const WebRenderModalAdvanced: React.FC<WebRenderModalAdvancedProps> = ({
 	pageResponsiveness,
 	setPageResponsiveness,
 }) => {
+	const {t} = useTranslation();
 	const toggleCustomMediaCacheSizeInBytes = useCallback(() => {
 		setMediaCacheSizeInBytes((previous) => {
 			if (previous === null) {
@@ -240,7 +242,7 @@ export const WebRenderModalAdvanced: React.FC<WebRenderModalAdvancedProps> = ({
 	return (
 		<div style={tabContainer}>
 			<NumberSetting
-				name="Delay Render Timeout"
+				name={t('Delay Render Timeout')}
 				formatter={(v) => `${v}ms`}
 				min={0}
 				max={1000000000}
@@ -280,7 +282,7 @@ export const WebRenderModalAdvanced: React.FC<WebRenderModalAdvancedProps> = ({
 
 			{renderMode === 'video' ? (
 				<div style={optionRow}>
-					<div style={label}>Hardware Acceleration</div>
+					<div style={label}>{t('Hardware Acceleration')}</div>
 					<div style={rightRow}>
 						<Combobox
 							values={hardwareAccelerationOptions}
@@ -317,7 +319,7 @@ export const WebRenderModalAdvanced: React.FC<WebRenderModalAdvancedProps> = ({
 								apiName="pageResponsiveness"
 								description={<PageResponsivenessDescription />}
 								docLink="https://www.remotion.dev/docs/client-side-rendering/page-responsiveness"
-								name="Page responsiveness"
+								name={t('Page responsiveness')}
 							/>
 						</div>
 						<div style={rightRow}>
@@ -330,7 +332,7 @@ export const WebRenderModalAdvanced: React.FC<WebRenderModalAdvancedProps> = ({
 					</div>
 					{typeof pageResponsiveness === 'number' ? (
 						<NumberSetting
-							name="Responsiveness Interval"
+							name={t('Responsiveness Interval')}
 							formatter={(v) => `${v}ms`}
 							min={1}
 							max={1000000000}

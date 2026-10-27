@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {NodeWrapper} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useState} from 'react';
 import {Internals, isHtmlInCanvasSupported} from 'remotion';
@@ -40,6 +41,7 @@ export const SequenceWrapAction: React.FC<{
 		readonly line: number;
 	};
 }> = ({nodePathInfo, track, sourceActionsDisabled, sourceLocation}) => {
+	const {t} = useTranslation();
 	const calculateTimeline = useTimelineCalculator();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const {canvasContent} = useContext(Internals.CompositionManager);
@@ -103,7 +105,7 @@ export const SequenceWrapAction: React.FC<{
 						ancestor.controls.componentIdentity,
 					)
 				) {
-					showNotification('HTML-in-canvas components cannot be nested.', 4000);
+					showNotification(t(''), 4000);
 					return;
 				}
 
@@ -160,7 +162,7 @@ export const SequenceWrapAction: React.FC<{
 				}
 
 				if (eligibility.canWrap && !eligibility.canWrapHtmlInCanvas) {
-					showNotification('HTML-in-canvas components cannot be nested.', 4000);
+					showNotification(t(''), 4000);
 					return;
 				}
 
@@ -249,7 +251,7 @@ export const SequenceWrapAction: React.FC<{
 					<MotionBlurIcon color={color} style={largeInspectorActionIconStyle} />
 				)}
 			>
-				Motion blur
+				{t('Motion blur')}
 			</InspectorQuickAction>
 		</>
 	);

@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {stringifySequenceExpandedRowKey} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {Internals} from 'remotion';
@@ -57,6 +58,7 @@ export const MultiSequenceInspector: React.FC<{
 	>[];
 	readonly readOnlyStudio: boolean;
 }> = ({selections, readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const sequences = Internals.useSequenceManagerSequences();
 	const calculateTimeline = useTimelineCalculator();
@@ -199,9 +201,9 @@ export const MultiSequenceInspector: React.FC<{
 			</InspectorInfoHeader>
 			<div role="separator" style={sequenceHeaderDivider} />
 			{targets === null ? (
-				<InspectorMessage>Sequence controls unavailable</InspectorMessage>
+				<InspectorMessage>{t('Sequence controls unavailable')}</InspectorMessage>
 			) : fields.length === 0 ? (
-				<InspectorMessage>No shared controls</InspectorMessage>
+				<InspectorMessage>{t('No shared controls')}</InspectorMessage>
 			) : (
 				<TimelineRowLayoutContext.Provider
 					value={INSPECTOR_TIMELINE_ROW_LAYOUT}
@@ -237,7 +239,7 @@ export const MultiSequenceInspector: React.FC<{
 			<CollapsibleInspectorSection
 				bodyPaddingBottom={8}
 				collapsible
-				label="Actions"
+				label={t('Actions')}
 				sectionId="multi-sequence-actions"
 			>
 				<InspectorQuickActionsSection>
@@ -250,7 +252,7 @@ export const MultiSequenceInspector: React.FC<{
 							<SplitIcon style={largeInspectorActionIconStyle} color={color} />
 						)}
 					>
-						Split selected
+						{t('Split selected')}
 					</InspectorQuickAction>
 					<SequencePrecomposeAction
 						targets={precomposeTargets}

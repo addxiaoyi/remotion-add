@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {CanvasInternals} from '@remotion/sdk';
 import type {
 	ChangeEventHandler,
@@ -137,6 +138,7 @@ export const NewCompositionFields: React.FC<{
 	values,
 	widthValidationMessage,
 }) => {
+	const {t} = useTranslation();
 	const {folders} = useContext(Internals.CompositionManager);
 	const {compositionSortOrder} = useContext(FolderContext);
 	const selectedFolderId = values.folder.folderName
@@ -184,7 +186,7 @@ export const NewCompositionFields: React.FC<{
 						},
 					}));
 				},
-				quickSwitcherLabel: 'None',
+				quickSwitcherLabel: t('None'),
 				subMenu: null,
 				type: 'item',
 				value: rootFolderId,
@@ -310,7 +312,7 @@ export const NewCompositionFields: React.FC<{
 	return (
 		<>
 			<div style={optionRow}>
-				<div style={label}>Folder</div>
+`				<div style={label}>{t('Folder')}</div>
 				<div style={rightRow}>
 					<Combobox
 						values={folderValues}
@@ -321,7 +323,7 @@ export const NewCompositionFields: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-				<div style={label}>ID</div>
+`				<div style={label}>{t('ID')}</div>
 				<div style={rightRow}>
 					<InputAndValidationContainer>
 						<RemotionInput
@@ -330,7 +332,7 @@ export const NewCompositionFields: React.FC<{
 							onChange={onNameChange}
 							type="text"
 							autoFocus
-							placeholder="Composition ID"
+							placeholder={t('Composition ID')}
 							status="ok"
 							rightAlign
 						/>
@@ -354,14 +356,14 @@ export const NewCompositionFields: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-				<div style={label}>Width</div>
+`				<div style={label}>{t('Width')}</div>
 				<div style={rightRow}>
 					<InputAndValidationContainer>
 						<InputDragger
 							aria-label="Width"
 							type="number"
 							value={values.size.width}
-							placeholder="Width"
+							placeholder={t('Width')}
 							onTextChange={onWidthChanged}
 							name="width"
 							step={2}
@@ -387,7 +389,7 @@ export const NewCompositionFields: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-				<div style={label}>Height</div>
+`				<div style={label}>{t('Height')}</div>
 				<div style={rightRow}>
 					<InputAndValidationContainer>
 						<InputDragger
@@ -395,7 +397,7 @@ export const NewCompositionFields: React.FC<{
 							type="number"
 							value={values.size.height}
 							onTextChange={onHeightChanged}
-							placeholder="Height"
+							placeholder={t('Height')}
 							name="height"
 							step={2}
 							required
@@ -424,14 +426,14 @@ export const NewCompositionFields: React.FC<{
 				setDurationInFrames={setDurationInFrames}
 			/>
 			<div style={optionRow}>
-				<div style={label}>FPS</div>
+`				<div style={label}>{t('FPS')}</div>
 				<div style={rightRow}>
 					<InputDragger
 						aria-label="FPS"
 						type="number"
 						value={values.fps}
 						onTextChange={onTextFpsChange}
-						placeholder="Frame rate (fps)"
+						placeholder={t('Frame rate (fps)')}
 						name="fps"
 						min={1}
 						required

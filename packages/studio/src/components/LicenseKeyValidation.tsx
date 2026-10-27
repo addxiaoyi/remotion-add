@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React from 'react';
 import {FAIL_COLOR} from '../helpers/colors';
 import {CheckCircleFilled} from '../icons/check-circle-filled';
@@ -134,6 +135,7 @@ const ErrorIcon: React.FC = () => {
 export const LicenseKeyDetailsDisplay: React.FC<{
 	readonly details: LicenseKeyDetails;
 }> = ({details}) => {
+	const {t} = useTranslation();
 	const projectUrl = `${PRO_HOST}/projects/${details.projectSlug}`;
 	const usageUrl = `${projectUrl}/usage#client-renders-usage`;
 	const hasActiveLicense = hasActiveCompanyLicense(details);
@@ -151,7 +153,7 @@ export const LicenseKeyDetailsDisplay: React.FC<{
 			>
 				<span style={actionContent}>
 					<span style={actionText}>Belongs to {details.projectName}</span>
-					<span style={actionLabel}>View usage</span>
+					<span style={actionLabel}>{t('View usage')}</span>
 				</span>
 			</InspectorQuickAction>
 			<InspectorQuickAction
@@ -170,10 +172,10 @@ export const LicenseKeyDetailsDisplay: React.FC<{
 				<span style={actionContent}>
 					<span style={hasActiveLicense ? actionText : inactiveLicenseText}>
 						{hasActiveLicense
-							? 'Active Company License'
-							: 'No active Company License'}
+							? t('Active Company License')
+							: t('No active Company License')}
 					</span>
-					<span style={actionLabel}>Manage</span>
+					<span style={actionLabel}>{t('Manage')}</span>
 				</span>
 			</InspectorQuickAction>
 		</div>

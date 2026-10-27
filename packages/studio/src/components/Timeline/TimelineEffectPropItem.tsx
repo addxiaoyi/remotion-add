@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {
 	isSchemaFieldHoldOnly,
 	isSchemaFieldKeyframable,
@@ -459,6 +460,7 @@ export const TimelineEffectPropItem: React.FC<{
 	revealInInspector,
 	runtimeValueStore,
 }) => {
+	const {t} = useTranslation();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const annotationTarget = useRef<HTMLDivElement>(null);
 	const {remotionSkillsInfo} = useSettings();
@@ -637,7 +639,7 @@ export const TimelineEffectPropItem: React.FC<{
 				type: 'item',
 				id: 'reset-effect-field',
 				keyHint: null,
-				label: 'Reset',
+				label: t('Reset'),
 				leftItem: null,
 				disabled: !canShowReset,
 				onClick: onReset,

@@ -11,6 +11,7 @@ import {
 	getBackgroundFromHoverState,
 	LIGHT_TEXT,
 } from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {pushUrl} from '../../helpers/url-state';
 import {ActionTooltip} from '../ActionTooltip';
 import type {RenderInlineAction} from '../InlineAction';
@@ -125,6 +126,7 @@ export const CaptionQueueItem: React.FC<{
 	readonly job: CaptionJob;
 	readonly selected: boolean;
 }> = ({job, selected}) => {
+	const {t} = useTranslation();
 	const [hovered, setHovered] = useState(false);
 	const {removeCaptionJob} = useContext(RenderQueueContext);
 	const selectAsset = useSelectAsset();
@@ -234,7 +236,7 @@ export const CaptionQueueItem: React.FC<{
 					) : job.status === 'failed' ? (
 						<QueueJobError
 							error={job.error}
-							modalTitle="Transcription failed"
+							modalTitle={t('')}
 						/>
 					) : (
 						<span role="group" style={subtitle} aria-label={message}>
@@ -252,11 +254,11 @@ export const CaptionQueueItem: React.FC<{
 			{job.status === 'running' ? (
 				<RenderQueueCancelButton job={job} />
 			) : job.status === 'saving' ? null : (
-				<ActionTooltip label="Clear" shortcut={null} delay={800} dismissOnClick>
+				<ActionTooltip label={t('Clear')} shortcut={null} delay={800} dismissOnClick>
 					<InlineAction
 						renderAction={renderRemoveAction}
 						onClick={onRemove}
-						aria-label="Clear"
+						aria-label={t('Clear')}
 						variant={null}
 					/>
 				</ActionTooltip>

@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {StudioProtocolInternals} from '@remotion/studio-protocol';
 import React, {
 	useCallback,
@@ -311,6 +312,7 @@ type NewCompositionPlanState =
 export const ElementInstallConfirmation: React.FC<{
 	readonly state: ElementInstallModalState;
 }> = ({state}) => {
+	const {t} = useTranslation();
 	const {
 		currentPlan,
 		missingPackages,
@@ -882,7 +884,7 @@ export const ElementInstallConfirmation: React.FC<{
 			<form onSubmit={onSubmit}>
 				<div style={dialogContent} className={VERTICAL_SCROLLBAR_CLASSNAME}>
 					<dl style={requestSourceStyle} aria-label="Request source">
-						<dt style={sectionTitleStyle}>From</dt>
+						<dt style={sectionTitleStyle}>{t('Destination')}</dt>
 						<dd
 							style={
 								sourceIsUnverified
@@ -901,14 +903,14 @@ export const ElementInstallConfirmation: React.FC<{
 						}}
 						aria-hidden={displayedPlan === null}
 					>
-						<dt style={sectionTitleStyle}>Destination</dt>
+						<dt style={sectionTitleStyle}>{t('Destination')}</dt>
 						<dd style={requestSourceDescriptionStyle}>
 							{displayedPlan?.filePath ?? '\u00A0'}
 						</dd>
 					</dl>
 
 					<div style={destinationControlStyle}>
-						<div style={sectionTitleStyle}>Add to</div>
+						<div style={sectionTitleStyle}>{t('Add to')}</div>
 						<div aria-label="Add to" role="group" style={{marginLeft: 'auto'}}>
 							<SegmentedControl
 								items={destinationOptions}
@@ -923,7 +925,7 @@ export const ElementInstallConfirmation: React.FC<{
 							<WarningTriangle style={warningIconStyle} />
 							<p style={warningDescriptionStyle}>
 								Studio could not find a safe place in “{request.compositionId}”
-								to insert the Element. Install it into a new composition
+								{t('插入元素。请将其安装到新合成中')}
 								instead.
 							</p>
 						</div>
@@ -967,7 +969,7 @@ export const ElementInstallConfirmation: React.FC<{
 										setInput((previous) => ({...previous, overwritePlan: null}))
 									}
 								>
-									Create a copy
+									{t('Create a copy')}
 								</RadioButton>
 								{!overwriteExisting ? (
 									<div
@@ -984,7 +986,7 @@ export const ElementInstallConfirmation: React.FC<{
 											id="element-install-name"
 											name="installationName"
 											aria-label="Installation name"
-											placeholder="New name"
+											placeholder={t('New name')}
 											value={installationName}
 											disabled={submitting}
 											onChange={(event) => {
@@ -1029,7 +1031,7 @@ export const ElementInstallConfirmation: React.FC<{
 									</p>
 									{overwriteExisting ? (
 										<p style={{...overwriteStyle, paddingLeft: 28}}>
-											Overwrites customizations for all usages.
+											{t('Overwrites customizations for all usages.')}
 										</p>
 									) : null}
 								</div>
@@ -1049,7 +1051,7 @@ export const ElementInstallConfirmation: React.FC<{
 							aria-labelledby="element-install-dependencies"
 						>
 							<h3 id="element-install-dependencies" style={sectionTitleStyle}>
-								Packages to install
+								{t('Packages to install')}
 							</h3>
 							<ul style={dependencyListStyle} role="list">
 								{missingPackages.map((packageName) => (
@@ -1065,7 +1067,7 @@ export const ElementInstallConfirmation: React.FC<{
 						<div style={warningStyle}>
 							<WarningTriangle style={warningIconStyle} />
 							<p style={warningDescriptionStyle}>
-								Installed code can access your files and network.
+								{t('Installed code can access your files and network.')}
 							</p>
 						</div>
 					)}

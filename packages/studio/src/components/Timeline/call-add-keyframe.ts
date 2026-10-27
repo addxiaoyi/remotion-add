@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import {
 	optimisticAddEffectKeyframe,
 	optimisticAddSequenceKeyframe,
@@ -11,6 +12,8 @@ import {callApi} from '../call-api';
 import {applyEffectResponseToPropStatuses} from './apply-effect-response-to-prop-statuses';
 import {enqueueSavePropChange} from './save-prop-queue';
 import type {SetPropStatuses} from './save-sequence-prop';
+
+const t = getStaticT();
 
 export type AddSequenceKeyframeChange = {
 	fileName: string;
@@ -113,7 +116,7 @@ export const callAddSequenceKeyframe = ({
 				schema,
 				clientId,
 			}),
-		errorLabel: 'Could not add keyframe',
+		errorLabel: t('Could not add keyframe'),
 	});
 };
 
@@ -246,6 +249,6 @@ export const callAddEffectKeyframe = ({
 				schema,
 				clientId,
 			}),
-		errorLabel: 'Could not add keyframe',
+		errorLabel: t('Could not add keyframe'),
 	});
 };

@@ -1,4 +1,5 @@
 import React, {useCallback, useContext} from 'react';
+import {useTranslation} from '../i18n';
 import {BACKGROUND_HEX, BLUE} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {
@@ -12,6 +13,7 @@ import {ControlButton} from './ControlButton';
 const buttonStyle: React.CSSProperties = {width: 26};
 
 export const OutlineToggle: React.FC = () => {
+	const {t} = useTranslation();
 	const {editorShowOutlines, setEditorShowOutlines} = useContext(
 		EditorShowOutlinesContext,
 	);
@@ -30,7 +32,7 @@ export const OutlineToggle: React.FC = () => {
 
 	return (
 		<ActionTooltip
-			label="Outlines"
+			label={t('Outlines')}
 			shortcut={shortcutsDisabled ? null : shortcut}
 			delay={800}
 			dismissOnClick={false}

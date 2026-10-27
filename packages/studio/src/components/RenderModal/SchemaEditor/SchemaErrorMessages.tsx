@@ -1,3 +1,4 @@
+import {useTranslation} from '../../../i18n';
 // Schema error messages for studio editor
 import type {CSSProperties, ReactNode} from 'react';
 import {BACKGROUND, BLUE, LIGHT_TEXT} from '../../../helpers/colors';
@@ -56,6 +57,7 @@ const CompactSchemaError = ({children}: {readonly children: ReactNode}) => {
 export const ZodNotInstalled: React.FC<{
 	readonly mode?: SchemaErrorMode;
 }> = ({mode = 'full'}) => {
+	const {t} = useTranslation();
 	if (mode === 'compact') {
 		return <CompactSchemaError>Install zod to edit props.</CompactSchemaError>;
 	}
@@ -67,7 +69,7 @@ export const ZodNotInstalled: React.FC<{
 				interactively control the props of the composition.
 			</div>
 			<Spacing y={2} block />
-			<Button onClick={openDocs}>Learn how</Button>
+			<Button onClick={openDocs}>{t('Learn how')}</Button>
 		</div>
 	);
 };
@@ -75,6 +77,7 @@ export const ZodNotInstalled: React.FC<{
 export const NoSchemaDefined: React.FC<{
 	readonly mode?: SchemaErrorMode;
 }> = ({mode = 'full'}) => {
+	const {t} = useTranslation();
 	if (mode === 'compact') {
 		return (
 			<CompactSchemaError>Add a schema prop to edit props.</CompactSchemaError>
@@ -89,7 +92,7 @@ export const NoSchemaDefined: React.FC<{
 				<code style={inlineCodeSnippet}>{'<Composition>'}</code> component.
 			</div>
 			<Spacing y={2} block />
-			<Button onClick={openDocs}>Learn how</Button>
+			<Button onClick={openDocs}>{t('Learn how')}</Button>
 		</div>
 	);
 };
@@ -97,6 +100,7 @@ export const NoSchemaDefined: React.FC<{
 export const NoDefaultProps: React.FC<{
 	readonly mode?: SchemaErrorMode;
 }> = ({mode = 'full'}) => {
+	const {t} = useTranslation();
 	if (mode === 'compact') {
 		return (
 			<CompactSchemaError>
@@ -119,7 +123,7 @@ export const NoDefaultProps: React.FC<{
 				composition.
 			</div>
 			<Spacing y={2} block />
-			<Button onClick={openDocs}>Learn more</Button>
+			<Button onClick={openDocs}>{t('Learn more')}</Button>
 		</div>
 	);
 };
@@ -170,6 +174,7 @@ export const TopLevelZodValue: React.FC<{
 	readonly typeReceived: string;
 	readonly mode?: SchemaErrorMode;
 }> = ({typeReceived, mode = 'full'}) => {
+	const {t} = useTranslation();
 	if (mode === 'compact') {
 		return (
 			<CompactSchemaError>
@@ -192,7 +197,7 @@ export const TopLevelZodValue: React.FC<{
 				discriminated union.
 			</div>
 			<Spacing y={2} block />
-			<Button onClick={openDocs}>Learn more</Button>
+			<Button onClick={openDocs}>{t('Learn more')}</Button>
 		</div>
 	);
 };

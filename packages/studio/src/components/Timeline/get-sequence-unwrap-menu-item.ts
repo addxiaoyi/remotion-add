@@ -1,8 +1,11 @@
+import {getStaticT} from '../../i18n';
 import type {SequencePropsSubscriptionKey, TSequence} from 'remotion';
 import type {SetSelectedModalContextType} from '../../state/modals';
 import type {ComboboxValue} from '../NewComposition/ComboBox';
 import {showNotification} from '../Notifications/NotificationCenter';
 import {unwrapSequenceFromSource} from './unwrap-sequence-from-source';
+
+const t = getStaticT();
 
 export const getSequenceUnwrapMenuItem = ({
 	canEditSource,
@@ -38,7 +41,7 @@ export const getSequenceUnwrapMenuItem = ({
 	return {
 		type: 'item',
 		id: 'unwrap-sequence',
-		label: 'Unwrap',
+		label: t('Unwrap'),
 		value: 'unwrap-sequence',
 		keyHint: null,
 		leftItem: null,

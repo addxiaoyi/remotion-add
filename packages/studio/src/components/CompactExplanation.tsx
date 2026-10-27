@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {useState, type CSSProperties, type ReactNode} from 'react';
 import {CURRENT_COLOR, LIGHT_TEXT, WHITE} from '../helpers/colors';
 
@@ -108,13 +109,14 @@ export const CompactNotSetUp = ({
 	readonly learnMoreHref: string;
 	readonly learnMoreTitle?: string;
 }) => {
+	const {t} = useTranslation();
 	return (
 		<CompactExplanation
 			learnMoreAriaLabel={learnMoreAriaLabel}
 			learnMoreHref={learnMoreHref}
 			learnMoreTitle={learnMoreTitle ?? 'Learn more'}
 		>
-			Not set up
+			{t('未设置')}
 		</CompactExplanation>
 	);
 };

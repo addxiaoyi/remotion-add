@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useRef} from 'react';
 import {LIGHT_TEXT, TRANSPARENT, WHITE} from '../../helpers/colors';
 import {
@@ -222,10 +223,11 @@ export const LevelsControl: React.FC<{
 	readonly onCancel: () => void;
 	readonly histogram: React.ReactNode;
 }> = ({values, editable, onChange, onCancel, histogram}) => {
+	const {t} = useTranslation();
 	return (
 		<div style={{padding: '8px 20px 4px', userSelect: 'none'}}>
 			<div style={{fontSize: 11, color: LIGHT_TEXT, marginBottom: 6}}>
-				Input levels
+				{t('Input levels')}
 			</div>
 			{histogram}
 			<div
@@ -244,7 +246,7 @@ export const LevelsControl: React.FC<{
 				))}
 			</div>
 			<div style={{fontSize: 11, color: LIGHT_TEXT, marginBottom: 6}}>
-				Output levels
+				{t('Output levels')}
 			</div>
 			<div
 				style={{

@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {Suspense, useCallback, useContext, useState} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -103,6 +104,7 @@ const OptionalModelPackage: React.FC<{
 	readonly packageName: string;
 	readonly style: React.CSSProperties;
 }> = ({canInstall, children, label, packageName, style}) => {
+	const {t} = useTranslation();
 	const installed = useOptionalPackageInstalled(packageName);
 	const [installState, setInstallState] = useState<InstallState>({
 		type: 'idle',
@@ -137,7 +139,7 @@ const OptionalModelPackage: React.FC<{
 				)}
 			</div>
 			{installed ? (
-				<Suspense fallback={<p style={missingText}>Loading models…</p>}>
+				<Suspense fallback={<p style={missingText}>{t('Loading models…')}</p>}>
 					{children}
 				</Suspense>
 			) : (
@@ -163,12 +165,12 @@ export const ModelsSettings: React.FC = () => {
 		previewServerConnected: previewServerState.type === 'connected',
 		readOnlyStudio: window.remotion_isReadOnlyStudio,
 	});
+	const {t} = useTranslation();
 
 	return (
 		<div style={container}>
 			<p style={overview}>
-				Models are downloaded automatically when needed. You can also manage the
-				browser cache here.
+				{t('Models are downloaded automatically when needed. You can also manage the browser cache here.')}
 			</p>
 			<OptionalModelPackage
 				canInstall={canInstall}

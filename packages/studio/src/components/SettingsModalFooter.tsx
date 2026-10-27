@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {restartStudio} from '../api/restart-studio';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -50,6 +51,7 @@ export const SettingsModalFooter: React.FC<{
 	readonly showAboutElements: boolean;
 	readonly showLicenseFaq: boolean;
 }> = ({showAboutElements, showLicenseFaq}) => {
+	const {t} = useTranslation();
 	const {restartRequired} = useContext(StudioServerConnectionCtx);
 	const [restarting, setRestarting] = useState(false);
 	const configFileLocation = useMemo(() => {
@@ -89,7 +91,7 @@ export const SettingsModalFooter: React.FC<{
 						'Restart the server to apply changes'
 					) : (
 						<>
-							Changes save to
+							{t('Changes save to')}
 							<Spacing x={0.5} />
 							<InspectorOpenInEditor
 								annotationName={null}

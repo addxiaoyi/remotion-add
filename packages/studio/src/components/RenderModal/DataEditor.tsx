@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import type {_InternalTypes, SerializedJSONWithCustomFields} from 'remotion';
 import {getInputProps} from 'remotion';
@@ -233,6 +234,7 @@ export const DataEditor: React.FC<{
 	setShowWarning: controlledSetShowWarning,
 	hideWarningButton = false,
 }) => {
+	const {t} = useTranslation();
 	const [internalMode, setInternalMode] = useState<DataEditorMode>('schema');
 
 	const mode = controlledMode ?? internalMode;
@@ -314,7 +316,7 @@ export const DataEditor: React.FC<{
 		return [
 			{
 				key: 'schema',
-				label: 'Schema',
+				label: t('Schema'),
 				onClick: () => {
 					setMode('schema');
 				},
@@ -322,7 +324,7 @@ export const DataEditor: React.FC<{
 			},
 			{
 				key: 'json',
-				label: 'JSON',
+				label: t('JSON'),
 				onClick: () => {
 					setMode('json');
 				},

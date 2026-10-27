@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import {canUseEffectOperations} from '../../helpers/browser-studio-operations';
 import type {SequenceNodePathInfo} from '../../helpers/get-timeline-sequence-sort-key';
 import type {ConfirmationDialogFunction} from '../ConfirmationDialog-types';
@@ -5,6 +6,8 @@ import {duplicateNodes} from '../duplicate-nodes-api';
 import {duplicateEffects} from '../effect-operations-api';
 import {showNotification} from '../Notifications/NotificationCenter';
 import type {TimelineSelection} from './TimelineSelection';
+
+const t = getStaticT();
 
 const confirmDuplicatingProgrammaticallyDuplicatedSequences = (
 	nodePathInfos: readonly SequenceNodePathInfo[],
@@ -22,7 +25,7 @@ const confirmDuplicatingProgrammaticallyDuplicatedSequences = (
 				'This sequence is programmatically duplicated ' +
 				nodePathInfo.numberOfSequencesWithThisNodePath +
 				' times in the code. Duplicating inserts another copy. Continue?',
-			confirmLabel: 'Duplicate',
+			confirmLabel: t('Duplicate'),
 		});
 	}
 
@@ -31,7 +34,7 @@ const confirmDuplicatingProgrammaticallyDuplicatedSequences = (
 		message:
 			nodePathInfos.length +
 			' selected sequences are programmatically duplicated in the code. Duplicating inserts another copy of each. Continue?',
-		confirmLabel: 'Duplicate',
+		confirmLabel: t('Duplicate'),
 	});
 };
 

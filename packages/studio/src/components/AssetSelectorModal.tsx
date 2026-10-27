@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {
 	useCallback,
 	useContext,
@@ -101,6 +102,7 @@ export const AssetSelectorModal: React.FC<{
 	readonly state: AssetSelectionModalState;
 	readonly readOnlyStudio: boolean;
 }> = ({state, readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const [mode, setMode] = useState<'project' | 'url'>(() =>
 		state.initialUrl === null ? 'project' : 'url',
@@ -267,7 +269,7 @@ export const AssetSelectorModal: React.FC<{
 					</div>
 					<ModalFooterContainer style={footer}>
 						<Row align="center" flex={1} justify="flex-end">
-							<Button onClick={close}>Cancel</Button>
+							<Button onClick={close}>{t('Cancel')}</Button>
 							<Spacing x={1} />
 							<ModalButton disabled={!canApply} onClick={apply}>
 								Replace {state.assetType}

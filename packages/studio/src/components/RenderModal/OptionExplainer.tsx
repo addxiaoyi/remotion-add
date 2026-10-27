@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {AnyRemotionOption} from '@remotion/renderer';
 import React from 'react';
 import {BLUE, INPUT_BACKGROUND, LIGHT_TEXT, WHITE} from '../../helpers/colors';
@@ -85,6 +86,7 @@ export const OptionExplainer: React.FC<{
 	showApiOption = true,
 	showCliFlag = true,
 }) => {
+	const {t} = useTranslation();
 	const shouldShowApiOption = showApiOption && option.ssrName !== null;
 	const shouldShowCliFlag = showCliFlag && option.cliFlag !== undefined;
 	const hasInfoRows =
@@ -148,7 +150,7 @@ export const OptionExplainer: React.FC<{
 						))}
 						{shouldShowCliFlag ? (
 							<div style={infoRow}>
-								<div style={infoRowLabel}>CLI flag</div>
+								<div style={infoRowLabel}>{t('CLI flag')}</div>
 								<div style={flexSpacer} />
 								<code>--{option.cliFlag}</code>
 								<div style={copyWrapper}>
@@ -158,7 +160,7 @@ export const OptionExplainer: React.FC<{
 						) : null}
 						{shouldShowApiOption ? (
 							<div style={infoRow}>
-								<div style={infoRowLabel}>API option</div>
+								<div style={infoRowLabel}>{t('API option')}</div>
 								<div style={flexSpacer} />
 								<code>{option.ssrName}</code>
 								<Spacing x={3.75} />

@@ -3,6 +3,7 @@ import {BACKGROUND} from '../helpers/colors';
 import {isAssetUploadDragEvent} from '../helpers/use-asset-drag-events';
 import {AssetSelector} from './AssetSelector';
 import {CompositionSelector} from './CompositionSelector';
+import {useTranslation} from '../i18n';
 import {CompSelectorRef} from './CompSelectorRef';
 import {
 	explorerSidebarTabs,
@@ -38,11 +39,14 @@ const persistSelectedOptionsSidebarPanel = (panel: ExplorerSidebarPanel) => {
 	localStorage.setItem(localStorageKey, panel);
 };
 
-export const ExplorerPanel: React.FC<{
+export const ExplorerPanel: React.FC<
+{
 	readOnlyStudio: boolean;
 	initialPanel: ExplorerSidebarPanel | null;
 	onCompositionSelected: (() => void) | null;
-}> = ({readOnlyStudio, initialPanel, onCompositionSelected}) => {
+}> = ({
+readOnlyStudio, initialPanel, onCompositionSelected}) => {
+	const {t} = useTranslation();
 	const [panel, setPanel] = useState<ExplorerSidebarPanel>(
 		() => initialPanel ?? getSelectedPanel(),
 	);
@@ -115,7 +119,7 @@ export const ExplorerPanel: React.FC<{
 							selected={panel === 'compositions'}
 							onClick={onCompositionsSelected}
 						>
-							Compositions
+							{t('Compositions')}
 						</Tab>
 						<Tab
 							selected={panel === 'assets'}
@@ -123,7 +127,7 @@ export const ExplorerPanel: React.FC<{
 							onDragEnter={onAssetDragEnter}
 							onDragLeave={onAssetDragLeave}
 						>
-							Assets
+							{t('Assets')}
 						</Tab>
 					</Tabs>
 				</div>

@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {RenderJob} from '@remotion/studio-shared';
 import {useCallback} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
@@ -37,6 +38,7 @@ export const supportsCopyingToClipboard = (job: RenderJob) => {
 export const RenderQueueCopyToClipboard: React.FC<{
 	job: RenderJob;
 }> = ({job}) => {
+	const {t} = useTranslation();
 	const {copied, markCopied} = useCopyFeedback();
 	const renderCopyAction: RenderInlineAction = useCallback(
 		(color) => {
@@ -65,7 +67,7 @@ export const RenderQueueCopyToClipboard: React.FC<{
 					}),
 				]);
 				markCopied();
-				showNotification('Copied to clipboard!', 1000);
+				showNotification(t(''), 1000);
 			} catch (err) {
 				showNotification(
 					`Could not copy to clipboard: ${(err as Error).message}`,
@@ -77,9 +79,9 @@ export const RenderQueueCopyToClipboard: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label="Copy" shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip label={t('Copy')} shortcut={null} delay={800} dismissOnClick>
 			<InlineAction
-				aria-label="Copy to clipboard"
+				aria-label={t('Copy to clipboard')}
 				variant={null}
 				renderAction={renderCopyAction}
 				onClick={onClick}

@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {LogLevel} from '@remotion/renderer';
 import type {
 	RenderStillOnWebImageFormat,
@@ -102,6 +103,7 @@ export const WebRenderModalBasic: React.FC<WebRenderModalBasicProps> = ({
 	logLevel,
 	setLogLevel,
 }) => {
+	const {t} = useTranslation();
 	const imageFormatOptions = useMemo((): SegmentedControlItem[] => {
 		return [
 			{
@@ -181,14 +183,16 @@ export const WebRenderModalBasic: React.FC<WebRenderModalBasicProps> = ({
 			{renderMode === 'still' ? (
 				<>
 					<div style={optionRow}>
-						<div style={label}>Format</div>
+						<div style={label}>{t('')}</div>
+
 						<div style={rightRow}>
 							<SegmentedControl items={imageFormatOptions} needsWrapping />
 						</div>
 					</div>
 					{resolvedComposition.durationInFrames > 1 ? (
 						<div style={optionRow}>
-							<div style={label}>Frame</div>
+							<div style={label}>{t('')}</div>
+
 							<div style={rightRow}>
 								<RightAlignInput>
 									<InputDragger
@@ -211,7 +215,8 @@ export const WebRenderModalBasic: React.FC<WebRenderModalBasicProps> = ({
 			) : (
 				<>
 					<div style={optionRow}>
-						<div style={label}>Container</div>
+						<div style={label}>{t('')}</div>
+
 						<div style={rightRow}>
 							<Combobox
 								values={containerOptions}

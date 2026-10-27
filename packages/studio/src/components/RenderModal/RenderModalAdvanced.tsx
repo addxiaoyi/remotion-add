@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChromeMode} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import type {UiOpenGlOptions} from '@remotion/studio-shared';
@@ -105,6 +106,7 @@ export const RenderModalAdvanced: React.FC<{
 	darkMode,
 	setDarkMode,
 }) => {
+	const {t} = useTranslation();
 	const extendedOpenGlOptions: UiOpenGlOptions[] = useMemo(() => {
 		return [
 			'angle',
@@ -359,7 +361,7 @@ export const RenderModalAdvanced: React.FC<{
 			{renderMode === 'audio' ? null : (
 				<div style={optionRow}>
 					<div style={label}>
-						Custom OffthreadVideo cache
+						{t('Custom OffthreadVideo cache')}
 						<Spacing x={0.5} />
 						<OptionExplainerBubble id="offthreadVideoCacheSizeInBytesOption" />
 					</div>
@@ -378,7 +380,7 @@ export const RenderModalAdvanced: React.FC<{
 					min={0}
 					max={2000 * 1024 * 1024}
 					step={1024}
-					name="OffthreadVideo cache size"
+					name={t('OffthreadVideo cache size')}
 					formatter={(w) => `${w} bytes`}
 					onValueChanged={changeOffthreadVideoCacheSizeInBytes}
 					value={offthreadVideoCacheSizeInBytes}
@@ -404,7 +406,7 @@ export const RenderModalAdvanced: React.FC<{
 					min={0}
 					max={16}
 					step={1}
-					name="OffthreadVideo threads"
+					name={t('OffthreadVideo threads')}
 					formatter={(w) => `${w}x`}
 					onValueChanged={changeOffthreadVideoThreads}
 					value={offthreadVideoThreads}
@@ -412,7 +414,8 @@ export const RenderModalAdvanced: React.FC<{
 			)}
 			<RenderModalHr />
 			<div style={optionRow}>
-				<div style={label}>Disable web security</div>
+				<div style={label}>{t('')}</div>
+
 				<div style={rightRow}>
 					<Checkbox
 						checked={disableWebSecurity}
@@ -422,7 +425,8 @@ export const RenderModalAdvanced: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-				<div style={label}>Ignore certificate errors</div>
+				<div style={label}>{t('')}</div>
+
 				<div style={rightRow}>
 					<Checkbox
 						checked={ignoreCertificateErrors}
@@ -433,7 +437,7 @@ export const RenderModalAdvanced: React.FC<{
 			</div>
 			<div style={optionRow}>
 				<div style={label}>
-					Headless mode
+					{t('Headless mode')}
 					<Spacing x={0.5} />
 					<OptionExplainerBubble id="headlessOption" />
 				</div>
@@ -485,7 +489,7 @@ export const RenderModalAdvanced: React.FC<{
 			</div>
 			<div style={optionRow}>
 				<div style={label}>
-					Dark Mode
+					{t('Dark Mode')}
 					<Spacing x={0.5} />
 					<OptionExplainerBubble id="darkModeOption" />
 				</div>
@@ -494,7 +498,8 @@ export const RenderModalAdvanced: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-				<div style={label}>Custom User Agent</div>
+				<div style={label}>{t('')}</div>
+
 				<div style={rightRow}>
 					<Checkbox
 						checked={userAgent !== null}
@@ -505,7 +510,8 @@ export const RenderModalAdvanced: React.FC<{
 			</div>
 			{userAgent === null ? null : (
 				<div style={optionRow}>
-					<div style={label}>User Agent</div>
+					<div style={label}>{t('')}</div>
+
 					<div style={rightRow}>
 						<div>
 							<RemotionInput

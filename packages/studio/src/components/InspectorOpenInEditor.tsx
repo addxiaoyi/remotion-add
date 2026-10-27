@@ -1,6 +1,7 @@
 import type {DefaultCodingAgent} from '@remotion/renderer';
 import type {EditorPickerId} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
+import {useTranslation} from '../i18n';
 import type {OriginalPosition} from '../error-overlay/react-overlay/utils/get-source-map';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -112,7 +113,7 @@ export const InspectorOpenInEditor: React.FC<{
 		}
 
 		copyText(location.source)
-			.then(() => showNotification('Copied path', 1500))
+			.then(() => showNotification(t(''), 1500))
 			.catch((err: Error) => {
 				showNotification(`Could not copy path: ${err.message}`, 2000);
 			});
@@ -141,8 +142,10 @@ export const InspectorOpenInEditor: React.FC<{
 			openWithEditor,
 		],
 	);
+	const {t} = useTranslation();
 	const menuItems = useMemo((): ComboboxValue[] => {
 		const items = getOpenInMenuItems({
+			t,
 			canOpenDesktopApps: canConfigureApps,
 			codingAgentInfo,
 			editorDisabled: !location?.source || !canOpenInEditor,
@@ -182,7 +185,7 @@ export const InspectorOpenInEditor: React.FC<{
 				openInGitClient(gitClientId)
 					.then((response) => {
 						if (!response.success) {
-							showNotification('Could not open Git client', 2000);
+							showNotification(t(''), 2000);
 						}
 					})
 					.catch((err) => {
@@ -203,7 +206,7 @@ export const InspectorOpenInEditor: React.FC<{
 				openInTerminal(terminalId, location.source)
 					.then((response) => {
 						if (!response.success) {
-							showNotification('Could not open terminal', 2000);
+							showNotification(t(''), 2000);
 						}
 					})
 					.catch((err) => {

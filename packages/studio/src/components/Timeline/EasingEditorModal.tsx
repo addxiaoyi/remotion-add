@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import {
 	canvasKeyframeEasingPresets,
 	type CanvasKeyframeEasingPreset,
@@ -736,6 +737,7 @@ const EasingEditorUnmemoized: React.FC<{
 		modeItems: SegmentedControlItem[],
 	) => React.ReactNode;
 }> = ({state, easingUpdate, renderHeader}) => {
+	const {t} = useTranslation();
 	const calculateTimeline = useTimelineCalculator();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const sequencesRef = useContext(Internals.SequenceManagerRefContext);
@@ -1191,19 +1193,19 @@ const EasingEditorUnmemoized: React.FC<{
 		return [
 			{
 				key: 'bezier',
-				label: 'Bezier',
+				label: t('Bezier'),
 				onClick: () => switchMode('bezier'),
 				selected: mode === 'bezier',
 			},
 			{
 				key: 'spring',
-				label: 'Spring',
+				label: t('Spring'),
 				onClick: () => switchMode('spring'),
 				selected: mode === 'spring',
 			},
 			{
 				key: 'hold',
-				label: 'Hold',
+				label: t('Hold'),
 				onClick: () => switchMode('hold'),
 				selected: mode === 'hold',
 			},
@@ -1487,7 +1489,7 @@ const EasingEditorUnmemoized: React.FC<{
 							</div>
 						</div>
 						<div style={coordinateRow}>
-							<div style={coordinateLabel}>Rest threshold</div>
+							<div style={coordinateLabel}>{t('Rest threshold')}</div>
 							<div style={coordinateInputWrapper}>
 								<InputDragger
 									type="number"
@@ -1518,7 +1520,7 @@ const EasingEditorUnmemoized: React.FC<{
 							</div>
 						</div>
 						<div style={coordinateRow}>
-							<div style={coordinateLabel}>Clamp overshoot</div>
+							<div style={coordinateLabel}>{t('Clamp overshoot')}</div>
 							<div style={checkboxWrapper}>
 								<Checkbox
 									checked={spring.overshootClamping}
@@ -1530,7 +1532,7 @@ const EasingEditorUnmemoized: React.FC<{
 							</div>
 						</div>
 						<div style={coordinateRow}>
-							<div style={coordinateLabel}>Allow tail</div>
+							<div style={coordinateLabel}>{t('Allow tail')}</div>
 							<div style={checkboxWrapper}>
 								<Checkbox
 									checked={spring.allowTail ?? false}

@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useRef} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -42,6 +43,7 @@ type State = Extract<ModalState, {type: 'wrap-refactor' | 'unwrap-refactor'}>;
 export const WrapperRefactorModal: React.FC<{readonly state: State}> = ({
 	state,
 }) => {
+	const {t} = useTranslation();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const {error, remotionSkillsInfo} = useSettings();
 	const annotationTarget = useRef<HTMLDivElement>(null);
@@ -93,19 +95,18 @@ export const WrapperRefactorModal: React.FC<{readonly state: State}> = ({
 	return (
 		<DismissableModal panelStyle={panelStyle}>
 			<ModalHeader
-				title={state.type === 'unwrap-refactor' ? 'Unwrap item' : 'Wrap item'}
+				title={state.type === 'unwrap-refactor' ? t('Unwrap') : t('Wrap')}
 			/>
 			<div ref={annotationTarget} style={container}>
 				<div style={text}>
 					{state.type === 'unwrap-refactor' ? (
 						<>
-							Studio could not automatically remove this wrapper. Remove it
-							while keeping its children.
+							{t('Studio could not automatically remove this wrapper while keeping its children.')}
 						</>
 					) : (
 						<>
 							Studio could not safely wrap this item in {` <${state.wrapper}>`}{' '}
-							with an automated code change.
+							{t('通过自动化代码更改安全地包装此项。')}
 						</>
 					)}
 				</div>
@@ -114,7 +115,7 @@ export const WrapperRefactorModal: React.FC<{readonly state: State}> = ({
 						action={
 							canAnnotate ? (
 								<ModalButton size="compact" onClick={onSendToChatGPT}>
-									Send to ChatGPT
+									{t('Send to ChatGPT')}
 								</ModalButton>
 							) : null
 						}

@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {Internals} from 'remotion';
@@ -42,6 +43,7 @@ export type CompType = 'composition' | 'still';
 const DuplicateCompositionLoaded: React.FC<{
 	readonly initialType: CompType;
 }> = ({initialType}) => {
+	const {t} = useTranslation();
 	const context = useContext(ResolvedCompositionContext);
 	if (!context) {
 		throw new Error('Resolved composition context');
@@ -222,14 +224,14 @@ const DuplicateCompositionLoaded: React.FC<{
 
 	return (
 		<>
-			<ModalHeader title={`Duplicate ${resolved.result.id}`} />
+			<ModalHeader title={`${t('Duplicate')} ${resolved.result.id}`} />
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					{initialCompType === 'composition' ? (
 						// We allow converting from a composition to a still, but
 						// not the other way around
 						<div style={optionRow}>
-							<div style={label}>Type</div>
+`							<div style={label}>{t('Type')}</div>
 							<div style={rightRow}>
 								<Combobox
 									aria-label="Type of composition"
@@ -242,7 +244,7 @@ const DuplicateCompositionLoaded: React.FC<{
 					) : null}
 
 					<div style={optionRow}>
-						<div style={label}>ID</div>
+`						<div style={label}>{t('ID')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput
@@ -250,7 +252,7 @@ const DuplicateCompositionLoaded: React.FC<{
 									onChange={onNameChange}
 									type="text"
 									autoFocus
-									placeholder="Composition ID"
+									placeholder={t('Composition ID')}
 									status="ok"
 									rightAlign
 								/>
@@ -271,13 +273,13 @@ const DuplicateCompositionLoaded: React.FC<{
 					{hadDimensionsDefined ? (
 						<>
 							<div style={optionRow}>
-								<div style={label}>Width</div>
+`								<div style={label}>{t('Width')}</div>
 								<div style={rightRow}>
 									<InputAndValidationContainer>
 										<InputDragger
 											type="number"
 											value={size.width}
-											placeholder="Width"
+											placeholder={t('Width')}
 											onTextChange={onWidthChanged}
 											name="width"
 											step={2}
@@ -303,14 +305,14 @@ const DuplicateCompositionLoaded: React.FC<{
 								</div>
 							</div>
 							<div style={optionRow}>
-								<div style={label}>Height</div>
+`								<div style={label}>{t('Height')}</div>
 								<div style={rightRow}>
 									<InputAndValidationContainer>
 										<InputDragger
 											type="number"
 											value={size.height}
 											onTextChange={onHeightChanged}
-											placeholder="Height"
+											placeholder={t('Height')}
 											name="height"
 											step={2}
 											required
@@ -344,13 +346,13 @@ const DuplicateCompositionLoaded: React.FC<{
 					) : null}
 					{type === 'composition' && hadFpsDefined ? (
 						<div style={optionRow}>
-							<div style={label}>FPS</div>
+`							<div style={label}>{t('FPS')}</div>
 							<div style={rightRow}>
 								<InputDragger
 									type="number"
 									value={selectedFrameRate}
 									onTextChange={onTextFpsChange}
-									placeholder="Frame rate (fps)"
+									placeholder={t('Frame rate (fps)')}
 									name="fps"
 									min={1}
 									required

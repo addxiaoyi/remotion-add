@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {AudioCodec} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import type {ChangeEvent} from 'react';
@@ -59,6 +60,7 @@ export const SeparateAudioOption: React.FC<{
 	readonly audioCodec: AudioCodec;
 	readonly outName: string;
 }> = ({separateAudioTo, setSeparateAudioTo, audioCodec, outName}) => {
+	const {t} = useTranslation();
 	const onSeparateAudioChange = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
 			if (e.target.checked) {
@@ -76,7 +78,7 @@ export const SeparateAudioOption: React.FC<{
 		<>
 			<div style={optionRow}>
 				<div style={label}>
-					Separate audio
+					{t('Separate audio')}
 					<Spacing x={0.5} />
 					<OptionExplainerBubble id="separateAudioOption" />
 				</div>

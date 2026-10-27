@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -32,6 +33,7 @@ const content: React.CSSProperties = {
 };
 
 const RenameCompositionLoaded: React.FC<{}> = () => {
+	const {t} = useTranslation();
 	const context = useContext(ResolvedCompositionContext);
 	if (!context) {
 		throw new Error('Resolved composition context');
@@ -76,11 +78,11 @@ const RenameCompositionLoaded: React.FC<{}> = () => {
 
 	return (
 		<>
-			<ModalHeader title={`Rename ${resolved.result.id}`} />
+			<ModalHeader title={`${t('Rename')} ${resolved.result.id}`} />
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					<div style={optionRow}>
-						<div style={label}>ID</div>
+`						<div style={label}>{t('ID')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput
@@ -89,7 +91,7 @@ const RenameCompositionLoaded: React.FC<{}> = () => {
 									onChange={onNameChange}
 									type="text"
 									autoFocus
-									placeholder="Composition ID"
+									placeholder={t('Composition ID')}
 									status="ok"
 									rightAlign
 								/>

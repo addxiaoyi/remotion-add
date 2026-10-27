@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {
 	CompositionEditResponse,
 	SymbolicatedStackFrame,
@@ -37,10 +38,11 @@ const CompositionEditFooterPresentation: React.FC<{
 	submitLabel,
 	trigger,
 }) => {
+	const {t} = useTranslation();
 	return (
 		<Row align="center">
 			<span style={{color: LIGHT_TEXT, fontSize: 13, lineHeight: 1.2}}>
-				This will edit your codebase.
+				{t('This will edit your codebase.')}
 			</span>
 			<Flex />
 			<Spacing block x={2} />

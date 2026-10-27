@@ -1,3 +1,5 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import React, {useCallback, useContext, useMemo} from 'react';
 import {Internals, type CanUpdateSequencePropStatus} from 'remotion';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
@@ -112,7 +114,7 @@ const AlignmentControlsUnmemoized: React.FC<{
 				!track.nodePathInfo ||
 				!track.sequence.controls
 			) {
-				showNotification('Alignment is unavailable for this sequence.', 1000);
+				showNotification(t(''), 1000);
 				return;
 			}
 
@@ -225,12 +227,12 @@ const AlignmentControlsUnmemoized: React.FC<{
 			const newValue = serializeTranslate([newX, newY, currentZ]);
 
 			const undoLabels = {
-				left: 'Align left',
-				'center-h': 'Align center horizontally',
-				right: 'Align right',
-				top: 'Align top',
-				'center-v': 'Align center vertically',
-				bottom: 'Align bottom',
+				left: t('Align left'),
+				'center-h': t('Align center horizontally'),
+				right: t('Align right'),
+				top: t('Align top'),
+				'center-v': t('Align center vertically'),
+				bottom: t('Align bottom'),
 			};
 
 			const label = undoLabels[direction];

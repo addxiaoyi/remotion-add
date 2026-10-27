@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React from 'react';
 import {LIGHT_TEXT} from '../helpers/colors';
 import {formatFileLocation} from '../helpers/format-file-location';
@@ -30,6 +31,7 @@ type State = Extract<ModalState, {type: 'generate-with-agent'}>;
 export const GenerateWithAgentModal: React.FC<{readonly state: State}> = ({
 	state,
 }) => {
+	const {t} = useTranslation();
 	const location = formatFileLocation({
 		location: state.location,
 		root: window.remotion_cwd,
@@ -37,10 +39,10 @@ export const GenerateWithAgentModal: React.FC<{readonly state: State}> = ({
 
 	return (
 		<DismissableModal panelStyle={panelStyle}>
-			<ModalHeader title="Generate with agent" />
+`			<ModalHeader title={t('Generate with agent')} />
 			<div style={container}>
 				<div style={text}>
-					Ask a coding agent to generate content in this composition.
+					{t('Ask a coding agent to generate content in this composition.')}
 				</div>
 				<AgentPrompt
 					action={null}

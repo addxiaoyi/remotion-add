@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -37,6 +38,7 @@ const content: React.CSSProperties = {
 export const RenameStaticFileModal: React.FC<{
 	readonly relativePath: string;
 }> = ({relativePath}) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const staticFiles = useStaticFiles();
 	const [newName, setNewName] = useState(() =>
@@ -107,11 +109,11 @@ export const RenameStaticFileModal: React.FC<{
 
 	return (
 		<DismissableModal>
-			<ModalHeader title={`Rename ${relativePath}`} />
+			<ModalHeader title={`${t('Rename')} ${relativePath}`} />
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					<div style={optionRow}>
-						<div style={label}>Name</div>
+`						<div style={label}>{t('Name')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput
@@ -122,7 +124,7 @@ export const RenameStaticFileModal: React.FC<{
 									autoFocus
 									autoComplete="off"
 									data-1p-ignore
-									placeholder="Asset name"
+									placeholder={t('Asset name')}
 									status={validationMessage ? 'error' : 'ok'}
 									rightAlign
 								/>

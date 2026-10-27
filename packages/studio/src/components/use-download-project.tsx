@@ -1,3 +1,5 @@
+import {getStaticT} from '../i18n';
+const t = getStaticT();
 import React, {useCallback} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {LIGHT_TEXT} from '../helpers/colors';
@@ -32,7 +34,7 @@ export const useDownloadProject = () => {
 		}
 
 		const accepted = await confirm({
-			title: 'Download project',
+			title: t(''),
 			message: (
 				<>
 					<LicenseExplanation />
@@ -50,8 +52,8 @@ export const useDownloadProject = () => {
 					</p>
 				</>
 			),
-			confirmLabel: 'Accept and download',
-			cancelLabel: 'Cancel',
+			confirmLabel: t('Accept and download'),
+			cancelLabel: t('Cancel'),
 		});
 		if (!accepted) {
 			return;

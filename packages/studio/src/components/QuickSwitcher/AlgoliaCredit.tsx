@@ -1,12 +1,8 @@
 import React from 'react';
-import {CURRENT_COLOR} from '../../helpers/colors';
-
-const link: React.CSSProperties = {
-	display: 'inline-flex',
-};
 
 export const AlgoliaCredit: React.FC = () => {
-	return (
+	return null;
+	/*
 		<a
 			style={link}
 			href="https://www.algolia.com/ref/docsearch/?utm_source=www.remotion.dev&amp;utm_medium=referral&amp;utm_content=powered_by&amp;utm_campaign=docsearch"
@@ -21,5 +17,5 @@ export const AlgoliaCredit: React.FC = () => {
 				/>
 			</svg>
 		</a>
-	);
+	*/
 };

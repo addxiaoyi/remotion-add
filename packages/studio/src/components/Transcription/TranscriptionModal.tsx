@@ -1,3 +1,4 @@
+import {getStaticT, useTranslation} from '../../i18n';
 import {formatBytes} from '@remotion/studio-shared';
 import {
 	canUseWhisperWebGpu,
@@ -70,6 +71,8 @@ import {
 } from './caption-output-name';
 import {Models} from './Models';
 import {WHISPER_LANGUAGES, type WhisperLanguage} from './whisper-languages';
+
+const t = getStaticT();
 
 const TRANSCRIPTION_OUTPUT_MESSAGE_ID = 'remotion-transcription-output-message';
 const TRANSCRIPTION_CHUNK_MESSAGE_ID = 'remotion-transcription-chunk-message';
@@ -236,6 +239,7 @@ const ModelSettings: React.FC<{
 	setSelectedTask,
 	supportState,
 }) => {
+	const {t} = useTranslation();
 	const selectedModelInfo = AVAILABLE_MODELS.find(
 		({name}) => name === selectedModel,
 	);
@@ -307,7 +311,7 @@ const ModelSettings: React.FC<{
 				label: (
 					<>
 						<span aria-hidden="true" style={nestedLabelStyle}>
-							Translate to English
+							{t('翻译成英语')}
 						</span>
 						<span style={{position: 'absolute', clip: 'rect(0 0 0 0)'}}>
 							Task: Translate to English
@@ -403,7 +407,7 @@ const OutputSettings: React.FC<{
 }> = ({exists, onOutNameChange, outName, validationMessage}) => {
 	const openExistingOutput = useCallback(() => {
 		if (!window.remotion_publicFolderExists) {
-			showNotification('Could not find the public folder', 2000);
+			showNotification(t(''), 2000);
 			return;
 		}
 
@@ -425,7 +429,7 @@ const OutputSettings: React.FC<{
 
 	return (
 		<div style={outputRow}>
-			<TranscriptionSettingLabel inputId={null} name="Output in public/">
+			<TranscriptionSettingLabel inputId={null} name={t('Output in public/')}>
 				Studio writes a JSON array compatible with{' '}
 				<code style={tooltipInlineCode}>Caption[]</code>. Load it from your
 				composition with <code style={tooltipInlineCode}>staticFile()</code>.
@@ -520,6 +524,7 @@ const AdvancedSettings: React.FC<{
 	decodingValidationMessage,
 	validationMessage,
 }) => {
+	const {t} = useTranslation();
 	const onForceFullSequencesChange: React.ChangeEventHandler<HTMLInputElement> =
 		useCallback(
 			(event) => setForceFullSequences(event.target.checked),
@@ -543,15 +548,14 @@ const AdvancedSettings: React.FC<{
 					hint={{
 						content: (
 							<div style={tooltipContent}>
-								Studio splits long audio into chunks of up to 30 seconds. Longer
-								chunks need fewer transcription passes.
+								{t('Studio 会将长音频拆分为最长 30 秒的分块。较长的分块需要更少的转录次数。')}
 							</div>
 						),
-						title: 'Learn more about Chunk length',
+						title: t(''),
 					}}
 					max={MAX_CHUNK_LENGTH_IN_SECONDS}
 					min={1}
-					name="Chunk length"
+					name={t('Chunk length')}
 					onValueChanged={setChunkLengthInSeconds}
 					step={1}
 					value={chunkLengthInSeconds}
@@ -565,10 +569,10 @@ const AdvancedSettings: React.FC<{
 								boundaries.
 							</div>
 						),
-						title: 'Learn more about Stride length',
+						title: t(''),
 					}}
 					min={0}
-					name="Stride length"
+					name={t('Stride length')}
 					onValueChanged={setStrideLengthInSeconds}
 					step={1}
 					value={strideLengthInSeconds}
@@ -601,9 +605,9 @@ const AdvancedSettings: React.FC<{
 				<div style={optionRow}>
 					<TranscriptionSettingLabel
 						inputId="force-full-sequences"
-						name="Force full sequences"
+						name={t('Force full sequences')}
 					>
-						Makes the job fail if Whisper leaves an incomplete timestamp
+						{t('Makes the job fail if Whisper leaves an incomplete timestamp')}
 						sequence.
 					</TranscriptionSettingLabel>
 					<div style={rightRow}>
@@ -617,8 +621,8 @@ const AdvancedSettings: React.FC<{
 				</div>
 				<RenderModalHr />
 				<div style={optionRow}>
-					<TranscriptionSettingLabel inputId="use-sampling" name="Use sampling">
-						Makes decoding nondeterministic.
+					<TranscriptionSettingLabel inputId="use-sampling" name={t('Use sampling')}>
+						{t('Makes decoding nondeterministic.')}
 					</TranscriptionSettingLabel>
 					<div style={rightRow}>
 						<Checkbox
@@ -635,10 +639,10 @@ const AdvancedSettings: React.FC<{
 							hint={{
 								content: (
 									<div style={tooltipContent}>
-										Controls randomness when sampling.
+										{t('Controls randomness when sampling.')}
 									</div>
 								),
-								title: 'Learn more about Temperature',
+								title: t(''),
 							}}
 							min={0.1}
 							name="Temperature"
@@ -650,13 +654,13 @@ const AdvancedSettings: React.FC<{
 							hint={{
 								content: (
 									<div style={tooltipContent}>
-										Limits the candidate tokens when sampling.
+										{t('Limits the candidate tokens when sampling.')}
 									</div>
 								),
-								title: 'Learn more about Top K',
+								title: t(''),
 							}}
 							min={0}
-							name="Top K"
+							name={t('Top K')}
 							onValueChanged={setTopK}
 							step={1}
 							value={topK}
@@ -670,10 +674,10 @@ const AdvancedSettings: React.FC<{
 								Discourages repeated tokens. A value of 1 disables the penalty.
 							</div>
 						),
-						title: 'Learn more about Repetition penalty',
+						title: t(''),
 					}}
 					min={0.1}
-					name="Repetition penalty"
+					name={t('Repetition penalty')}
 					onValueChanged={setRepetitionPenalty}
 					step={0.1}
 					value={repetitionPenalty}
@@ -682,11 +686,10 @@ const AdvancedSettings: React.FC<{
 					hint={{
 						content: (
 							<div style={tooltipContent}>
-								Prevents repeated phrases of this many tokens. A value of 0
-								disables the filter.
+								{t('防止重复出现此数量的短语。设为 0 可禁用该过滤器。')}
 							</div>
 						),
-						title: 'Learn more about No-repeat n-gram size',
+						title: t(''),
 					}}
 					min={0}
 					name="No-repeat n-gram size"
@@ -720,6 +723,7 @@ export const TranscriptionModal: React.FC<TranscriptionModalState> = ({
 	src,
 	target,
 }) => {
+	const {t} = useTranslation();
 	const captionStyleSelection = useMemo(() => {
 		if (
 			captionStyle === null ||
@@ -1130,7 +1134,7 @@ export const TranscriptionModal: React.FC<TranscriptionModalState> = ({
 										>
 											<div style={tooltipContent}>
 												<div style={tooltipLine}>
-													Installs packages and runs code in your project.
+													{t('安装包并在您的项目中运行代码。')}
 												</div>
 												<div style={tooltipLine}>
 													Source:{' '}
@@ -1164,7 +1168,7 @@ export const TranscriptionModal: React.FC<TranscriptionModalState> = ({
 								)}
 							</div>
 							<ElementLibraryFrame
-								name="Caption styles"
+								name={t('Caption styles')}
 								url={libraryUrl}
 								context="captions"
 								captionStyleSelection={captionStyleSelection}

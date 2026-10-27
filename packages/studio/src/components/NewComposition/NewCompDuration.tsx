@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback} from 'react';
 import {validateCompositionDuration} from '../../helpers/validate-new-comp-data';
 import {Spacing} from '../layout';
@@ -10,6 +11,7 @@ export const NewCompDuration: React.FC<{
 	readonly durationInFrames: number;
 	readonly setDurationInFrames: React.Dispatch<React.SetStateAction<number>>;
 }> = ({durationInFrames, setDurationInFrames}) => {
+	const {t} = useTranslation();
 	const onDurationInFramesChanged = useCallback(
 		(newValue: string) => {
 			setDurationInFrames(Number(newValue));
@@ -28,7 +30,7 @@ export const NewCompDuration: React.FC<{
 
 	return (
 		<div style={optionRow}>
-			<div style={label}>Duration in frames</div>
+`			<div style={label}>{t('Duration in frames')}</div>
 			<div style={rightRow}>
 				<InputAndValidationContainer>
 					<InputDragger
@@ -36,7 +38,7 @@ export const NewCompDuration: React.FC<{
 						type="number"
 						value={durationInFrames}
 						onTextChange={onDurationInFramesChanged}
-						placeholder="Duration (frames)"
+						placeholder={t('Duration (frames)')}
 						name="durationInFrames"
 						min={1}
 						step={1}

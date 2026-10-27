@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
 import {ActionTooltip} from '../ActionTooltip';
@@ -13,6 +14,7 @@ import type {VideoMattingJob} from './video-matting-job-types';
 export const RenderQueueCancelButton: React.FC<{
 	readonly job: AnyRenderJob | CaptionJob | VideoMattingJob;
 }> = ({job}) => {
+	const {t} = useTranslation();
 	const {cancelClientJob} = useContext(RenderQueueContext);
 
 	const onClick: React.MouseEventHandler = useCallback(
@@ -61,7 +63,7 @@ export const RenderQueueCancelButton: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label="Cancel" shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip label={t('Cancel')} shortcut={null} delay={800} dismissOnClick>
 			<InlineAction
 				aria-label={
 					job.type === 'caption'

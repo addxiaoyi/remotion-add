@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChangeEvent} from 'react';
 import React, {useCallback} from 'react';
 import {Checkbox} from '../Checkbox';
@@ -10,6 +11,7 @@ export const EnforceAudioTrackSetting: React.FC<{
 	readonly setEnforceAudioTrack: React.Dispatch<React.SetStateAction<boolean>>;
 	readonly muted: boolean;
 }> = ({enforceAudioTrack, muted, setEnforceAudioTrack}) => {
+	const {t} = useTranslation();
 	const onEnforceAudioTrackChanged = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
 			setEnforceAudioTrack(e.target.checked);
@@ -20,7 +22,7 @@ export const EnforceAudioTrackSetting: React.FC<{
 	return (
 		<div style={optionRow}>
 			<div style={label}>
-				Enforce Audio Track
+				{t('Enforce Audio Track')}
 				<Spacing x={0.5} />
 				<OptionExplainerBubble id="enforceAudioOption" />
 			</div>

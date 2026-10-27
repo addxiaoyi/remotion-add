@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import type {DragOverrideValue} from 'remotion';
 import {Internals, useVideoConfig} from 'remotion';
@@ -56,6 +57,7 @@ const addKeyframeIcon: React.CSSProperties = {
 export const EasingInspector: React.FC<{
 	readonly selection: EasingSelection;
 }> = ({selection}) => {
+	const {t} = useTranslation();
 	const track = useTrackForSelection(selection);
 	const runtimeValues = useRuntimeValues(track?.sequence.controls ?? null);
 	const videoConfig = useVideoConfig();
@@ -298,7 +300,7 @@ export const EasingInspector: React.FC<{
 				<InspectorBackAction
 					disabled={parentSelection === null}
 					onClick={onSelectParent}
-					aria-label="Back to property"
+					aria-label={t('Back to property')}
 				>
 					{fieldLabel}
 				</InspectorBackAction>
@@ -339,7 +341,7 @@ export const EasingInspector: React.FC<{
 		currentEasingSelection === null ||
 		easingUpdate === null
 	) {
-		return <InspectorMessage>Easing unavailable</InspectorMessage>;
+		return <InspectorMessage>{t('Easing unavailable')}</InspectorMessage>;
 	}
 
 	return (

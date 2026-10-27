@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import type {PropStatuses} from 'remotion';
 import {canUseEffectOperations} from '../../helpers/browser-studio-operations';
 import type {
@@ -16,6 +17,8 @@ import {
 	getTimelineSelectionKey,
 	type TimelineSelection,
 } from './TimelineSelection';
+
+const t = getStaticT();
 
 const confirmDeletingDuplicatedSequences = (
 	nodePathInfos: SequenceNodePathInfo[],
@@ -36,7 +39,7 @@ const confirmDeletingDuplicatedSequences = (
 				'This sequence is programmatically duplicated ' +
 				nodePathInfo.numberOfSequencesWithThisNodePath +
 				' times in the code. Deleting removes all instances. Continue?',
-			confirmLabel: 'Delete',
+			confirmLabel: t('Delete'),
 		});
 	}
 
@@ -45,7 +48,7 @@ const confirmDeletingDuplicatedSequences = (
 		message:
 			duplicatedNodePathInfos.length +
 			' selected sequences are programmatically duplicated in the code. Deleting removes all instances. Continue?',
-		confirmLabel: 'Delete',
+		confirmLabel: t('Delete'),
 	});
 };
 

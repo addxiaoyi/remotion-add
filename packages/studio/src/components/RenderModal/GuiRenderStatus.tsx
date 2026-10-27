@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {
 	DownloadProgress,
 	RenderingProgressInput,
@@ -77,12 +78,13 @@ const BrowserSetupProgress: React.FC<{
 	readonly startedBundling: boolean;
 	//	to ensure it only shows already available if we have moved to the next step
 }> = ({progress, doneIn, startedBundling, alreadyAvailable, error}) => {
+	const {t} = useTranslation();
 	if (error) {
 		return (
 			<div style={progressItem}>
 				<FailIcon />
 				<Spacing x={1} />
-				<div style={label}>Failed to download Headless Shell</div>
+				<div style={label}>{t('Failed to download Headless Shell')}</div>
 			</div>
 		);
 	}

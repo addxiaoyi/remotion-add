@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {
 	useCallback,
 	useContext,
@@ -192,6 +193,7 @@ export const QuickSwitcherContent: React.FC<{
 	assetSelection,
 	compositionSelection,
 }) => {
+	const {t} = useTranslation();
 	const {compositions, folders} = useContext(Internals.CompositionManager);
 	const staticFiles = useStaticFiles();
 	const [state, setState] = useState(() => {
@@ -528,13 +530,13 @@ export const QuickSwitcherContent: React.FC<{
 	const placeholder =
 		mode === 'assets'
 			? assetSelection?.fileTypes
-				? 'Search transcripts...'
-				: 'Search assets...'
+				? t('Search transcripts...')
+				: t('Search assets...')
 			: mode === 'commands'
-				? 'Search actions...'
+				? t('Search actions...')
 				: mode === 'docs'
-					? 'Search documentation...'
-					: 'Search compositions...';
+					? t('Search documentation...')
+					: t('Search compositions...');
 
 	return (
 		<div style={container}>

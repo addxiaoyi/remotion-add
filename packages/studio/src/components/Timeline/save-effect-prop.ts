@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import {
 	optimisticUpdateForEffectPropStatuses,
 	type EffectClipboardParam,
@@ -11,6 +12,8 @@ import {
 import {applyEffectResponseToPropStatuses} from './apply-effect-response-to-prop-statuses';
 import {enqueueSavePropChange} from './save-prop-queue';
 import type {SetPropStatuses} from './save-sequence-prop';
+
+const t = getStaticT();
 
 type SaveEffectPropBase = {
 	fileName: string;
@@ -169,6 +172,6 @@ export const saveEffectProp = (input: SaveEffectPropInput): Promise<void> => {
 							clientId,
 						},
 			),
-		errorLabel: 'Could not save effect prop',
+		errorLabel: t('Could not save effect prop'),
 	});
 };

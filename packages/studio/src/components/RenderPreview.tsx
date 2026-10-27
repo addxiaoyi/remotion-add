@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useContext, useEffect, useState} from 'react';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {LIGHT_TEXT, WHITE} from '../helpers/colors';
@@ -24,6 +25,7 @@ export const RenderPreview: React.FC<{
 	readonly assetMetadata: AssetMetadata | null;
 	readonly getBlob?: () => Promise<Blob>;
 }> = ({path, assetMetadata, getBlob}) => {
+	const {t} = useTranslation();
 	const fileType = getPreviewFileType(path);
 	const connectionStatus = useContext(StudioServerConnectionCtx)
 		.previewServerState.type;
@@ -73,7 +75,7 @@ export const RenderPreview: React.FC<{
 	const src = blobUrl ?? remotion_outputsBase + path;
 
 	if (connectionStatus === 'disconnected') {
-		return <div style={errMsgStyle}>Studio server disconnected</div>;
+		return <div style={errMsgStyle}>{t('Studio server disconnected')}</div>;
 	}
 
 	if (getBlob && blobError) {

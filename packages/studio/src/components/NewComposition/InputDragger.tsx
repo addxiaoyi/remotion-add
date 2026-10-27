@@ -1,3 +1,5 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import type {
 	InputHTMLAttributes,
 	MouseEventHandler,
@@ -375,7 +377,7 @@ export const validateInputDraggerValue = ({
 	if (parsed === null) {
 		return {
 			valid: false,
-			message: 'Enter a valid number.',
+			message: t('Enter a valid number.'),
 		};
 	}
 

@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {PlayerInternals} from '@remotion/player';
 import type {
 	AudioCodec,
@@ -128,6 +129,7 @@ const RenderButtonInner: React.FC<{
 	readonly size?: 'default' | 'compact';
 	readonly narrow?: boolean;
 }> = ({readOnlyStudio, size: controlSize = 'default', narrow = false}) => {
+	const {t} = useTranslation();
 	const {inFrame, outFrame} = useTimelineInOutFramePosition();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const [preferredRenderType, setPreferredRenderType] = useState<RenderType>(
@@ -146,25 +148,23 @@ const RenderButtonInner: React.FC<{
 		}
 
 		const confirmed = await confirm({
-			title: 'Server-side render',
+			title: t('Server-side render'),
 			message: (
 				<>
 					<p style={serverRenderInstructions}>
-						Render on your computer for full Remotion compatibility and more
-						export formats, including ProRes.
+						{t('Render on your computer for full Remotion compatibility and more export formats, including ProRes.')}
 					</p>
 					<p style={serverRenderInstructions}>
-						Download and unzip, then run in the project folder (Node.js
-						required):
+						{t('Download and unzip, then run in the project folder (Node.js required):')}
 					</p>
 					<pre style={serverRenderCommands}>{'npm install\nnpm run dev'}</pre>
 					<p style={{...serverRenderInstructions, marginBottom: 0}}>
-						In the Studio that opens, select your composition and click Render.
+						{t('In the Studio that opens, select your composition and click Render.')}
 					</p>
 				</>
 			),
-			confirmLabel: 'Download project',
-			cancelLabel: 'Cancel',
+			confirmLabel: t('Download project'),
+			cancelLabel: t('Cancel'),
 		});
 		if (confirmed) {
 			await downloadProject();
@@ -433,8 +433,8 @@ const RenderButtonInner: React.FC<{
 							type: 'item' as const,
 							id: 'server-render',
 							label: isBrowserStudio
-								? 'Server-side render...'
-								: 'Server-side render',
+								? t('Server-side render...')
+								: t('Server-side render'),
 							value: 'server-render',
 							onClick: isBrowserStudio
 								? openServerRenderHandoff

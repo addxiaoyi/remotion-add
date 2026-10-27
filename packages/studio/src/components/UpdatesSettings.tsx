@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {
 	GetReleaseNotesResponse,
 	UpdateAvailableResponse,
@@ -155,6 +156,7 @@ const formatReleaseDate = (publishedAt: string | null) => {
 const RenderedReleaseNotes: React.FC<{
 	readonly release: GetReleaseNotesResponse['releases'][number];
 }> = ({release}) => {
+	const {t} = useTranslation();
 	const [height, setHeight] = useState(220);
 	const frameRef = useRef<HTMLIFrameElement>(null);
 	const resizeObserver = useRef<ResizeObserver | null>(null);
@@ -228,7 +230,7 @@ const RenderedReleaseNotes: React.FC<{
 						target="_blank"
 						href={`https://github.com/remotion-dev/remotion/releases/tag/v${release.version}`}
 					>
-						View them on GitHub
+						{t('View them on GitHub')}
 					</a>
 					.
 				</div>
@@ -248,6 +250,7 @@ const RenderedReleaseNotes: React.FC<{
 };
 
 export const UpdatesSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {remotionSkillsInfo} = useSettings();
 	const {error, info, knownBugs, upgradeState, upgradeError, upgrade, restart} =
 		useUpdateStatus();
@@ -311,7 +314,7 @@ export const UpdatesSettings: React.FC = () => {
 		copyText(updateAction)
 			.then(markCopied)
 			.catch((err) => {
-				showNotification('Could not copy: ' + err.message, 2000);
+				showNotification(t('') + err.message, 2000);
 			});
 	}, [markCopied, updateAction]);
 
@@ -457,7 +460,7 @@ export const UpdatesSettings: React.FC = () => {
 				<>
 					<div style={title}>
 						The currently installed version v{info.currentVersion} has the
-						following known bugs:
+						{t('以下已知错误：')}
 					</div>
 					<KnownBugs bugs={knownBugs ?? []} />
 					<div style={{height: '20px'}} />
@@ -509,7 +512,7 @@ export const UpdatesSettings: React.FC = () => {
 									target="_blank"
 									href="https://github.com/remotion-dev/remotion/releases"
 								>
-									View them on GitHub
+									{t('View them on GitHub')}
 								</a>
 								.
 							</div>
@@ -527,7 +530,7 @@ export const UpdatesSettings: React.FC = () => {
 										target="_blank"
 										href="https://github.com/remotion-dev/remotion/releases"
 									>
-										View all releases on GitHub
+										{t('View all releases on GitHub')}
 									</a>
 									.
 								</div>

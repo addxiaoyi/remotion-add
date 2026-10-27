@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {ExtraPackage, PackageManager, Pkgs} from '@remotion/studio-shared';
 import {
 	apiDocs,
@@ -84,6 +85,7 @@ export const InstallPackageSettings: React.FC<{
 	readonly footerContainer: HTMLElement | null;
 	readonly packageManager: PackageManager | null;
 }> = ({footerContainer, packageManager}) => {
+	const {t} = useTranslation();
 	const [state, setState] = React.useState<State>({type: 'idle'});
 
 	const [map, setMap] = React.useState<Record<string, boolean>>({});
@@ -172,7 +174,7 @@ export const InstallPackageSettings: React.FC<{
 							: ' Restart the server to complete.'}
 					</div>
 				) : state.type === 'restarting' ? (
-					<div style={text}>Restarting the Studio server...</div>
+					<div style={text}>{t('Restarting the Studio server...')}</div>
 				) : state.type === 'installing' ? (
 					<div style={text}>
 						Installing package{selectedPackages.length === 1 ? '' : 's'}

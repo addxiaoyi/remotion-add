@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {useContext} from 'react';
 import {staticFile} from 'remotion';
 import {addAssetCacheBust} from '../helpers/add-asset-cache-bust';
@@ -25,6 +26,7 @@ export const StaticFilePreview: React.FC<{
 	currentAsset: string;
 	assetMetadata: AssetMetadata | null;
 }> = ({currentAsset, assetMetadata}) => {
+	const {t} = useTranslation();
 	const fileType = getPreviewFileType(currentAsset);
 	const staticFileSrc = staticFile(currentAsset);
 	const staticFiles = useStaticFiles();
@@ -34,7 +36,7 @@ export const StaticFilePreview: React.FC<{
 	const exists = staticFiles.find((file) => file.name === currentAsset);
 
 	if (connectionStatus === 'disconnected') {
-		return <div style={errMsgStyle}>Studio server disconnected</div>;
+		return <div style={errMsgStyle}>{t('Studio server disconnected')}</div>;
 	}
 
 	if (!exists) {

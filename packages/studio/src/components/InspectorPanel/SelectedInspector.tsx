@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React from 'react';
 import type {TimelineSelection} from '../Timeline/TimelineSelection';
 import {InspectorMessage} from './common';
@@ -12,6 +13,7 @@ const SelectedInspectorContent: React.FC<{
 	readonly selection: TimelineSelection;
 	readonly readOnlyStudio: boolean;
 }> = ({selection, readOnlyStudio}) => {
+	const {t} = useTranslation();
 	if (isSequenceSectionSelection(selection)) {
 		return (
 			<SequenceSelectionInspector
@@ -33,7 +35,7 @@ const SelectedInspectorContent: React.FC<{
 		return <GuideInspector selection={selection} />;
 	}
 
-	return <InspectorMessage>Inspector unavailable</InspectorMessage>;
+	return <InspectorMessage>{t('Inspector unavailable')}</InspectorMessage>;
 };
 
 export const SelectedInspector: React.FC<{

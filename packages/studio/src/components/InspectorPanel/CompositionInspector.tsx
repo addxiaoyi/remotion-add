@@ -1,3 +1,5 @@
+import {useTranslation} from '../../i18n';
+import {isSaasMode} from '../../saas-mode';
 import React, {
 	useContext,
 	useEffect,
@@ -78,6 +80,7 @@ const CompositionActions: React.FC = () => {
 		generateWithAgent,
 		canShowGenerateWithAgent,
 	} = useCompositionActions();
+	const {t} = useTranslation();
 	const downloadProject = useDownloadProject();
 
 	if (
@@ -107,7 +110,7 @@ const CompositionActions: React.FC = () => {
 							<SolidIcon color={color} style={inspectorActionIconStyle} />
 						)}
 					>
-						Add Solid
+						{t('Add Solid')}
 					</InspectorQuickAction>
 				) : null}
 				{canShowInsertText ? (
@@ -118,7 +121,7 @@ const CompositionActions: React.FC = () => {
 							<FontFileIcon color={color} style={inspectorActionIconStyle} />
 						)}
 					>
-						Add text
+						{t('Add text')}
 					</InspectorQuickAction>
 				) : null}
 				{canShowInsertAsset ? (
@@ -129,7 +132,7 @@ const CompositionActions: React.FC = () => {
 							<PicIcon color={color} style={inspectorActionIconStyle} />
 						)}
 					>
-						Add asset...
+						{t('Add asset...')}
 					</InspectorQuickAction>
 				) : null}
 				{canShowInsertComposition ? (
@@ -140,10 +143,10 @@ const CompositionActions: React.FC = () => {
 							<FilmIcon color={color} style={inspectorActionIconStyle} />
 						)}
 					>
-						Add composition...
+						{t('Add composition...')}
 					</InspectorQuickAction>
 				) : null}
-				{canShowGenerateWithAgent ? (
+				{canShowGenerateWithAgent && !isSaasMode() ? (
 					<InspectorQuickAction
 						disabled={false}
 						iconContainerStyle={largeInspectorActionIconContainerStyle}
@@ -155,11 +158,11 @@ const CompositionActions: React.FC = () => {
 							/>
 						)}
 					>
-						Generate with agent...
+						{t('Generate with agent...')}
 					</InspectorQuickAction>
 				) : null}
-				{canShowInsertAsset ? <ElementLibraryButton /> : null}
-				{downloadProject ? (
+				{canShowInsertAsset && !isSaasMode() ? <ElementLibraryButton /> : null}
+				{downloadProject && !isSaasMode() ? (
 					<InspectorQuickAction
 						disabled={false}
 						onClick={downloadProject}
@@ -170,7 +173,7 @@ const CompositionActions: React.FC = () => {
 							/>
 						)}
 					>
-						Download project
+						{t('Download project')}
 					</InspectorQuickAction>
 				) : null}
 			</InspectorQuickActionsSection>
@@ -184,6 +187,7 @@ const CompositionDefaultPropsSection: React.FC<{
 	readonly readOnlyStudio: boolean;
 	readonly setDefaultProps: UpdaterFunction<Record<string, unknown>>;
 }> = ({composition, currentDefaultProps, readOnlyStudio, setDefaultProps}) => {
+	const {t} = useTranslation();
 	const z = useZodIfPossible();
 	const zodTypes = useZodTypesIfPossible();
 	const canSaveDefaultProps = useContext(ObserveDefaultPropsContext);
@@ -223,7 +227,7 @@ const CompositionDefaultPropsSection: React.FC<{
 		return [
 			{
 				key: 'schema',
-				label: 'Schema',
+				label: t('Schema'),
 				onClick: () => {
 					setDefaultPropsMode('schema');
 				},
@@ -231,7 +235,7 @@ const CompositionDefaultPropsSection: React.FC<{
 			},
 			{
 				key: 'json',
-				label: 'JSON',
+				label: t('JSON'),
 				onClick: () => {
 					setDefaultPropsMode('json');
 				},

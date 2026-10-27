@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useContext, useEffect, useMemo} from 'react';
 import type {_InternalTypes, VideoConfig} from 'remotion';
 import {Internals} from 'remotion';
@@ -39,6 +40,7 @@ export const ResolveCompositionBeforeModal: React.FC<{
 	readonly compositionId: string;
 	readonly children: React.ReactNode;
 }> = ({compositionId, children}) => {
+	const {t} = useTranslation();
 	const resolved = Internals.useResolvedVideoConfig(compositionId);
 	const unresolvedContext = useContext(Internals.CompositionManager);
 
@@ -82,7 +84,7 @@ export const ResolveCompositionBeforeModal: React.FC<{
 				<Spacing y={2} />
 				<div style={loaderLabel}>
 					Running <code style={inlineCodeSnippet}>calculateMetadata()</code>{' '}
-					yielded an error:
+					{t('yielded an error:')}
 				</div>
 				<Spacing y={1} />
 				<div style={loaderLabel}>

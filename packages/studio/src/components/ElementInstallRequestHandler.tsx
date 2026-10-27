@@ -1,3 +1,5 @@
+import {getStaticT} from '../i18n';
+const t = getStaticT();
 import {
 	StudioProtocolInternals,
 	type InstallInStudioResult,
@@ -179,7 +181,7 @@ export const ElementInstallRequestHandler: FC = () => {
 					message: 'This Element is not a caption style',
 				} satisfies InstallInStudioResult);
 				window.setTimeout(() => responsePort.close(), 1000);
-				showNotification('This Element is not a caption style', 4000);
+				showNotification(t(''), 4000);
 				return;
 			}
 

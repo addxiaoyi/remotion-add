@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {
 	StudioProtocolInternals,
 	type StudioCaptionStyleSelection,
@@ -84,6 +85,7 @@ export const ElementLibraryFrame: React.FC<{
 	);
 	const [error, setError] = useState<'timeout' | 'coep' | null>(null);
 	const [attempt, setAttempt] = useState(0);
+	const {t} = useTranslation();
 	const retry = useCallback(() => {
 		setAttempt((previous) => previous + 1);
 	}, []);
@@ -244,7 +246,7 @@ export const ElementLibraryFrame: React.FC<{
 								: 'The library did not finish loading within 15 seconds. Check your connection and try again. The browser console may have more details.'}
 						</div>
 					</div>
-					<ModalButton onClick={retry}>Retry</ModalButton>
+					<ModalButton onClick={retry}>{t('Retry')}</ModalButton>
 				</div>
 			) : null}
 		</div>

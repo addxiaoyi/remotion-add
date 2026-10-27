@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {
 	AudioCodec,
 	Codec,
@@ -60,6 +61,7 @@ type ProResProfile = (typeof BrowserSafeApis.proResProfileOptions)[number];
 type QualityMode = 'crf' | 'bitrate';
 
 export const RenderingSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {error: settingsError, renderDefaults, revision} = useSettings();
 	const [codec, setCodec] = useState<Codec | null>(null);
 	const [scale, setScale] = useState(1);
@@ -446,9 +448,9 @@ export const RenderingSettings: React.FC = () => {
 
 	return (
 		<div style={container}>
-			<p style={dividerLabel}>Output</p>
+			<p style={dividerLabel}>{t('Output')}</p>
 			<div style={optionRow}>
-				<div style={label}>Default codec</div>
+				<div style={label}>{t('Default codec')}</div>
 				<div style={rightRow}>
 					<Combobox
 						values={codecValues}
@@ -465,7 +467,7 @@ export const RenderingSettings: React.FC = () => {
 				step={0.1}
 			/>
 			<div style={optionRow}>
-				<div style={label}>Still image format</div>
+				<div style={label}>{t('Still image format')}</div>
 				<div style={rightRow}>
 					<Combobox
 						values={stillFormatValues}
@@ -475,7 +477,7 @@ export const RenderingSettings: React.FC = () => {
 				</div>
 			</div>
 			<div style={optionRow}>
-				<div style={label}>Video frame format</div>
+				<div style={label}>{t('Video frame format')}</div>
 				<div style={rightRow}>
 					<Combobox
 						values={videoFormatValues}
@@ -484,11 +486,11 @@ export const RenderingSettings: React.FC = () => {
 					/>
 				</div>
 			</div>
-			<p style={sectionTitle}>Encoding</p>
+			<p style={sectionTitle}>{t('Encoding')}</p>
 			{BrowserSafeApis.codecSupportsCrf(resolvedCodec) &&
 			BrowserSafeApis.codecSupportsVideoBitrate(resolvedCodec) ? (
 				<div style={optionRow}>
-					<div style={label}>Quality control</div>
+					<div style={label}>{t('Quality control')}</div>
 					<div style={rightRow}>
 						<SegmentedControl items={qualityModeValues} needsWrapping />
 					</div>
@@ -508,7 +510,7 @@ export const RenderingSettings: React.FC = () => {
 			{qualityMode === 'bitrate' &&
 			BrowserSafeApis.codecSupportsVideoBitrate(resolvedCodec) ? (
 				<div style={optionRow}>
-					<div style={label}>Video bitrate</div>
+					<div style={label}>{t('Video bitrate')}</div>
 					<div style={rightRow}>
 						<RemotionInput
 							style={{...input, ...fullWidth}}
@@ -523,7 +525,7 @@ export const RenderingSettings: React.FC = () => {
 			) : null}
 			{resolvedCodec === 'prores' ? (
 				<div style={optionRow}>
-					<div style={label}>ProRes profile</div>
+					<div style={label}>{t('ProRes profile')}</div>
 					<div style={rightRow}>
 						<Combobox
 							values={profileValues}
@@ -546,9 +548,9 @@ export const RenderingSettings: React.FC = () => {
 				</div>
 			) : null}
 
-			<p style={sectionTitle}>Audio</p>
+			<p style={sectionTitle}>{t('Audio')}</p>
 			<div style={optionRow}>
-				<div style={label}>Audio codec</div>
+				<div style={label}>{t('Audio codec')}</div>
 				<div style={rightRow}>
 					<Combobox
 						values={audioCodecValues}
@@ -557,7 +559,7 @@ export const RenderingSettings: React.FC = () => {
 					/>
 				</div>
 			</div>
-			<p style={sectionTitle}>Performance</p>
+			<p style={sectionTitle}>{t('Performance')}</p>
 			<NumberSetting
 				name="Concurrency"
 				value={concurrency}
@@ -566,9 +568,9 @@ export const RenderingSettings: React.FC = () => {
 				max={renderDefaults.maxConcurrency}
 				step={1}
 			/>
-			<p style={sectionTitle}>Notifications</p>
+			<p style={sectionTitle}>{t('Notifications')}</p>
 			<label style={optionRow}>
-				<div style={label}>Beep when render finishes</div>
+				<div style={label}>{t('Beep when render finishes')}</div>
 				<div style={rightRow}>
 					<Checkbox
 						checked={beepOnFinish}

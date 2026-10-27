@@ -1,3 +1,5 @@
+import {getStaticT} from '../../i18n';
+const t = getStaticT();
 import {memo, useCallback, useContext, useMemo, useRef} from 'react';
 import {NoReactInternals} from 'remotion/no-react';
 import {
@@ -233,7 +235,7 @@ const GuideComp: React.FC<{
 			{
 				id: '1',
 				keyHint: null,
-				label: 'Remove guide',
+				label: t('Remove guide'),
 				leftItem: null,
 				onClick: () => {
 					setGuidesList((prevState) => {

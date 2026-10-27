@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import {Audio, Video} from '@remotion/media';
 import type {Size} from '@remotion/player';
 import {PlayerInternals} from '@remotion/player';
@@ -132,10 +133,11 @@ export const VideoPreview: React.FC<{
 	assetMetadata,
 	onRetryAssetMetadata,
 }) => {
+	const {t} = useTranslation();
 	if (assetMetadata && assetMetadata.type === 'not-found') {
 		return (
 			<div style={centeredContainer}>
-				<div style={label}>File does not exist</div>
+				<div style={label}>{t('File does not exist')}</div>
 			</div>
 		);
 	}

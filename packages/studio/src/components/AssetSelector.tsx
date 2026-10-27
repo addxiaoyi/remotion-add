@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {copyRenderOutputToAsset} from '../api/copy-render-output-to-asset';
 import {writeStaticFile} from '../api/write-static-file';
@@ -54,6 +55,7 @@ const baseList: React.CSSProperties = {
 export const AssetSelector: React.FC<{
 	readonly readOnlyStudio: boolean;
 }> = ({readOnlyStudio}) => {
+	const {t} = useTranslation();
 	const {tabIndex} = useZIndex();
 	const {assetFoldersExpanded, setAssetFoldersExpanded} =
 		useContext(FolderContext);
@@ -254,7 +256,7 @@ export const AssetSelector: React.FC<{
 						<div style={label}>
 							To add assets, place a file in the{' '}
 							<code style={inlineCodeSnippet}>public</code> folder of your
-							project or drag and drop a file here.
+							{t('project or drag and drop a file here.')}
 						</div>
 					</div>
 				) : (
@@ -262,7 +264,7 @@ export const AssetSelector: React.FC<{
 						<div style={label}>
 							To add assets, create a folder called{' '}
 							<code style={inlineCodeSnippet}>public</code> in the root of your
-							project and place a file in it.
+							{t('project and place a file in it.')}
 						</div>
 					</div>
 				)

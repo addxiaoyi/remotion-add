@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {Codec, LogLevel} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import {NoReactAPIs} from '@remotion/renderer/pure';
@@ -68,6 +69,7 @@ export const RenderModalBasic: React.FC<{
 	logLevel,
 	showOutputName,
 }) => {
+	const {t} = useTranslation();
 	const existence = useFileExistence(outName);
 	const videoCodecOptions = useMemo((): ComboboxValue[] => {
 		return BrowserSafeApis.validCodecs
@@ -158,7 +160,8 @@ export const RenderModalBasic: React.FC<{
 		<div style={container}>
 			{renderMode === 'still' || renderMode === 'sequence' ? (
 				<div style={optionRow}>
-					<div style={label}>Format</div>
+					<div style={label}>{t('')}</div>
+
 					<div style={rightRow}>
 						<SegmentedControl items={imageFormatOptions} needsWrapping />
 					</div>
@@ -182,7 +185,8 @@ export const RenderModalBasic: React.FC<{
 			)}
 			{renderMode === 'still' && resolvedComposition.durationInFrames > 1 ? (
 				<div style={optionRow}>
-					<div style={label}>Frame</div>
+					<div style={label}>{t('')}</div>
+
 					<div style={rightRow}>
 						<RightAlignInput>
 							<InputDragger
@@ -203,7 +207,8 @@ export const RenderModalBasic: React.FC<{
 			) : null}
 			{renderMode === 'video' && codec === 'prores' ? (
 				<div style={optionRow}>
-					<div style={label}>ProRes profile</div>
+					<div style={label}>{t('')}</div>
+
 					<div style={rightRow}>
 						<Combobox
 							aria-label={'proResProfile' as string}

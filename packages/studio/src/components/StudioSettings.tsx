@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import type {LogLevel} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import type {
@@ -9,6 +10,7 @@ import {Internals} from 'remotion';
 import {NoReactInternals} from 'remotion/no-react';
 import {BLUE, LIGHT_TEXT} from '../helpers/colors';
 import {UndoIcon} from '../icons/undo';
+import {useLocale, useSetLocale} from '../i18n';
 import {Button} from './Button';
 import {Checkbox} from './Checkbox';
 import {ConfigSelect} from './ConfigSelect';
@@ -144,7 +146,29 @@ const ConfigNumber = ({
 	);
 };
 
+
+const LanguageSetting: React.FC = () => {
+	const locale = useLocale();
+	const setLocale = useSetLocale();
+	return (
+		<div style={optionRow}>
+			<div style={label}>Language / 语言</div>
+			<div style={rightRow}>
+				<select
+					value={locale}
+					onChange={(event) => setLocale(event.target.value as 'en' | 'zh-CN')}
+					style={{padding: '4px 8px', fontSize: 13, borderRadius: 4, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white'}}
+				>
+					<option value={"zh-CN"}>简体中文</option>
+					<option value={"en"}>English</option>
+				</select>
+			</div>
+		</div>
+	);
+};
+
 export const StudioSettings: React.FC = () => {
+	const {t} = useTranslation();
 	const {error: settingsError, revision, studioRuntimeConfig} = useSettings();
 	const [settings, setSettings] =
 		useState<ConfigFileStudioSettings>(initialSettings);
@@ -296,10 +320,11 @@ export const StudioSettings: React.FC = () => {
 
 	return (
 		<div style={container}>
-			<p style={dividerLabel}>Interface</p>
+			<p style={dividerLabel}>{t('Interface')}</p>
+			<LanguageSetting />
 			<div style={optionRow}>
 				<div style={label}>
-					Interactivity enabled
+					{t('Interactivity enabled')}
 					<InfoBubble
 						aria-label="About interactivity"
 						horizontalAlignment="right"
@@ -312,7 +337,7 @@ export const StudioSettings: React.FC = () => {
 								lineHeight: 1.5,
 							}}
 						>
-							Global setting for turning off any interactivity that may edit
+							{t('全局开关：关闭任何可能编辑您代码的交互功能。')}
 							your code.
 						</div>
 					</InfoBubble>
@@ -333,7 +358,7 @@ export const StudioSettings: React.FC = () => {
 			</div>
 			<div style={optionRow}>
 				<div style={label}>
-					Composition Tabs
+					{t('Composition Tabs')}
 					<InfoBubble
 						aria-label="About composition tabs"
 						horizontalAlignment="right"
@@ -365,10 +390,10 @@ export const StudioSettings: React.FC = () => {
 				</label>
 			</div>
 
-			<p style={sectionTitle}>Timeline</p>
+			<p style={sectionTitle}>{t('Timeline')}</p>
 			<div style={optionRow}>
 				<div style={label}>
-					Layer Frame Counters
+					{t('Layer Frame Counters')}
 					<InfoBubble
 						aria-label="About layer frame counters"
 						horizontalAlignment="right"
@@ -401,7 +426,7 @@ export const StudioSettings: React.FC = () => {
 			</div>
 			<div style={optionRow}>
 				<div style={label}>
-					Show Premounting
+					{t('Show Premounting')}
 					<InfoBubble
 						aria-label="About premounting"
 						horizontalAlignment="right"
@@ -447,7 +472,7 @@ export const StudioSettings: React.FC = () => {
 			</div>
 			<div style={optionRow}>
 				<div style={label}>
-					Visualize unmounted components
+					{t('Visualize unmounted components')}
 					<InfoBubble
 						aria-label="About visualizing unmounted components"
 						horizontalAlignment="right"
@@ -460,7 +485,7 @@ export const StudioSettings: React.FC = () => {
 								lineHeight: 1.5,
 							}}
 						>
-							The maximum number of components which may be evaluated for better
+							{t('为了更好的性能，可以评估的组件的最大数量。')}
 							timeline visualization. See:{' '}
 							<a
 								href="https://www.remotion.dev/docs/studio/showing-unmounted-components"
@@ -473,7 +498,7 @@ export const StudioSettings: React.FC = () => {
 									textDecoration: 'none',
 								}}
 							>
-								Showing unmounted components
+								{t('Showing unmounted components')}
 							</a>
 						</div>
 					</InfoBubble>
@@ -555,10 +580,10 @@ export const StudioSettings: React.FC = () => {
 				</div>
 			</div>
 
-			<p style={sectionTitle}>Playback</p>
+			<p style={sectionTitle}>{t('Playback')}</p>
 			<div style={optionRow}>
 				<div style={label}>
-					Preserve pitch
+					{t('Preserve pitch')}
 					<InfoBubble
 						aria-label="About preserving pitch"
 						horizontalAlignment="right"
@@ -571,7 +596,7 @@ export const StudioSettings: React.FC = () => {
 								lineHeight: 1.5,
 							}}
 						>
-							Keep audio pitch unchanged when adjusting the Studio playback
+							{t('调整 Studio 播放速率时保持音频音调不变。')}
 							speed. Applies to Audio and Video from @remotion/media.
 						</div>
 					</InfoBubble>
@@ -594,7 +619,7 @@ export const StudioSettings: React.FC = () => {
 				defaultValue={NoReactInternals.DEFAULT_STUDIO_PREMOUNT_IN_SECONDS}
 				description={
 					<>
-						How many seconds before a layer starts it should be mounted
+						{t('图层开始前多少秒应进行挂载，以便提前准备。')}
 						invisibly. See:{' '}
 						<a
 							href="https://www.remotion.dev/docs/player/premounting"
@@ -681,7 +706,7 @@ export const StudioSettings: React.FC = () => {
 				value={settings.numberOfSharedAudioTags}
 			/>
 
-			<p style={sectionTitle}>Development</p>
+			<p style={sectionTitle}>{t('Development')}</p>
 			<ConfigSelect
 				defaultLabel="Webpack"
 				description="Chooses the tool that compiles your project for Studio and rendering. Webpack is the default; Rspack is an alternative. Changing this setting restarts Studio."
@@ -708,7 +733,7 @@ export const StudioSettings: React.FC = () => {
 								lineHeight: 1.5,
 							}}
 						>
-							Isolates Studio from other websites to enable shared memory and
+							{t('将 Studio 与其他网站隔离，以启用共享内存和跨域隔离。')}
 							multithreading. Required for{' '}
 							<code style={{fontFamily: 'monospace'}}>
 								@remotion/whisper-web

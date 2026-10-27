@@ -1,3 +1,4 @@
+import {useTranslation} from '../i18n';
 import React, {useCallback, useContext} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -73,6 +74,7 @@ export const AgentPrompt: React.FC<{
 	readonly promptDetails: string;
 	readonly skillId: string;
 }> = ({action, availableText, promptDetails, skillId}) => {
+	const {t} = useTranslation();
 	const {codingAgentInfo, remotionSkillsInfo, skillActionError} = useSettings();
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const skill = remotionSkillsInfo?.skills.find(({name}) => name === skillId);
@@ -119,7 +121,7 @@ export const AgentPrompt: React.FC<{
 		<>
 			{skillAvailable ? null : (
 				<>
-					<div style={text}>Install the Agent Skill first:</div>
+					<div style={text}>{t('Install the Agent Skill first:')}</div>
 					{canInstallSkill && skill ? (
 						<div
 							aria-label="Remotion Agent Skills"
@@ -155,12 +157,12 @@ export const AgentPrompt: React.FC<{
 				<div style={text}>
 					{skillAvailable
 						? availableText
-						: `Then ${availableText.toLowerCase()}`}
+						: t('Then ') + availableText}
 				</div>
 				{action ??
 					(hasCodingAgent ? (
 						<CodingAgentButton
-							label="Open in"
+							label={"Open in"}
 							prompt={prompt}
 							size="compact"
 							style={null}

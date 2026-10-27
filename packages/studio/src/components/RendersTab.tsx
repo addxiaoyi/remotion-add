@@ -1,6 +1,7 @@
 import type {MouseEventHandler} from 'react';
 import React, {useContext, useMemo} from 'react';
 import {FAIL_COLOR, LIGHT_TEXT, TRANSPARENT, WHITE} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {Flex} from './layout';
 import {RenderQueueContext} from './RenderQueue/context';
 import {Tab} from './Tabs';
@@ -28,10 +29,13 @@ const badge: React.CSSProperties = {
 	WebkitUserSelect: 'none',
 };
 
-export const RendersTab: React.FC<{
+export const RendersTab: React.FC<
+{
 	readonly selected: boolean;
 	readonly onClick: MouseEventHandler<HTMLDivElement>;
-}> = ({selected, onClick}) => {
+}> = ({
+selected, onClick}) => {
+	const {t} = useTranslation();
 	const {jobs, captionJobs} = useContext(RenderQueueContext);
 	const failedJobs = [...jobs, ...captionJobs].filter(
 		(job) => job.status === 'failed',
@@ -52,7 +56,7 @@ export const RendersTab: React.FC<{
 	return (
 		<Tab selected={selected} onClick={onClick}>
 			<div style={row}>
-				Jobs
+				{t('Jobs')}
 				{jobCount > 0 ? (
 					<>
 						<Flex />

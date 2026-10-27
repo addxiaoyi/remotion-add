@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Internals} from 'remotion';
 import {FOCUS_VISIBLE_ONLY_CLASS_NAME} from '../../helpers/hoverable';
@@ -52,6 +53,7 @@ export const CurvesControl: React.FC<{
 	onChange,
 	onCancel,
 }) => {
+	const {t} = useTranslation();
 	const graph = useRef<HTMLDivElement>(null);
 	const onCancelRef = useRef(onCancel);
 	onCancelRef.current = onCancel;
@@ -297,7 +299,7 @@ export const CurvesControl: React.FC<{
 								{
 									type: 'item',
 									id: 'remove-curve-point',
-									label: 'Remove point',
+									label: t('Remove point'),
 									keyHint: '⌫',
 									leftItem: null,
 									disabled: !editable || points.length <= 2,

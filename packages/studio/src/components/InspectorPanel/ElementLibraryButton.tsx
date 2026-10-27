@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {LIGHT_TEXT} from '../../helpers/colors';
 import {BrowseElementsIcon} from '../../icons/browse-elements';
@@ -50,6 +51,7 @@ const elementLibraryDropdownCaretStyle: React.CSSProperties = {
 };
 
 export const ElementLibraryButton: React.FC = () => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const {studioRuntimeConfig} = useSettings();
 	const elementLibraries =
@@ -85,7 +87,7 @@ export const ElementLibraryButton: React.FC = () => {
 	const elementLibraryDropdownSegments = useMemo<SegmentedButtonSegment[]>(
 		() => [
 			{
-				ariaLabel: 'Browse Elements',
+				ariaLabel: t('Browse Elements'),
 				buttonId: null,
 				disabled: false,
 				idleColor: LIGHT_TEXT,
@@ -98,7 +100,7 @@ export const ElementLibraryButton: React.FC = () => {
 							/>
 						</span>
 						<span style={elementLibraryDropdownLabelStyle}>
-							Browse Elements
+							{t('Browse Elements')}
 						</span>
 						<span style={elementLibraryDropdownCaretStyle}>
 							<CaretDown color={color} />
@@ -117,7 +119,7 @@ export const ElementLibraryButton: React.FC = () => {
 						disabled: false,
 						id: 'remotion-elements',
 						keyHint: null,
-						label: 'Remotion Elements',
+						label: t('Remotion Elements'),
 						leftItem: null,
 						onClick: openElementsLibrary,
 						quickSwitcherLabel: null,
@@ -151,7 +153,7 @@ export const ElementLibraryButton: React.FC = () => {
 						disabled: false,
 						id: 'manage-element-libraries',
 						keyHint: null,
-						label: 'Add element library...',
+						label: t('Add element library...'),
 						leftItem: null,
 						onClick: openElementLibrarySettings,
 						quickSwitcherLabel: null,

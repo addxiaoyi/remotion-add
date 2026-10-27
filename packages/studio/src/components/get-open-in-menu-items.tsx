@@ -31,10 +31,13 @@ const copyIcon: React.CSSProperties = {height: 16, width: 16};
 export const getConfigureDefaultAppsMenuItems = ({
 	hasPreviousItems,
 	onConfigureApps,
+	t,
 }: {
 	readonly hasPreviousItems: boolean;
 	readonly onConfigureApps: (() => void) | null;
+	readonly t?: (k: string) => string;
 }): ComboboxValue[] => {
+	const translate = t ?? ((k: string) => k);
 	if (!onConfigureApps) {
 		return [];
 	}
@@ -46,10 +49,10 @@ export const getConfigureDefaultAppsMenuItems = ({
 		{
 			id: 'change-default-apps',
 			keyHint: null,
-			label: <span style={menuLabel}>Configure default apps...</span>,
+			label: <span style={menuLabel}>{translate('Configure default apps...')}</span>,
 			leftItem: null,
 			onClick: onConfigureApps,
-			quickSwitcherLabel: 'Configure default apps...',
+			quickSwitcherLabel: translate('Configure default apps...'),
 			subMenu: null,
 			type: 'item' as const,
 			value: 'change-default-apps',
@@ -76,6 +79,7 @@ export const getOpenInMenuItems = ({
 	onOpenInGitClient,
 	onOpenInGitSource,
 	onOpenInTerminal,
+	t,
 }: {
 	readonly canOpenDesktopApps: boolean;
 	readonly codingAgentInfo: GetDefaultCodingAgentInfoResponse | null;
@@ -97,8 +101,10 @@ export const getOpenInMenuItems = ({
 	readonly onOpenInFileExplorer: () => void;
 	readonly onOpenInGitClient: (gitClientId: GitClientId) => void;
 	readonly onOpenInGitSource: () => void;
+	readonly t?: (k: string) => string;
 	readonly onOpenInTerminal: ((terminalId: TerminalId) => void) | null;
 }): ComboboxValue[] => {
+	const translate = t ?? ((k: string) => k);
 	const showFinder =
 		canOpenDesktopApps && window.remotion_fileSystemPlatform === 'darwin';
 	const fileManagerName = getFileManagerName(
@@ -191,10 +197,10 @@ export const getOpenInMenuItems = ({
 			? {
 					id: 'copy-path',
 					keyHint: null,
-					label: <span style={menuLabel}>Copy path</span>,
+					label: <span style={menuLabel}>{translate('Copy path')}</span>,
 					leftItem: <ClipboardIcon color={LIGHT_TEXT} style={copyIcon} />,
 					onClick: onCopyPath,
-					quickSwitcherLabel: 'Copy path',
+					quickSwitcherLabel: translate('Copy path'),
 					subMenu: null,
 					type: 'item' as const,
 					value: 'copy-path',

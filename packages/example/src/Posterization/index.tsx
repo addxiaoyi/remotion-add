@@ -45,7 +45,7 @@ const PosterizationPanel: React.FC<{
 			<AbsoluteFill
 				style={{
 					justifyContent: 'center',
-					alignItems: 'center',
+					alignItems: 'center'
 				}}
 			>
 				<div

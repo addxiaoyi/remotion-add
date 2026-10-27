@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {
 	AudioCodec,
 	ChromeMode,
@@ -254,6 +255,7 @@ const RenderModal: React.FC<
 	initialChromeMode,
 	renderDefaults,
 }) => {
+	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 
 	const context = useContext(ResolvedCompositionContext);
@@ -1527,7 +1529,7 @@ const RenderModal: React.FC<
 								</div>
 							)}
 						>
-							Input Props
+							{t('Input Props')}
 						</VerticalTab>
 					) : null}
 					{shownTabs.includes('picture') ? (

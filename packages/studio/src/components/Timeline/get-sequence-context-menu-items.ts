@@ -1,3 +1,4 @@
+import {getStaticT} from '../../i18n';
 import type {DefaultCodingAgent} from '@remotion/renderer';
 import type {
 	EditorPickerId,
@@ -24,6 +25,8 @@ import {getPreferredEditorId} from '../use-default-editor-info';
 import {getCopyContextForAgentsMenuItem} from './get-copy-context-for-agents-menu-item';
 import type {TimelineAssetLinkInfo} from './timeline-asset-link';
 import {openTimelineAssetLink} from './timeline-asset-link';
+
+const t = getStaticT();
 
 const normalizeMenuDividers = (items: ComboboxValue[]): ComboboxValue[] => {
 	const normalized: ComboboxValue[] = [];
@@ -152,7 +155,7 @@ export const getMultiSequenceContextMenuItems = ({
 			type: 'item',
 			id: 'duplicate-selected-sequences',
 			keyHint: null,
-			label: 'Duplicate selected',
+			label: t('Duplicate selected'),
 			leftItem: null,
 			disabled: duplicateDisabled,
 			onClick: onDuplicateSelectedSequences,
@@ -164,7 +167,7 @@ export const getMultiSequenceContextMenuItems = ({
 			type: 'item',
 			id: 'split-selected-sequences',
 			keyHint: null,
-			label: 'Split',
+			label: t('Split'),
 			leftItem: null,
 			disabled: splitDisabled,
 			onClick: onSplitSelectedSequences,
@@ -341,7 +344,7 @@ export const getSequenceContextMenuItems = (
 					type: 'item' as const,
 					id: 'open-in-another-app',
 					keyHint: null,
-					label: 'Open in...',
+					label: t('Open in...'),
 					leftItem: null,
 					disabled: !originalLocation?.source,
 					onClick: () => undefined,
@@ -374,7 +377,7 @@ export const getSequenceContextMenuItems = (
 					type: 'item' as const,
 					id: 'show-asset',
 					keyHint: null,
-					label: 'Show asset',
+					label: t('Show asset'),
 					leftItem: null,
 					disabled: false,
 					onClick: () => {
@@ -430,7 +433,7 @@ export const getSequenceContextMenuItems = (
 					type: 'item' as const,
 					id: 'copy-svg',
 					keyHint: null,
-					label: 'Copy SVG',
+					label: t('Copy SVG'),
 					leftItem: null,
 					disabled: !sequence.refForOutline?.current,
 					onClick: () => {
@@ -470,7 +473,7 @@ export const getSequenceContextMenuItems = (
 					type: 'item' as const,
 					id: 'duplicate-sequence',
 					keyHint: null,
-					label: 'Duplicate',
+					label: t('Duplicate'),
 					leftItem: null,
 					disabled: duplicateDisabled || isProgrammaticallyDuplicated,
 					onClick: onDuplicateSequenceFromSource,
@@ -492,7 +495,7 @@ export const getSequenceContextMenuItems = (
 					type: 'item' as const,
 					id: 'disable-interactivity',
 					keyHint: null,
-					label: 'Disable interactivity',
+					label: t('Disable interactivity'),
 					leftItem: null,
 					disabled: disableInteractivityDisabled,
 					onClick: onDisableSequenceInteractivity,

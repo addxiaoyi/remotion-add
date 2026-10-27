@@ -1,3 +1,5 @@
+import {getStaticT} from '../i18n';
+const t = getStaticT();
 import {StudioProtocolInternals} from '@remotion/studio-protocol';
 import React, {
 	useCallback,
@@ -301,7 +303,7 @@ const AssetFolderItem: React.FC<{
 
 	const openFolderInExplorer = useCallback(() => {
 		if (!window.remotion_publicFolderExists) {
-			showNotification('Could not find the public folder', 2000);
+			showNotification(t(''), 2000);
 			return;
 		}
 
@@ -618,7 +620,7 @@ const AssetSelectorItem: React.FC<{
 
 	const openAssetInExplorer = useCallback(() => {
 		if (!window.remotion_publicFolderExists) {
-			showNotification('Could not find the public folder', 2000);
+			showNotification(t(''), 2000);
 			return;
 		}
 

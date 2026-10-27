@@ -10,6 +10,7 @@ import React, {
 	useMemo,
 	useState,
 } from 'react';
+import {useTranslation} from '../../i18n';
 import type {ExtrapolateType, InterpolateOutputOption} from 'remotion';
 import {Internals} from 'remotion';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
@@ -85,6 +86,7 @@ const getOutputValues = (
 export const KeyframeSettings: React.FC<{
 	readonly update: SelectedEasingUpdate;
 }> = ({update}) => {
+	const {t} = useTranslation();
 	const {setPropStatuses} = useContext(Internals.VisualModeSettersContext);
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const {propStatus} = update;
@@ -194,26 +196,26 @@ export const KeyframeSettings: React.FC<{
 		<CollapsibleInspectorSection
 			bodyPaddingBottom={8}
 			collapsible
-			label="Keyframe settings"
+			label={t('Keyframe settings')}
 			sectionId="keyframe-settings"
 		>
 			<div style={keyframeSettingsContainer}>
 				{settings.clamping ? (
 					<>
-						<InspectorDetailRow label="Extrapolate left">
+						<InspectorDetailRow label={t('Extrapolate left')}>
 							<Combobox
 								values={leftValues}
 								selectedId={settings.clamping.left}
-								aria-label="Extrapolate left"
+								aria-label={t('Extrapolate left')}
 								style={comboStyle}
 								size="small"
 							/>
 						</InspectorDetailRow>
-						<InspectorDetailRow label="Extrapolate right">
+						<InspectorDetailRow label={t('Extrapolate right')}>
 							<Combobox
 								values={rightValues}
 								selectedId={settings.clamping.right}
-								aria-label="Extrapolate right"
+								aria-label={t('Extrapolate right')}
 								style={comboStyle}
 								size="small"
 							/>
@@ -221,17 +223,17 @@ export const KeyframeSettings: React.FC<{
 					</>
 				) : null}
 				{settings.output ? (
-					<InspectorDetailRow label="Output">
+					<InspectorDetailRow label={t('Output')}>
 						<Combobox
 							values={outputValues}
 							selectedId={settings.output}
-							aria-label="Output"
+							aria-label={t('Output')}
 							style={comboStyle}
 							size="small"
 						/>
 					</InspectorDetailRow>
 				) : null}
-				<InspectorDetailRow label="Posterize">
+				<InspectorDetailRow label={t('Posterize')}>
 					<InputDragger
 						type="number"
 						value={posterize}

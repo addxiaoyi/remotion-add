@@ -1,9 +1,12 @@
+import {getStaticT} from '../../i18n';
 import {useCallback, useContext, useMemo} from 'react';
 import type {TSequence} from 'remotion';
 import {Internals} from 'remotion';
 import type {CodePosition} from '../../error-overlay/react-overlay/utils/get-source-map';
 import type {SequenceNodePathInfo} from '../../helpers/get-timeline-sequence-sort-key';
 import {saveSequenceProps} from './save-sequence-prop';
+
+const t = getStaticT();
 
 type SequenceNameSaveAction =
 	| {
@@ -137,8 +140,8 @@ export const useRenameSequence = ({
 				],
 				setPropStatuses,
 				clientId,
-				undoLabel: 'Rename sequence',
-				redoLabel: 'Rename sequence again',
+				undoLabel: t('Rename sequence'),
+				redoLabel: t('Rename sequence again'),
 			});
 		},
 		[

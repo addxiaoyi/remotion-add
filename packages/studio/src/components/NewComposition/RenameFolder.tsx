@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -35,6 +36,7 @@ export const RenameFolder: React.FC<{
 	readonly parentName: string | null;
 	readonly stack: string | null;
 }> = ({folderName, parentName, stack}) => {
+	const {t} = useTranslation();
 	const {folders} = useContext(Internals.CompositionManager);
 	const [newName, setName] = useState(folderName);
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -60,7 +62,7 @@ export const RenameFolder: React.FC<{
 				originalName: folderName,
 				parentName,
 			})
-		: 'Enter a name containing letters or numbers.';
+		: t('Enter a name containing letters or numbers.');
 
 	const valid = folderNameErrMessage === null && folderName !== slug;
 
@@ -72,11 +74,11 @@ export const RenameFolder: React.FC<{
 
 	return (
 		<DismissableModal>
-			<ModalHeader title={`Rename ${folderId}`} />
+			<ModalHeader title={`${t('Rename')} ${folderId}`} />
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					<div style={optionRow}>
-						<div style={label}>Name</div>
+`						<div style={label}>{t('Name')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput
@@ -85,7 +87,7 @@ export const RenameFolder: React.FC<{
 									onChange={onNameChange}
 									type="text"
 									autoFocus
-									placeholder="Folder name"
+									placeholder={t('Folder name')}
 									status="ok"
 									rightAlign
 								/>

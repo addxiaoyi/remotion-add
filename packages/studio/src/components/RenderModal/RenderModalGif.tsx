@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {ChangeEvent} from 'react';
 import React, {useCallback} from 'react';
 import {Checkbox} from '../Checkbox';
@@ -32,6 +33,7 @@ export const RenderModalGif: React.FC<{
 	setLimitNumberOfGifLoops,
 	setNumberOfGifLoopsSetting,
 }) => {
+	const {t} = useTranslation();
 	const onShouldLimitNumberOfGifLoops = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
 			setLimitNumberOfGifLoops(e.target.checked);
@@ -42,7 +44,7 @@ export const RenderModalGif: React.FC<{
 	return (
 		<div style={container}>
 			<NumberSetting
-				name="Every nth frame"
+				name={t('Every nth frame')}
 				min={1}
 				onValueChanged={setEveryNthFrameSetting}
 				value={everyNthFrame}

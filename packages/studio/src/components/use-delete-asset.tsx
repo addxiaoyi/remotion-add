@@ -1,3 +1,5 @@
+import {getStaticT} from '../i18n';
+const t = getStaticT();
 import {useCallback} from 'react';
 import {deleteStaticFile} from '../api/delete-static-file';
 import {useConfirmationDialog} from './ConfirmationDialog';
@@ -13,7 +15,7 @@ export const useDeleteAsset = (relativePath: string | null) => {
 		}
 
 		confirm({
-			title: 'Delete asset',
+			title: t(''),
 			message: (
 				<>
 					Do you want to delete the asset{' '}
@@ -21,7 +23,7 @@ export const useDeleteAsset = (relativePath: string | null) => {
 					folder?
 				</>
 			),
-			confirmLabel: 'Delete',
+			confirmLabel: t('Delete'),
 		})
 			.then((confirmed) => {
 				if (!confirmed) {

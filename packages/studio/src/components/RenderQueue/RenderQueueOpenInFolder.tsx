@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React, {useCallback, useMemo} from 'react';
 import {getBrowserStudioOperations} from '../../helpers/browser-studio-operations';
 import {CURRENT_COLOR} from '../../helpers/colors';
@@ -12,6 +13,7 @@ import type {AnyRenderJob} from './context';
 export const RenderQueueOpenInFinderItem: React.FC<{
 	readonly job: AnyRenderJob;
 }> = ({job}) => {
+	const {t} = useTranslation();
 	const isBrowserStudio = getBrowserStudioOperations() !== null;
 	const onClick: React.MouseEventHandler = useCallback(
 		(e) => {
@@ -39,13 +41,13 @@ export const RenderQueueOpenInFinderItem: React.FC<{
 
 	return isBrowserStudio ? null : (
 		<ActionTooltip
-			label="Open in Folder"
+			label={t('Open in Folder')}
 			shortcut={null}
 			delay={800}
 			dismissOnClick
 		>
 			<InlineAction
-				aria-label="Open in Folder"
+				aria-label={t('Open in Folder')}
 				renderAction={renderAction}
 				onClick={onClick}
 				variant={null}

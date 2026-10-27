@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import type {LogLevel} from '@remotion/renderer';
 import {getDefaultOutLocation} from '@remotion/studio-shared';
 import type {
@@ -187,6 +188,7 @@ const WebRenderModal: React.FC<WebRenderModalProps> = ({
 	initialAllowHtmlInCanvas,
 	initialPageResponsiveness,
 }) => {
+	const {t} = useTranslation();
 	const context = useContext(ResolvedCompositionContext);
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const {setSidebarCollapsedState} = useContext(SidebarContext);
@@ -640,7 +642,7 @@ const WebRenderModal: React.FC<WebRenderModalProps> = ({
 
 	return (
 		<div style={outerModalStyle}>
-			<ModalHeader title={`Render ${resolvedComposition.id} in the browser`} />
+			<ModalHeader title={`${t('Render')} ${resolvedComposition.id} ${t('in the browser')}`} />
 			<div style={containerStyle}>
 				<SegmentedControl items={renderTabOptions} needsWrapping={false} />
 				<div style={flexer} />
@@ -678,7 +680,7 @@ const WebRenderModal: React.FC<WebRenderModalProps> = ({
 							</div>
 						)}
 					>
-						Input Props
+						{t('Input Props')}
 					</VerticalTab>
 					{renderMode !== 'audio' ? (
 						<VerticalTab

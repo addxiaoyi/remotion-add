@@ -1,3 +1,4 @@
+import {useTranslation} from '../../i18n';
 import React from 'react';
 import {LIGHT_TEXT} from '../../helpers/colors';
 
@@ -21,9 +22,10 @@ export const QuickSwitcherNoResults: React.FC<{
 	readonly query: string;
 	readonly mode: QuickSwitcherMode;
 }> = ({query, mode}) => {
+	const {t} = useTranslation();
 	return (
 		<div style={container}>
-			No {MODE_TO_STRING[mode]} matching {'"'}
+			{t('No results matching')} {MODE_TO_STRING[mode]} {'"'}
 			{query}
 			{'"'}
 		</div>
