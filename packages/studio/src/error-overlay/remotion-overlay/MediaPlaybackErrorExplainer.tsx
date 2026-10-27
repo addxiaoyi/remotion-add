@@ -1,4 +1,4 @@
-import {useTranslation} from '../../i18n';
+﻿import {getStaticT} from '../../i18n';
 import React, {useEffect, useState} from 'react';
 import {
 	BLACK_HEX,
@@ -40,7 +40,7 @@ const linkStyle: React.CSSProperties = {
 export const MediaPlaybackErrorExplainer: React.FC<{
 	readonly src: string;
 }> = ({src}) => {
-	const {t} = useTranslation();
+	const t = getStaticT();
 	const [result, setResult] = useState<ProbeResult>({type: 'loading'});
 
 	useEffect(() => {
