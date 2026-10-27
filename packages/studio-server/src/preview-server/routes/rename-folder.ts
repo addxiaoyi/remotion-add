@@ -1,4 +1,4 @@
-import {existsSync, readFileSync} from 'node:fs';
+﻿import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {renameFolder} from '@remotion/codemods';
 import {RenderInternals} from '@remotion/renderer';
@@ -38,7 +38,7 @@ export const renameFolderHandler: ApiHandler<
 			} else {
 				const {rootFile} = await getProjectInfo(remotionRoot, entryPoint);
 				if (rootFile === null) {
-					throw new Error('Cannot find the Remotion root file');
+					throw new Error('找不到 Remotion 入口文件');
 				}
 
 				filePath = rootFile;

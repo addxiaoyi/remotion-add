@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+﻿import {readFileSync} from 'node:fs';
 import {updateVisualControls} from '@remotion/codemods';
 import {RenderInternals} from '@remotion/renderer';
 import type {
@@ -49,7 +49,7 @@ export const applyVisualControlHandler: ApiHandler<
 			)?.line ?? 1;
 
 		if (result.updatedControls.length === 0) {
-			throw new Error('No changes were made to the file');
+			throw new Error('未对文件做任何更改');
 		}
 
 		pushToUndoStack({

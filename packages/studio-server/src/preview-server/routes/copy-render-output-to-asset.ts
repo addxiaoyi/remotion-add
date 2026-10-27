@@ -1,4 +1,4 @@
-import {constants, existsSync, mkdirSync, statSync} from 'node:fs';
+﻿import {constants, existsSync, mkdirSync, statSync} from 'node:fs';
 import {copyFile} from 'node:fs/promises';
 import path from 'node:path';
 import type {
@@ -13,7 +13,7 @@ export const copyRenderOutputToAssetHandler: ApiHandler<
 	CopyRenderOutputToAssetResponse
 > = async ({input: {assetPath, outputPath}, publicDir, remotionRoot}) => {
 	if (assetPath.length === 0) {
-		throw new Error('Asset path cannot be empty');
+		throw new Error('素材路径不能为空');
 	}
 
 	const source = resolveOutputPath(remotionRoot, outputPath);

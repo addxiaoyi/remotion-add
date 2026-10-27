@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+﻿import {readFileSync} from 'node:fs';
 import {CodemodsInternals} from '@remotion/codemods';
 import type {
 	CanUpdateDefaultPropsResponse,
@@ -18,7 +18,7 @@ export const checkIfTypeScriptFile = (file: string) => {
 		!file.endsWith('.mtsx') &&
 		!file.endsWith('.mts')
 	) {
-		throw new Error('Cannot update Root file if not using TypeScript');
+		throw new Error('非 TypeScript 项目无法更新 Root 文件');
 	}
 };
 
@@ -43,7 +43,7 @@ export const getDefaultPropsFile = async ({
 
 	const {rootFile} = await getProjectInfo(remotionRoot, entryPoint);
 	if (!rootFile) {
-		throw new Error('Cannot find root file in project');
+		throw new Error('在项目中找不到入口文件');
 	}
 
 	return rootFile;

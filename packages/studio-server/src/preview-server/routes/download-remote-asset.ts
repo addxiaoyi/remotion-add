@@ -1,4 +1,4 @@
-import {lookup} from 'node:dns/promises';
+﻿import {lookup} from 'node:dns/promises';
 import {existsSync, mkdirSync, statSync, writeFileSync} from 'node:fs';
 import {isIP} from 'node:net';
 import path from 'node:path';
@@ -63,11 +63,11 @@ const isForbiddenIpv6Address = (address: string) => {
 
 const ensureRemoteUrlIsAllowed = async (url: URL) => {
 	if (url.protocol !== 'http:' && url.protocol !== 'https:') {
-		throw new Error('Only HTTP(S) URLs can be imported');
+		throw new Error('只能导入 HTTP(S) 链接');
 	}
 
 	if (url.username !== '' || url.password !== '') {
-		throw new Error('Remote asset URLs cannot include credentials');
+		throw new Error('远程素材链接不能包含凭据');
 	}
 
 	if (url.hostname === 'localhost' || url.hostname.endsWith('.localhost')) {

@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+﻿import {readFileSync} from 'node:fs';
 import type {LogLevel} from '@remotion/renderer';
 import {RenderInternals} from '@remotion/renderer';
 import type {
@@ -110,7 +110,7 @@ export const deleteKeyframes = async ({
 }): Promise<void> => {
 	const totalKeyframes = sequenceKeyframes.length + effectKeyframes.length;
 	if (totalKeyframes === 0) {
-		throw new Error('No keyframes were specified for deletion');
+		throw new Error('未指定要删除的关键帧');
 	}
 
 	const fileGroups = new Map<string, FileGroup>();
@@ -244,7 +244,7 @@ export const deleteKeyframes = async ({
 	const [firstKeyframe] =
 		sequenceKeyframes.length > 0 ? sequenceKeyframes : effectKeyframes;
 	if (!firstKeyframe) {
-		throw new Error('No keyframes were specified for deletion');
+		throw new Error('未指定要删除的关键帧');
 	}
 
 	pushTransactionToUndoStack({

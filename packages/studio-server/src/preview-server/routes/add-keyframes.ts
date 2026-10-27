@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+﻿import {readFileSync} from 'node:fs';
 import type {LogLevel} from '@remotion/renderer';
 import {RenderInternals} from '@remotion/renderer';
 import type {
@@ -118,7 +118,7 @@ export const addKeyframes = async ({
 }): Promise<SequenceNodePathMutation | null> => {
 	const totalKeyframes = sequenceKeyframes.length + effectKeyframes.length;
 	if (totalKeyframes === 0) {
-		throw new Error('No keyframes were specified for adding');
+		throw new Error('未指定要添加的关键帧');
 	}
 
 	const fileGroups = new Map<string, FileGroup>();
@@ -183,12 +183,12 @@ export const addKeyframes = async ({
 					JSON.stringify(nodePath) === JSON.stringify(originalPath),
 			);
 			if (index === -1) {
-				throw new Error('Could not find the original JSX node for keyframing');
+				throw new Error('找不到用于关键帧的原始 JSX 节点');
 			}
 
 			const currentNodes = captureJsxNodePaths(parseAst(output));
 			if (currentNodes.length !== originalNodes.length) {
-				throw new Error('Could not remap JSX nodes after keyframing');
+				throw new Error('关键帧化后无法重新映射 JSX 节点');
 			}
 
 			return currentNodes[index].nodePath;
@@ -279,7 +279,7 @@ export const addKeyframes = async ({
 
 		const finalNodes = captureJsxNodePaths(parseAst(output));
 		if (finalNodes.length !== originalNodes.length) {
-			throw new Error('Could not remap JSX nodes after keyframing');
+			throw new Error('关键帧化后无法重新映射 JSX 节点');
 		}
 
 		snapshots.push({
@@ -299,7 +299,7 @@ export const addKeyframes = async ({
 	const [firstKeyframe] =
 		sequenceKeyframes.length > 0 ? sequenceKeyframes : effectKeyframes;
 	if (!firstKeyframe) {
-		throw new Error('No keyframes were specified for adding');
+		throw new Error('未指定要添加的关键帧');
 	}
 
 	const filesWithRemappings = snapshots

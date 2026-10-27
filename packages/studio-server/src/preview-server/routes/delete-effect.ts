@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+﻿import {readFileSync} from 'node:fs';
 import {deleteEffects} from '@remotion/codemods';
 import {RenderInternals} from '@remotion/renderer';
 import type {
@@ -36,7 +36,7 @@ export const deleteEffectHandler: ApiHandler<
 	return withSourceFileWriteQueue(async () => {
 		try {
 			if (effects.length === 0) {
-				throw new Error('No effects were specified for deletion');
+				throw new Error('未指定要删除的效果');
 			}
 
 			RenderInternals.Log.trace(

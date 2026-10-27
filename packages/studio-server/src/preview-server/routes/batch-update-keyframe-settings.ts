@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+﻿import {readFileSync} from 'node:fs';
 import type {LogLevel} from '@remotion/renderer';
 import {RenderInternals} from '@remotion/renderer';
 import type {
@@ -102,7 +102,7 @@ export const batchUpdateKeyframeSettings = async ({
 }): Promise<void> => {
 	const totalUpdates = sequenceKeyframes.length + effectKeyframes.length;
 	if (totalUpdates === 0) {
-		throw new Error('No keyframe settings updates were specified');
+		throw new Error('未指定关键帧设置更新');
 	}
 
 	const fileGroups = new Map<string, FileGroup>();

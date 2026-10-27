@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+﻿import {readFileSync} from 'node:fs';
 import {deleteNodes} from '@remotion/codemods';
 import {RenderInternals} from '@remotion/renderer';
 import type {
@@ -42,7 +42,7 @@ export const deleteNodesHandler: ApiHandler<
 			});
 
 			if (nodes.length === 0) {
-				throw new Error('No JSX nodes were specified for deletion');
+				throw new Error('未指定要删除的 JSX 节点');
 			}
 
 			RenderInternals.Log.trace(

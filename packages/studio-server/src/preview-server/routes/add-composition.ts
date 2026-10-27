@@ -1,4 +1,4 @@
-import {existsSync, readFileSync} from 'node:fs';
+﻿import {existsSync, readFileSync} from 'node:fs';
 import {RenderInternals} from '@remotion/renderer';
 import type {
 	AddCompositionRequest,
@@ -37,7 +37,7 @@ export const addCompositionHandler: ApiHandler<
 			} else {
 				const {rootFile} = await getProjectInfo(remotionRoot, entryPoint);
 				if (rootFile === null) {
-					throw new Error('Cannot find the Remotion root file');
+					throw new Error('找不到 Remotion 入口文件');
 				}
 
 				filePath = rootFile;
@@ -83,7 +83,7 @@ export const addCompositionHandler: ApiHandler<
 
 				for (const change of result.changes) {
 					if (change.nextContents === null) {
-						throw new Error('Adding a composition cannot remove source files');
+						throw new Error('添加合成不能删除源文件');
 					}
 
 					suppressUndoStackInvalidation(change.filePath);
