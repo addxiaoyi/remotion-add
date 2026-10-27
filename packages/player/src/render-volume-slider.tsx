@@ -120,7 +120,7 @@ const DefaultVolumeSlider: React.FC<RenderVolumeSliderProps> = ({
 			/>
 			<input
 				ref={inputRef}
-				aria-label="Change volume"
+				aria-label="调整音量"
 				className={randomClass}
 				max={1}
 				min={0}

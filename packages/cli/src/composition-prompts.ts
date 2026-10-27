@@ -1,4 +1,4 @@
-import type {LogLevel} from '@remotion/renderer';
+﻿import type {LogLevel} from '@remotion/renderer';
 import type {PromptObject} from 'prompts';
 import prompts from 'prompts';
 import {Log} from './log';
@@ -11,7 +11,7 @@ type NamelessQuestion = Omit<Question<'value'>, 'name'>;
 function prompt(questions: Question, logLevel: LogLevel) {
 	return prompts([questions], {
 		onCancel() {
-			Log.error({indent: false, logLevel}, 'No composition selected.');
+			Log.error({indent: false, logLevel}, '未选择合成。');
 			process.exit(1);
 		},
 	});

@@ -75,8 +75,8 @@ export const MediaVolumeSlider: React.FC<{
 			const isMutedOrZero = muted || volume === 0;
 			return (
 				<button
-					aria-label={isMutedOrZero ? 'Unmute sound' : 'Mute sound'}
-					title={isMutedOrZero ? 'Unmute sound' : 'Mute sound'}
+					aria-label={isMutedOrZero ? '取消静音' : '静音'}
+					title={isMutedOrZero ? '取消静音' : '静音'}
 					onClick={onClick}
 					onBlur={onBlur}
 					onFocus={() => setFocused(true)}

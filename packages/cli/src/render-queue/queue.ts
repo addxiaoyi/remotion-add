@@ -1,4 +1,4 @@
-import path from 'node:path';
+﻿import path from 'node:path';
 import type {LogLevel} from '@remotion/renderer';
 import type {
 	AggregateRenderProgress,
@@ -266,7 +266,7 @@ const processJobIfPossible = async ({
 		Log.error(
 			{indent: false, logLevel},
 			chalk.gray('\n╰─ '),
-			chalk.red('Failed to render'),
+			chalk.red('渲染失败'),
 		);
 
 		updateJob(nextJob.id, (job) => {

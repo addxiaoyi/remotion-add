@@ -310,8 +310,8 @@ export const Controls: React.FC<{
 						type="button"
 						style={playerButtonStyle}
 						onClick={toggle}
-						aria-label={playing ? 'Pause video' : 'Play video'}
-						title={playing ? 'Pause video' : 'Play video'}
+						aria-label={playing ? '暂停视频' : '播放视频'}
+						title={playing ? '暂停视频' : '播放视频'}
 					>
 						{renderPlayPauseButton === null ? (
 							<DefaultPlayPauseButton buffering={buffering} playing={playing} />
@@ -363,8 +363,8 @@ export const Controls: React.FC<{
 					{supportsFullscreen && allowFullscreen ? (
 						<button
 							type="button"
-							aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter Fullscreen'}
-							title={isFullscreen ? 'Exit fullscreen' : 'Enter Fullscreen'}
+							aria-label={isFullscreen ? '退出全屏' : '进入全屏'}
+							title={isFullscreen ? '退出全屏' : '进入全屏'}
 							style={playerButtonStyle}
 							onClick={
 								isFullscreen

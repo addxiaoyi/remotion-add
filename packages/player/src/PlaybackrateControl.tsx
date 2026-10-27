@@ -260,7 +260,7 @@ export const PlaybackrateControl: React.FC<{
 		<div ref={ref}>
 			<button
 				type="button"
-				aria-label="Change playback rate"
+				aria-label="调整播放速度"
 				style={button}
 				onClick={onClick}
 			>
