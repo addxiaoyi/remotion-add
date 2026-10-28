@@ -11,7 +11,14 @@ export const getStoredTheme = (): StudioTheme => {
 		return 'dark';
 	}
 
-	const stored = localStorage.getItem(THEME_STORAGE_KEY);
+	const stored = (() => {
+		try {
+			return localStorage.getItem(THEME_STORAGE_KEY);
+		} catch {
+			return null;
+		}
+	})();
+
 	return stored === 'light' ? 'light' : 'dark';
 };
 
@@ -31,10 +38,30 @@ export const useStudioTheme = () => {
 		applyTheme(theme);
 	}, [theme]);
 
+	useEffect(() => {
+		// Keep other Studio tabs in sync when one of them toggles.
+		const onStorage = (event: StorageEvent) => {
+			if (event.key !== THEME_STORAGE_KEY) {
+				return;
+			}
+
+			setTheme(event.newValue === 'light' ? 'light' : 'dark');
+		};
+
+		window.addEventListener('storage', onStorage);
+		return () => window.removeEventListener('storage', onStorage);
+	}, []);
+
 	const toggleTheme = useCallback(() => {
 		setTheme((previous) => {
 			const next: StudioTheme = previous === 'dark' ? 'light' : 'dark';
-			localStorage.setItem(THEME_STORAGE_KEY, next);
+			try {
+				localStorage.setItem(THEME_STORAGE_KEY, next);
+			} catch {
+				// Storage can be unavailable (private mode, quota). The theme still
+				// applies for this session.
+			}
+
 			return next;
 		});
 	}, []);

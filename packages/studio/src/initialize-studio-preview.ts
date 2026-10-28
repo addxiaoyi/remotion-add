@@ -6,6 +6,7 @@ import {BACKGROUND_HEX} from './helpers/colors';
 import {injectCSS} from './helpers/inject-css';
 import {studioCssVariables} from './helpers/studio-css-variables';
 import {getStudioPixelRatio} from './helpers/studio-pixel-ratio';
+import {applyTheme, getStoredTheme} from './helpers/theme';
 import {enableHotMiddleware} from './hot-middleware-client/client';
 
 declare global {
@@ -24,6 +25,7 @@ export const initializeStudioPreview = () => {
 		return;
 	}
 
+	applyTheme(getStoredTheme());
 	CanvasInternals.installReactCommitObserver(window);
 	Internals.CSSUtils.injectCSS(studioCssVariables);
 	Internals.CSSUtils.injectCSS(
