@@ -1,6 +1,6 @@
-import {useTranslation} from '../../i18n';
 import type {StillImageFormat, VideoImageFormat} from '@remotion/renderer';
 import React from 'react';
+import {useTranslation} from '../../i18n';
 import {VERTICAL_SCROLLBAR_CLASSNAME} from '../Menu/is-menu-item';
 import type {SegmentedControlItem} from '../SegmentedControl';
 import {SegmentedControl} from '../SegmentedControl';

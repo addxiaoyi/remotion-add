@@ -1,8 +1,8 @@
-import {useTranslation} from '../../i18n';
 import type {AudioCodec, Codec} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import type {ChangeEvent} from 'react';
 import React, {useCallback, useMemo} from 'react';
+import {useTranslation} from '../../i18n';
 import {Checkmark} from '../../icons/Checkmark';
 import {Checkbox} from '../Checkbox';
 import {Spacing} from '../layout';

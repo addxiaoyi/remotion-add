@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {
 	ConfigUpdate,
 	EditorPickerId,
@@ -6,6 +5,7 @@ import type {
 } from '@remotion/studio-shared';
 import React, {useEffect, useMemo, useState} from 'react';
 import {LIGHT_TEXT} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {Checkmark} from '../icons/Checkmark';
 import {EditorIcon} from '../icons/editor';
 import {CodingAgentIcon} from './CodingAgentIcon';
@@ -246,7 +246,9 @@ export const DefaultEditorSettings: React.FC = () => {
 					<div style={label}>{t('Default editor')}</div>
 					<div style={rightColumn}>
 						{editorInfo === null && displayedError === null ? (
-							<p style={rightDescription}>{t('Loading installed editors...')}</p>
+							<p style={rightDescription}>
+								{t('Loading installed editors...')}
+							</p>
 						) : null}
 						{editorInfo?.installedEditors.length === 0 ? (
 							<p style={rightDescription}>
@@ -267,7 +269,9 @@ export const DefaultEditorSettings: React.FC = () => {
 					<div style={label}>{t('Default coding agent')}</div>
 					<div style={rightColumn}>
 						{codingAgentInfo === null && displayedError === null ? (
-							<p style={rightDescription}>{t('Loading installed coding agents...')}</p>
+							<p style={rightDescription}>
+								{t('Loading installed coding agents...')}
+							</p>
 						) : null}
 						{codingAgentInfo?.installedCodingAgents.length === 0 ? (
 							<p style={rightDescription}>

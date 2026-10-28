@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -6,6 +5,7 @@ import {BLACK_ALPHA_30, BLUE, LIGHT_TEXT, WHITE} from '../helpers/colors';
 import {copyText} from '../helpers/copy-text';
 import {getSkillPrefix} from '../helpers/get-skill-prefix';
 import {useCopyFeedback} from '../helpers/use-copy-feedback';
+import {useTranslation} from '../i18n';
 import {CopyIcon} from '../icons/copy';
 import {SkillsIcon} from '../icons/skills';
 import {CodingAgentButton} from './CodingAgentButton';
@@ -155,14 +155,12 @@ export const AgentPrompt: React.FC<{
 			)}
 			<div style={{...promptHeader, marginTop: skillAvailable ? 0 : 16}}>
 				<div style={text}>
-					{skillAvailable
-						? availableText
-						: t('Then ') + availableText}
+					{skillAvailable ? availableText : t('Then ') + availableText}
 				</div>
 				{action ??
 					(hasCodingAgent ? (
 						<CodingAgentButton
-							label={"Open in"}
+							label={'Open in'}
 							prompt={prompt}
 							size="compact"
 							style={null}

@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import {Audio, Video} from '@remotion/media';
 import type {Size} from '@remotion/player';
 import {PlayerInternals} from '@remotion/player';
@@ -27,6 +26,7 @@ import type {AssetMetadata} from '../helpers/get-asset-metadata';
 import {getPreviewFileType} from '../helpers/get-preview-file-type';
 import type {Dimensions} from '../helpers/is-current-selected-still';
 import {calculateStudioCanvasTransformation} from '../helpers/studio-fit-padding';
+import {useTranslation} from '../i18n';
 import {AudioFileIcon} from '../icons/audio';
 import {CheckerboardContext} from '../state/checkerboard';
 import {EditorShowPixelGridContext} from '../state/editor-pixel-grid';

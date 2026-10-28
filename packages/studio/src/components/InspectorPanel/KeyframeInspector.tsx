@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {CanvasInternals} from '@remotion/sdk';
 import {
 	canMoveKeyframesWithoutCollisions,
@@ -27,6 +26,7 @@ import {
 	type SchemaFieldInfo,
 } from '../../helpers/timeline-layout';
 import {useRuntimeValues} from '../../helpers/use-runtime-values';
+import {useTranslation} from '../../i18n';
 import {VERTICAL_SCROLLBAR_CLASSNAME} from '../Menu/is-menu-item';
 import {InputDragger} from '../NewComposition/InputDragger';
 import {

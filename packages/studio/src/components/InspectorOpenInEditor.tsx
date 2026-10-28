@@ -1,7 +1,6 @@
 import type {DefaultCodingAgent} from '@remotion/renderer';
 import type {EditorPickerId} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
-import {useTranslation} from '../i18n';
 import type {OriginalPosition} from '../error-overlay/react-overlay/utils/get-source-map';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -18,6 +17,7 @@ import {
 	openInTerminal,
 	openOriginalPositionInEditor,
 } from '../helpers/open-in-editor';
+import {useTranslation} from '../i18n';
 import {CaretDown} from '../icons/caret';
 import {EditorIcon} from '../icons/editor';
 import {GitHubIcon} from '../icons/github';

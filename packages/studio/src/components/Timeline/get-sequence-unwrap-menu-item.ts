@@ -1,5 +1,5 @@
-import {getStaticT} from '../../i18n';
 import type {SequencePropsSubscriptionKey, TSequence} from 'remotion';
+import {getStaticT} from '../../i18n';
 import type {SetSelectedModalContextType} from '../../state/modals';
 import type {ComboboxValue} from '../NewComposition/ComboBox';
 import {showNotification} from '../Notifications/NotificationCenter';

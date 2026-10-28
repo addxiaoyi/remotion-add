@@ -1,10 +1,10 @@
-import {useTranslation} from '../i18n';
 import {
 	StudioProtocolInternals,
 	type StudioCaptionStyleSelection,
 } from '@remotion/studio-protocol';
 import React, {useCallback, useLayoutEffect, useRef, useState} from 'react';
 import {LIGHT_TEXT, WHITE} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {ModalButton} from './ModalButton';
 import {Spinner} from './Spinner';
 

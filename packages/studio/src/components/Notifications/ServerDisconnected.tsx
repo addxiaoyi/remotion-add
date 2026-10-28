@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useRef} from 'react';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
 import {
@@ -12,6 +11,7 @@ import {getCodexAnnotation} from '../../helpers/get-codex-annotation';
 import {getSkillPrefix} from '../../helpers/get-skill-prefix';
 import {hoverableStyle} from '../../helpers/hoverable';
 import {requestCodexAnnotation} from '../../helpers/request-codex-annotation';
+import {useTranslation} from '../../i18n';
 import {SkillsIcon} from '../../icons/skills';
 import {Button} from '../Button';
 import {useSettings} from '../SettingsContext';

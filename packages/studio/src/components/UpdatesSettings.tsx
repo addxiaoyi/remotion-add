@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {
 	GetReleaseNotesResponse,
 	UpdateAvailableResponse,
@@ -15,6 +14,7 @@ import {
 import {copyText} from '../helpers/copy-text';
 import {studioCssVariables} from '../helpers/studio-css-variables';
 import {useCopyFeedback} from '../helpers/use-copy-feedback';
+import {useTranslation} from '../i18n';
 import {CopyIcon} from '../icons/copy';
 import type {RenderInlineAction} from './InlineAction';
 import {InlineAction} from './InlineAction';

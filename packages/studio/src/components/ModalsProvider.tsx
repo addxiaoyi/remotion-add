@@ -1,6 +1,6 @@
-import {isSaasMode} from '../saas-mode';
 import React, {useMemo, useState} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
+import {isSaasMode} from '../saas-mode';
 import type {ModalState, SetSelectedModalContextType} from '../state/modals';
 import {SelectedModalContext, SetSelectedModalContext} from '../state/modals';
 import {experimentalNoticeStorageKey} from './BrowserStudioExperimentingNotice';
@@ -11,7 +11,7 @@ export const ModalsProvider: React.FC<{
 	const [selectedModal, setSelectedModal] = useState<ModalState | null>(() => {
 		if (
 			isSaasMode() ||
-		getBrowserStudioOperations() === null ||
+			getBrowserStudioOperations() === null ||
 			!window.remotion_showBrowserStudioExperimentalNotice
 		) {
 			return null;

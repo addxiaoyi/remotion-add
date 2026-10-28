@@ -1,6 +1,4 @@
-
 import {PlayerInternals} from '@remotion/player';
-import {useTranslation} from '../i18n';
 import React, {useCallback, useEffect, useState} from 'react';
 import {Internals} from 'remotion';
 import {useIsStill} from '../helpers/is-current-selected-still';
@@ -9,6 +7,7 @@ import {
 	useKeyboardShortcutAriaKeyShortcuts,
 	useKeyboardShortcutLabel,
 } from '../helpers/use-keyboard-shortcut-label';
+import {useTranslation} from '../i18n';
 import {JumpToStart} from '../icons/jump-to-start';
 import {Pause} from '../icons/pause';
 import {Play} from '../icons/play';

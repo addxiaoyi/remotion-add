@@ -1,4 +1,3 @@
-import {getStaticT} from '../../i18n';
 import type {PropStatuses} from 'remotion';
 import {canUseEffectOperations} from '../../helpers/browser-studio-operations';
 import type {
@@ -6,6 +5,7 @@ import type {
 	TimelineTrackData,
 } from '../../helpers/get-timeline-sequence-sort-key';
 import {getSourceMutationRevision} from '../../helpers/source-mutation-queue';
+import {getStaticT} from '../../i18n';
 import type {ConfirmationDialogFunction} from '../ConfirmationDialog-types';
 import {deleteNodes} from '../delete-nodes-api';
 import {deleteEffects as deleteEffectsApi} from '../effect-operations-api';

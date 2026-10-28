@@ -7,7 +7,6 @@ import type {
 	X264Preset,
 } from '@remotion/renderer';
 import type {SVGProps} from 'react';
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import type {_InternalTypes} from 'remotion';
 import {Internals} from 'remotion';
@@ -17,6 +16,7 @@ import {
 	HOVER_GROUP_REVEAL_CLASS_NAME,
 	NO_HOVER_BACKGROUND_STYLE,
 } from '../helpers/hoverable';
+import {useTranslation} from '../i18n';
 import {ThinRenderIcon} from '../icons/render';
 import {SetSelectedModalContext} from '../state/modals';
 import {ActionTooltip} from './ActionTooltip';
@@ -27,13 +27,11 @@ const revealStyle: React.CSSProperties = {
 	display: 'flex',
 };
 
-export const SidebarRenderButton: React.FC<
-{
+export const SidebarRenderButton: React.FC<{
 	readonly composition: _InternalTypes['AnyCompMetadata'];
 	readonly visible: boolean;
 	readonly readOnlyStudio: boolean;
-}> = ({
-composition, visible, readOnlyStudio}) => {
+}> = ({composition, visible, readOnlyStudio}) => {
 	const {t} = useTranslation();
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 
@@ -136,7 +134,12 @@ composition, visible, readOnlyStudio}) => {
 
 	return (
 		<div className={HOVER_GROUP_REVEAL_CLASS_NAME} style={revealStyle}>
-			<ActionTooltip label={t('Render')} shortcut={null} delay={800} dismissOnClick>
+			<ActionTooltip
+				label={t('Render')}
+				shortcut={null}
+				delay={800}
+				dismissOnClick
+			>
 				<InlineAction
 					renderAction={renderAction}
 					onClick={onClick}

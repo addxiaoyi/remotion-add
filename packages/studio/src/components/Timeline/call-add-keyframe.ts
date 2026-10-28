@@ -1,4 +1,3 @@
-import {getStaticT} from '../../i18n';
 import {
 	optimisticAddEffectKeyframe,
 	optimisticAddSequenceKeyframe,
@@ -8,6 +7,7 @@ import {
 } from '@remotion/studio-shared';
 import type {SequencePropsSubscriptionKey, InteractivitySchema} from 'remotion';
 import {getBrowserStudioOperations} from '../../helpers/browser-studio-operations';
+import {getStaticT} from '../../i18n';
 import {callApi} from '../call-api';
 import {applyEffectResponseToPropStatuses} from './apply-effect-response-to-prop-statuses';
 import {enqueueSavePropChange} from './save-prop-queue';

@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {Caption} from '@remotion/captions';
 import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 import {
@@ -9,6 +8,7 @@ import {
 	WHITE,
 } from '../helpers/colors';
 import {FOCUS_VISIBLE_ONLY_CLASS_NAME} from '../helpers/hoverable';
+import {useTranslation} from '../i18n';
 import {EnterIcon} from '../icons/enter';
 import {ActionTooltip} from './ActionTooltip';
 import {InlineAction} from './InlineAction';
@@ -229,7 +229,9 @@ export const CaptionTextEditor: React.FC<{
 	return (
 		<div style={container}>
 			<div ref={listRef} style={list}>
-				{captions.length === 0 ? <div style={empty}>{t('No captions')}</div> : null}
+				{captions.length === 0 ? (
+					<div style={empty}>{t('No captions')}</div>
+				) : null}
 				{captionRows.map(({caption, key}, index) => {
 					const hasPageBreakAfter = Boolean(caption.pageBreakAfter);
 					const pageBreakTitle = hasPageBreakAfter

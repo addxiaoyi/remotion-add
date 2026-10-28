@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import React, {useContext, useEffect, useMemo} from 'react';
 import {Internals} from 'remotion';
 import {BACKGROUND, LIGHT_TEXT} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {VERTICAL_SCROLLBAR_CLASSNAME} from '../Menu/is-menu-item';
 import {isCaptionJob} from './caption-job-types';
@@ -118,7 +118,9 @@ export const RenderQueue: React.FC = () => {
 			<div style={explainer}>
 				<Spacing y={5} />
 				<div style={errorExplanation}>
-					{t('Renders, transcriptions and background removal jobs will show up here.')}
+					{t(
+						'Renders, transcriptions and background removal jobs will show up here.',
+					)}
 				</div>
 				<Spacing y={2} block />
 			</div>

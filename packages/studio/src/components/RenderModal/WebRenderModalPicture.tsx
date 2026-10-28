@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import type {WebRendererQuality} from '@remotion/web-renderer';
 import type React from 'react';
 import {useCallback, useMemo} from 'react';
+import {useTranslation} from '../../i18n';
 import {Checkbox} from '../Checkbox';
 import {Combobox} from '../NewComposition/ComboBox';
 import {label, optionRow, rightRow} from './layout';

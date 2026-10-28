@@ -1,9 +1,9 @@
-import {getStaticT} from '../../i18n';
 import {useCallback, useContext, useMemo} from 'react';
 import type {TSequence} from 'remotion';
 import {Internals} from 'remotion';
 import type {CodePosition} from '../../error-overlay/react-overlay/utils/get-source-map';
 import type {SequenceNodePathInfo} from '../../helpers/get-timeline-sequence-sort-key';
+import {getStaticT} from '../../i18n';
 import {saveSequenceProps} from './save-sequence-prop';
 
 const t = getStaticT();

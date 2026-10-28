@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {
 	DownloadProgress,
 	RenderingProgressInput,
@@ -8,6 +7,7 @@ import type {
 import React, {useCallback, useMemo} from 'react';
 import {getBrowserStudioOperations} from '../../helpers/browser-studio-operations';
 import {FAIL_COLOR, LIGHT_TEXT, WHITE} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {openInFileExplorer} from '../RenderQueue/actions';
 import {CircularProgress} from '../RenderQueue/CircularProgress';

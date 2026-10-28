@@ -1,7 +1,7 @@
-import {useTranslation} from '../../../i18n';
 import {useMemo, useRef} from 'react';
 import React, {useCallback} from 'react';
 import {WHITE_ALPHA_30} from '../../../helpers/colors';
+import {useTranslation} from '../../../i18n';
 import {Spacing} from '../../layout';
 import {RemotionInput} from '../../NewComposition/RemInput';
 import {Fieldset} from './Fieldset';

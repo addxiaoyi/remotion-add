@@ -10,10 +10,10 @@ import React, {
 	useMemo,
 	useState,
 } from 'react';
-import {useTranslation} from '../../i18n';
 import type {ExtrapolateType, InterpolateOutputOption} from 'remotion';
 import {Internals} from 'remotion';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
+import {useTranslation} from '../../i18n';
 import {Combobox, type ComboboxValue} from '../NewComposition/ComboBox';
 import {InputDragger} from '../NewComposition/InputDragger';
 import {

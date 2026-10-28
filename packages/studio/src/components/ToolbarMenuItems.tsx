@@ -1,5 +1,4 @@
 import React, {useContext, useMemo} from 'react';
-import {useTranslation} from '../i18n';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {useKeyboardShortcutLabel} from '../helpers/use-keyboard-shortcut-label';
 import {
@@ -8,6 +7,7 @@ import {
 	useCurrentCompositionMenuData,
 	useMenuStructure,
 } from '../helpers/use-menu-structure';
+import {useTranslation} from '../i18n';
 import {SetSelectedModalContext} from '../state/modals';
 import {getCompositionMenuItems} from './composition-menu-items';
 import type {Menu} from './Menu/MenuItem';

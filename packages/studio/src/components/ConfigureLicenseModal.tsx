@@ -1,7 +1,7 @@
-import {useTranslation} from '../i18n';
 import type {ConfigUpdate} from '@remotion/studio-shared';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {BLUE, LIGHT_TEXT} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {Spacing} from './layout';
 import {LicenseExplanation} from './LicenseExplanation';
 import {
@@ -323,7 +323,9 @@ export const LicenseSettings: React.FC = () => {
 							{isValidatingLicenseKey ? (
 								<>
 									<Spacing y={1} />
-									<p style={description}>{t('Loading license key details...')}</p>
+									<p style={description}>
+										{t('Loading license key details...')}
+									</p>
 								</>
 							) : null}
 							{licenseKeyDetails ? (

@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext} from 'react';
 import {CopyStackTrace} from '../../error-overlay/remotion-overlay/CopyStackTrace';
 import {LIGHT_TEXT, RENDER_STATUS_BACKGROUND} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {Button} from '../Button';
 import {Flex, SPACING_UNIT} from '../layout';

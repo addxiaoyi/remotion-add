@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {Codec, LogLevel} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import {NoReactAPIs} from '@remotion/renderer/pure';
@@ -6,6 +5,7 @@ import React, {useCallback, useMemo} from 'react';
 import type {_InternalTypes, VideoConfig} from 'remotion';
 import {labelProResProfile} from '../../helpers/prores-labels';
 import {useFileExistence} from '../../helpers/use-file-existence';
+import {useTranslation} from '../../i18n';
 import {Checkmark} from '../../icons/Checkmark';
 import {Spacing} from '../layout';
 import type {ComboboxValue} from '../NewComposition/ComboBox';

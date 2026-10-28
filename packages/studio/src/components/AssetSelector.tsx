@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {copyRenderOutputToAsset} from '../api/copy-render-output-to-asset';
 import {writeStaticFile} from '../api/write-static-file';
@@ -12,6 +11,7 @@ import useAssetDragEvents, {
 	getRenderOutputDragData,
 	isAssetUploadDragEvent,
 } from '../helpers/use-asset-drag-events';
+import {useTranslation} from '../i18n';
 import {FolderContext} from '../state/folders';
 import {useZIndex} from '../state/z-index';
 import {AssetFolderTree} from './AssetSelectorItem';

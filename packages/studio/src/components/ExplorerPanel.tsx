@@ -1,9 +1,9 @@
 import {useCallback, useImperativeHandle, useRef, useState} from 'react';
 import {BACKGROUND} from '../helpers/colors';
 import {isAssetUploadDragEvent} from '../helpers/use-asset-drag-events';
+import {useTranslation} from '../i18n';
 import {AssetSelector} from './AssetSelector';
 import {CompositionSelector} from './CompositionSelector';
-import {useTranslation} from '../i18n';
 import {CompSelectorRef} from './CompSelectorRef';
 import {
 	explorerSidebarTabs,
@@ -39,13 +39,11 @@ const persistSelectedOptionsSidebarPanel = (panel: ExplorerSidebarPanel) => {
 	localStorage.setItem(localStorageKey, panel);
 };
 
-export const ExplorerPanel: React.FC<
-{
+export const ExplorerPanel: React.FC<{
 	readOnlyStudio: boolean;
 	initialPanel: ExplorerSidebarPanel | null;
 	onCompositionSelected: (() => void) | null;
-}> = ({
-readOnlyStudio, initialPanel, onCompositionSelected}) => {
+}> = ({readOnlyStudio, initialPanel, onCompositionSelected}) => {
 	const {t} = useTranslation();
 	const [panel, setPanel] = useState<ExplorerSidebarPanel>(
 		() => initialPanel ?? getSelectedPanel(),

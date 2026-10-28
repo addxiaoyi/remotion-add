@@ -29,12 +29,10 @@ const badge: React.CSSProperties = {
 	WebkitUserSelect: 'none',
 };
 
-export const RendersTab: React.FC<
-{
+export const RendersTab: React.FC<{
 	readonly selected: boolean;
 	readonly onClick: MouseEventHandler<HTMLDivElement>;
-}> = ({
-selected, onClick}) => {
+}> = ({selected, onClick}) => {
 	const {t} = useTranslation();
 	const {jobs, captionJobs} = useContext(RenderQueueContext);
 	const failedJobs = [...jobs, ...captionJobs].filter(

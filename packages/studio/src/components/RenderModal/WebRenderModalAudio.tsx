@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {
 	WebRendererAudioCodec,
 	WebRendererContainer,
@@ -11,6 +10,7 @@ import {
 	INFO_BLUE,
 	INFO_BLUE_BACKGROUND,
 } from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {Checkmark} from '../../icons/Checkmark';
 import {Spacing} from '../layout';
 import {VERTICAL_SCROLLBAR_CLASSNAME} from '../Menu/is-menu-item';

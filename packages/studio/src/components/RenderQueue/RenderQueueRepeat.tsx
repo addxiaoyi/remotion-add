@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {RenderJob} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
@@ -6,6 +5,7 @@ import {
 	makeClientRetryPayload,
 	makeRetryPayload,
 } from '../../helpers/retry-payload';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {ActionTooltip} from '../ActionTooltip';
 import type {RenderInlineAction} from '../InlineAction';
@@ -81,7 +81,12 @@ export const RenderQueueRepeatItem: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label={t('Retry')} shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip
+			label={t('Retry')}
+			shortcut={null}
+			delay={800}
+			dismissOnClick
+		>
 			<InlineAction
 				aria-label={t('Retry')}
 				onClick={onClick}

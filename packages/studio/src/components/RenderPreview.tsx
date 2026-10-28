@@ -1,10 +1,10 @@
-import {useTranslation} from '../i18n';
 import React, {useContext, useEffect, useState} from 'react';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {LIGHT_TEXT, WHITE} from '../helpers/colors';
 import type {AssetMetadata} from '../helpers/get-asset-metadata';
 import {remotion_outputsBase} from '../helpers/get-asset-metadata';
 import {getPreviewFileType} from '../helpers/get-preview-file-type';
+import {useTranslation} from '../i18n';
 import {FilePreview} from './FilePreview';
 
 const msgStyle: React.CSSProperties = {

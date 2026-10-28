@@ -1,9 +1,9 @@
-import {useTranslation} from '../../i18n';
 import type {ChromeMode} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import type {UiOpenGlOptions} from '@remotion/studio-shared';
 import type {ChangeEvent} from 'react';
 import React, {useCallback, useMemo} from 'react';
+import {useTranslation} from '../../i18n';
 import {Checkmark} from '../../icons/Checkmark';
 import {Checkbox} from '../Checkbox';
 import {Spacing} from '../layout';

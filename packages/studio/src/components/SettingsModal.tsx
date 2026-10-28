@@ -1,4 +1,3 @@
-import {isSaasMode} from '../saas-mode';
 import React, {
 	useCallback,
 	useContext,
@@ -26,6 +25,7 @@ import {PackageIcon} from '../icons/package';
 import {RemotionTriangleIcon} from '../icons/remotion-triangle';
 import {SkillsIcon} from '../icons/skills';
 import {FilmIcon} from '../icons/video';
+import {isSaasMode} from '../saas-mode';
 import {SetSelectedModalContext} from '../state/modals';
 import {DefaultEditorSettings} from './ConfigureDefaultEditorModal';
 import {LicenseSettings} from './ConfigureLicenseModal';
@@ -115,8 +115,8 @@ export const SettingsModal: React.FC<{
 	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const isBrowserStudio = getBrowserStudioOperations() !== null;
 	const {upgradeState} = useUpdateStatus();
-	const showUpdates = !isSaasMode() &&
-		upgradeState !== 'idle' ||
+	const showUpdates =
+		(!isSaasMode() && upgradeState !== 'idle') ||
 		canShowUpdates({
 			connectionStatus: previewServerState.type,
 			isBrowserStudio,

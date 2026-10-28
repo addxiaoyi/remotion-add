@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
-import {useTranslation} from '../i18n';
 import {LIGHT_TEXT} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {CaretDown} from '../icons/caret';
 import {getConfigureDefaultAppsMenuItems} from './get-open-in-menu-items';
 import type {ComboboxValue} from './NewComposition/ComboBox';

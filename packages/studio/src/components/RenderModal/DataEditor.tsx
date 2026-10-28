@@ -1,10 +1,10 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import type {_InternalTypes, SerializedJSONWithCustomFields} from 'remotion';
 import {getInputProps} from 'remotion';
 import {NoReactInternals} from 'remotion/no-react';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
 import {BACKGROUND, BLUE, BLACK_HEX, LIGHT_TEXT} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {CompactExplanation} from '../CompactExplanation';
 import {useZodIfPossible, useZodTypesIfPossible} from '../get-zod-if-possible';
 import {INSPECTOR_PANEL_HORIZONTAL_PADDING} from '../InspectorPanelLayout';

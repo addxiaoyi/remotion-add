@@ -1,4 +1,3 @@
-import {getStaticT} from '../../i18n';
 import React, {Suspense} from 'react';
 import {LIGHT_TEXT, TRANSPARENT, WHITE} from '../../helpers/colors';
 import {
@@ -6,6 +5,7 @@ import {
 	HOVERABLE_CLASS_NAME,
 	hoverableStyle,
 } from '../../helpers/hoverable';
+import {getStaticT} from '../../i18n';
 import type {TranscriptionModalState} from '../../state/modals';
 import {OptionalPackageModal} from '../OptionalPackageModal';
 import {WHISPER_WEBGPU_PACKAGE} from './whisper-webgpu-capability';

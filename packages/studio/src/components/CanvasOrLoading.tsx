@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {Size} from '@remotion/player';
 import React, {useCallback, useContext, useEffect} from 'react';
 import {Internals} from 'remotion';
@@ -10,6 +9,7 @@ import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {BACKGROUND, WHITE} from '../helpers/colors';
 import {getRoute} from '../helpers/url-state';
 import {useResponsiveSidebarStatus} from '../helpers/use-responsive-sidebar-status';
+import {useTranslation} from '../i18n';
 import {BrowseElementsIcon} from '../icons/browse-elements';
 import {SearchIcon} from '../icons/search';
 import {UploadIcon} from '../icons/upload';
@@ -255,7 +255,9 @@ const WelcomeActions: React.FC = () => {
 					) : null}
 				</div>
 			) : (
-				<div style={welcomeLabel}>{t('Select a composition to get started.')}</div>
+				<div style={welcomeLabel}>
+					{t('Select a composition to get started.')}
+				</div>
 			)}
 		</div>
 	);

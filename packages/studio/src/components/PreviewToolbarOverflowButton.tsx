@@ -1,9 +1,9 @@
 import type {SVGProps} from 'react';
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {WHITE_ALPHA_80} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {useKeyboardShortcutLabel} from '../helpers/use-keyboard-shortcut-label';
+import {useTranslation} from '../i18n';
 import {Checkmark} from '../icons/Checkmark';
 import {EllipsisIcon} from '../icons/ellipsis';
 import {CheckerboardContext} from '../state/checkerboard';
@@ -23,8 +23,7 @@ const clickButton = (id: string) => {
 	(document.getElementById(id) as HTMLButtonElement | null)?.click();
 };
 
-export const PreviewToolbarOverflowButton: React.FC<
-{
+export const PreviewToolbarOverflowButton: React.FC<{
 	readonly showFullscreen: boolean;
 	readonly showPlaybackRate: boolean;
 	readonly showLoop: boolean;
@@ -35,7 +34,6 @@ export const PreviewToolbarOverflowButton: React.FC<
 	readonly loop: boolean;
 	readonly setLoop: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({
-
 	showFullscreen,
 	showPlaybackRate,
 	showLoop,

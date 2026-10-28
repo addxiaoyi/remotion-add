@@ -1,6 +1,6 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {ActionTooltip} from '../ActionTooltip';
 import type {RenderInlineAction} from '../InlineAction';
 import {InlineAction} from '../InlineAction';
@@ -63,7 +63,12 @@ export const RenderQueueCancelButton: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label={t('Cancel')} shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip
+			label={t('Cancel')}
+			shortcut={null}
+			delay={800}
+			dismissOnClick
+		>
 			<InlineAction
 				aria-label={
 					job.type === 'caption'

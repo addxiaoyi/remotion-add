@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {
 	CompositionEditResponse,
 	SymbolicatedStackFrame,
@@ -14,6 +13,7 @@ import {ShortcutHint} from '../../error-overlay/remotion-overlay/ShortcutHint';
 import {LIGHT_TEXT} from '../../helpers/colors';
 import {resolvedStackToSymbolicated} from '../../helpers/resolved-stack-to-symbolicated';
 import {useKeybinding} from '../../helpers/use-keybinding';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {Flex, Row, Spacing} from '../layout';
 import {ModalButton} from '../ModalButton';

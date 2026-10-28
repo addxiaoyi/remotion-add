@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {LogLevel} from '@remotion/renderer';
 import type {
 	RenderStillOnWebImageFormat,
@@ -8,6 +7,7 @@ import type {
 import type React from 'react';
 import {useMemo} from 'react';
 import type {VideoConfig} from 'remotion';
+import {useTranslation} from '../../i18n';
 import {Checkmark} from '../../icons/Checkmark';
 import {Spacing} from '../layout';
 import type {ComboboxValue} from '../NewComposition/ComboBox';

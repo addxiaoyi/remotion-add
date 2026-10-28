@@ -1,7 +1,7 @@
 import {createContext, useCallback, useContext, useMemo, useState} from 'react';
 import React from 'react';
-import {zhCN} from './locales/zh-CN';
 import {en} from './locales/en';
+import {zhCN} from './locales/zh-CN';
 
 export type Locale = 'en' | 'zh-CN';
 

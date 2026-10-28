@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import {
 	EFFECT_CATALOG,
 	getEffectDocumentationLink,
@@ -23,6 +22,7 @@ import {
 } from '../helpers/colors';
 import {HOVERABLE_CLASS_NAME, hoverableStyle} from '../helpers/hoverable';
 import {useKeybinding} from '../helpers/use-keybinding';
+import {useTranslation} from '../i18n';
 import {ExternalLinkIcon} from '../icons/external-link';
 import {
 	type AddEffectModalState,

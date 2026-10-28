@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -9,6 +8,7 @@ import React, {
 } from 'react';
 import {Internals} from 'remotion';
 import {useRenameComposition} from '../../helpers/use-rename-composition';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {ModalFooterContainer} from '../ModalFooter';
 import {ModalHeader} from '../ModalHeader';
@@ -82,7 +82,7 @@ const RenameCompositionLoaded: React.FC<{}> = () => {
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					<div style={optionRow}>
-`						<div style={label}>{t('ID')}</div>
+						` <div style={label}>{t('ID')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput

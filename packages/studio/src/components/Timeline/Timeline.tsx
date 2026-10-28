@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {InsertCompositionElementRequest} from '@remotion/studio-shared';
 import React, {
 	useCallback,
@@ -26,6 +25,7 @@ import {useIsStill} from '../../helpers/is-current-selected-still';
 import {useCachedCompositionComponentInfo} from '../../helpers/open-in-editor';
 import {getStudioMaxTimelineTracks} from '../../helpers/studio-runtime-config';
 import {useSyncExternalStore} from '../../helpers/use-sync-external-store';
+import {useTranslation} from '../../i18n';
 import {callApi} from '../call-api';
 import {ContextMenu} from '../ContextMenu';
 import {importAssets, pickFilesToImport} from '../import-assets';

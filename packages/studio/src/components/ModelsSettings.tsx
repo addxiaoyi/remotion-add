@@ -1,10 +1,10 @@
-import {useTranslation} from '../i18n';
 import React, {Suspense, useCallback, useContext, useState} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {BLUE, LIGHT_TEXT, WARNING_COLOR, WHITE} from '../helpers/colors';
 import {TRANSFORMERS_PACKAGE} from '../helpers/optional-package-dependencies';
 import {canInstallPackagesInStudio} from '../helpers/settings-tab-availability';
+import {useTranslation} from '../i18n';
 import {Button} from './Button';
 import {sectionHeader} from './InspectorPanel/styles';
 import {
@@ -170,7 +170,9 @@ export const ModelsSettings: React.FC = () => {
 	return (
 		<div style={container}>
 			<p style={overview}>
-				{t('Models are downloaded automatically when needed. You can also manage the browser cache here.')}
+				{t(
+					'Models are downloaded automatically when needed. You can also manage the browser cache here.',
+				)}
 			</p>
 			<OptionalModelPackage
 				canInstall={canInstall}

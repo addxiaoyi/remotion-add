@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import {StudioProtocolInternals} from '@remotion/studio-protocol';
 import React, {
 	useCallback,
@@ -29,6 +28,7 @@ import {resolvedStackToSymbolicated} from '../helpers/resolved-stack-to-symbolic
 import {getRoute} from '../helpers/url-state';
 import {useCreateComposition} from '../helpers/use-create-composition';
 import {validateCompositionName} from '../helpers/validate-new-comp-data';
+import {useTranslation} from '../i18n';
 import type {
 	ElementInstallModalState,
 	ElementInstallPlan,

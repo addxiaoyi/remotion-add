@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import {formatBytes} from '@remotion/studio-shared';
 import React from 'react';
 import {LIGHT_TEXT, WHITE} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {CircularProgress} from '../RenderQueue/CircularProgress';
 import {getClientRenderProgressMessage} from '../RenderQueue/client-render-progress';

@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -11,6 +10,7 @@ import {Internals} from 'remotion';
 import {getFolderId} from '../../helpers/get-folder-id';
 import {slugifyName} from '../../helpers/slugify-name';
 import {validateFolderRename} from '../../helpers/validate-folder-rename';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {ModalFooterContainer} from '../ModalFooter';
 import {ModalHeader} from '../ModalHeader';
@@ -78,7 +78,7 @@ export const RenameFolder: React.FC<{
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					<div style={optionRow}>
-`						<div style={label}>{t('Name')}</div>
+						` <div style={label}>{t('Name')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput

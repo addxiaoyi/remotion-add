@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {
 	ConfigUpdate,
 	ConfigValue,
@@ -25,6 +24,7 @@ import {
 } from '../helpers/colors';
 import {canEditStudioConfig} from '../helpers/settings-tab-availability';
 import {getStudioAskAIEnabled} from '../helpers/studio-runtime-config';
+import {useTranslation} from '../i18n';
 import {CaretDown} from '../icons/caret';
 import {Checkbox} from './Checkbox';
 import {InlineDropdown} from './InlineDropdown';

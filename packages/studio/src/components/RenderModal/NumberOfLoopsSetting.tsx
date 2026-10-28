@@ -1,5 +1,5 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback} from 'react';
+import {useTranslation} from '../../i18n';
 import {InputDragger} from '../NewComposition/InputDragger';
 import {RightAlignInput} from '../NewComposition/RemInput';
 import {label, optionRow, rightRow} from './layout';

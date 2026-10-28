@@ -11,8 +11,8 @@ import {
 	getBackgroundFromHoverState,
 	LIGHT_TEXT,
 } from '../../helpers/colors';
-import {useTranslation} from '../../i18n';
 import {pushUrl} from '../../helpers/url-state';
+import {useTranslation} from '../../i18n';
 import {ActionTooltip} from '../ActionTooltip';
 import type {RenderInlineAction} from '../InlineAction';
 import {InlineAction} from '../InlineAction';
@@ -234,10 +234,7 @@ export const CaptionQueueItem: React.FC<{
 					{job.status === 'cancelled' ? (
 						<RenderQueueCancelledMessage />
 					) : job.status === 'failed' ? (
-						<QueueJobError
-							error={job.error}
-							modalTitle={t('')}
-						/>
+						<QueueJobError error={job.error} modalTitle={t('')} />
 					) : (
 						<span role="group" style={subtitle} aria-label={message}>
 							{message}
@@ -254,7 +251,12 @@ export const CaptionQueueItem: React.FC<{
 			{job.status === 'running' ? (
 				<RenderQueueCancelButton job={job} />
 			) : job.status === 'saving' ? null : (
-				<ActionTooltip label={t('Clear')} shortcut={null} delay={800} dismissOnClick>
+				<ActionTooltip
+					label={t('Clear')}
+					shortcut={null}
+					delay={800}
+					dismissOnClick
+				>
 					<InlineAction
 						renderAction={renderRemoveAction}
 						onClick={onRemove}

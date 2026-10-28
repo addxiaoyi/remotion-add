@@ -1,11 +1,11 @@
 import React, {useCallback, useContext} from 'react';
-import {useTranslation} from '../i18n';
 import {BLUE} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {
 	useKeyboardShortcutAriaKeyShortcuts,
 	useKeyboardShortcutLabel,
 } from '../helpers/use-keyboard-shortcut-label';
+import {useTranslation} from '../i18n';
 import {CheckerboardContext} from '../state/checkerboard';
 import {ActionTooltip} from './ActionTooltip';
 import {ControlButton} from './ControlButton';

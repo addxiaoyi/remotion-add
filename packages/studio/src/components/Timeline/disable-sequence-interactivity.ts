@@ -1,6 +1,6 @@
-import {getStaticT} from '../../i18n';
 import type {SequencePropsSubscriptionKey} from 'remotion';
 import {NoReactInternals} from 'remotion/no-react';
+import {getStaticT} from '../../i18n';
 import {saveSequenceProps, type SetPropStatuses} from './save-sequence-prop';
 
 const t = getStaticT();

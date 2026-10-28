@@ -1,10 +1,10 @@
-import {getStaticT} from '../../i18n';
 import {
 	optimisticUpdateForEffectPropStatuses,
 	type EffectClipboardParam,
 	type SaveMultipleEffectPropsEdit,
 } from '@remotion/studio-shared';
 import type {SequencePropsSubscriptionKey, InteractivitySchema} from 'remotion';
+import {getStaticT} from '../../i18n';
 import {
 	saveEffectProps as saveEffectPropsApi,
 	saveMultipleEffectProps as saveMultipleEffectPropsApi,

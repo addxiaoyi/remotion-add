@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {RenderJob} from '@remotion/studio-shared';
 import React, {useCallback, useContext} from 'react';
 import {RENDER_STATUS_BACKGROUND} from '../../helpers/colors';
@@ -6,6 +5,7 @@ import {
 	makeClientRetryPayload,
 	makeRetryPayload,
 } from '../../helpers/retry-payload';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {Button} from '../Button';
 import {Flex, SPACING_UNIT} from '../layout';

@@ -1,5 +1,5 @@
-import {isSaasMode} from '../saas-mode';
 import {getStaticT} from '../i18n';
+import {isSaasMode} from '../saas-mode';
 const t = getStaticT();
 import {
 	StudioProtocolInternals,
@@ -427,13 +427,15 @@ export const Modals: React.FC<{
 				<VideoMattingModalWithOptionalPackage state={modalContextType} />
 			) : null}
 
-			{modalContextType && modalContextType.type === 'fix-computed-value' && !isSaasMode() && (
-				<FixComputedValueModal state={modalContextType} />
-			)}
-			{modalContextType && modalContextType.type === 'precompose-refactor' && !isSaasMode() && (
-				<PrecomposeRefactorModal state={modalContextType} />
-			)}
-			{modalContextType && modalContextType.type === 'generate-with-agent' && !isSaasMode() ? (
+			{modalContextType &&
+				modalContextType.type === 'fix-computed-value' &&
+				!isSaasMode() && <FixComputedValueModal state={modalContextType} />}
+			{modalContextType &&
+				modalContextType.type === 'precompose-refactor' &&
+				!isSaasMode() && <PrecomposeRefactorModal state={modalContextType} />}
+			{modalContextType &&
+			modalContextType.type === 'generate-with-agent' &&
+			!isSaasMode() ? (
 				<GenerateWithAgentModal state={modalContextType} />
 			) : null}
 			{modalContextType &&

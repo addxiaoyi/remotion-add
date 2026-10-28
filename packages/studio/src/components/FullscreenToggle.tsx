@@ -1,5 +1,4 @@
 import {useCallback, useContext, useEffect} from 'react';
-import {useTranslation} from '../i18n';
 import {Internals} from 'remotion';
 import {
 	areKeyboardShortcutsDisabled,
@@ -9,16 +8,15 @@ import {
 	useKeyboardShortcutAriaKeyShortcuts,
 	useKeyboardShortcutLabel,
 } from '../helpers/use-keyboard-shortcut-label';
+import {useTranslation} from '../i18n';
 import {FullscreenIcon} from '../icons/fullscreen';
 import {drawRef} from '../state/canvas-ref';
 import {ActionTooltip} from './ActionTooltip';
 import {ControlButton} from './ControlButton';
 
-export const FullScreenToggle: React.FC<
-{
+export const FullScreenToggle: React.FC<{
 	readonly hidden: boolean;
-}> = ({
-hidden}) => {
+}> = ({hidden}) => {
 	const {t} = useTranslation();
 	const keybindings = useKeybinding();
 	const {setSize} = useContext(Internals.PreviewSizeContext);

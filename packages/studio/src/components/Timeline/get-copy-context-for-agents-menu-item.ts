@@ -1,5 +1,5 @@
-import {getStaticT} from '../../i18n';
 import {copyText} from '../../helpers/copy-text';
+import {getStaticT} from '../../i18n';
 import type {ComboboxValue} from '../NewComposition/ComboBox';
 import {showNotification} from '../Notifications/NotificationCenter';
 

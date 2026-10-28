@@ -1,4 +1,3 @@
-﻿import {getStaticT} from '../../i18n';
 import React, {useEffect, useState} from 'react';
 import {
 	BLACK_HEX,
@@ -6,6 +5,7 @@ import {
 	WHITE,
 	WHITE_ALPHA_10,
 } from '../../helpers/colors';
+import {getStaticT} from '../../i18n';
 
 type ProbeResult =
 	| {type: 'loading'}
@@ -74,9 +74,11 @@ export const MediaPlaybackErrorExplainer: React.FC<{
 	if (result.type === 'not-found') {
 		return (
 			<div style={container}>
-				{t('The file')} <code style={codeStyle}>{src}</code> {t('was not found (404).')}
+				{t('The file')} <code style={codeStyle}>{src}</code>{' '}
+				{t('was not found (404).')}
 				<br />
-				{t('If the file is in your')} <code style={codeStyle}>public/</code> {t('folder,')}
+				{t('If the file is in your')} <code style={codeStyle}>public/</code>{' '}
+				{t('folder,')}
 				{t('make sure to use')}{' '}
 				<a
 					style={linkStyle}

@@ -1,9 +1,9 @@
-import {useTranslation} from '../i18n';
 import {formatBytes} from '@remotion/studio-shared';
 import React, {useEffect, useState} from 'react';
 import {LIGHT_TEXT, WHITE} from '../helpers/colors';
 import type {AssetMetadata} from '../helpers/get-asset-metadata';
 import type {AssetFileType} from '../helpers/get-preview-file-type';
+import {useTranslation} from '../i18n';
 import {JSONViewer} from './JSONViewer';
 import {Spacing} from './layout';
 import {LutPreview} from './LutPreview';

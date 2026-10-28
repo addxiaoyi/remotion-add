@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useRef} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
@@ -6,6 +5,7 @@ import {LIGHT_TEXT} from '../helpers/colors';
 import {formatFileLocation} from '../helpers/format-file-location';
 import {getCodexAnnotation} from '../helpers/get-codex-annotation';
 import {requestCodexAnnotation} from '../helpers/request-codex-annotation';
+import {useTranslation} from '../i18n';
 import type {ModalState} from '../state/modals';
 import {AgentPrompt} from './AgentPrompt';
 import {ModalButton} from './ModalButton';

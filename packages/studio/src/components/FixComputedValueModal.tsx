@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {SymbolicatedStackFrame} from '@remotion/studio-shared';
 import React, {
 	useCallback,
@@ -16,6 +15,7 @@ import {LIGHT_TEXT} from '../helpers/colors';
 import {getCodexAnnotation} from '../helpers/get-codex-annotation';
 import {findOriginalPositionInFileAtProperty} from '../helpers/open-in-editor';
 import {requestCodexAnnotation} from '../helpers/request-codex-annotation';
+import {useTranslation} from '../i18n';
 import type {ModalState} from '../state/modals';
 import {AgentPrompt} from './AgentPrompt';
 import {ModalButton} from './ModalButton';
@@ -167,7 +167,9 @@ export const FixComputedValueModal: React.FC<{
 			<ModalHeader title={t('Fix computed value')} />
 			<div style={container}>
 				<div style={text}>
-					{t('This value cannot be interactively edited because it is computed:')}
+					{t(
+						'This value cannot be interactively edited because it is computed:',
+					)}
 				</div>
 				{sourcePreview.type === 'loaded' ? (
 					<div ref={annotationTarget} style={sourcePreviewContainer}>
@@ -212,12 +214,14 @@ export const FixComputedValueModal: React.FC<{
 				{isBrowserStudio ? (
 					<>
 						<div style={text}>
-							{t('此值需要修改代码才能编辑。remotion.dev/new 中无法使用代码编辑和智能体重构。下载项目以在本地继续。')}
+							{t(
+								'此值需要修改代码才能编辑。remotion.dev/new 中无法使用代码编辑和智能体重构。下载项目以在本地继续。',
+							)}
 						</div>
 						{downloadProject ? (
 							<div style={{marginTop: 16}}>
 								<ModalButton onClick={downloadProject}>
-								{t('Download project')}
+									{t('Download project')}
 								</ModalButton>
 							</div>
 						) : null}

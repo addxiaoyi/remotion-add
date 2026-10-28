@@ -1,9 +1,9 @@
-import {useTranslation} from '../../i18n';
 import type {RenderJob} from '@remotion/studio-shared';
 import {useCallback} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
 import {remotion_outputsBase} from '../../helpers/get-asset-metadata';
 import {useCopyFeedback} from '../../helpers/use-copy-feedback';
+import {useTranslation} from '../../i18n';
 import {CopyIcon} from '../../icons/copy';
 import {ActionTooltip} from '../ActionTooltip';
 import type {RenderInlineAction} from '../InlineAction';

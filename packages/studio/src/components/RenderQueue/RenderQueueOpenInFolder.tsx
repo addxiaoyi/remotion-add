@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useMemo} from 'react';
 import {getBrowserStudioOperations} from '../../helpers/browser-studio-operations';
 import {CURRENT_COLOR} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {ExpandedFolderIconSolid} from '../../icons/folder';
 import {ActionTooltip} from '../ActionTooltip';
 import type {RenderInlineAction} from '../InlineAction';

@@ -1,8 +1,8 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useRef} from 'react';
 import type {_InternalTypes} from 'remotion';
 import {Internals} from 'remotion';
 import {getRoute, pushUrl} from '../../helpers/url-state';
+import {useTranslation} from '../../i18n';
 import {useSelectComposition} from '../InitialCompositionLoader';
 import {deriveCanvasContentFromUrl} from '../load-canvas-content-from-url';
 import {inlineCodeSnippet} from '../Menu/styles';
@@ -74,7 +74,10 @@ const DeleteCompositionLoaded: React.FC<{
 					{unresolved.id}
 					{'"'}?
 					<br />
-					The associated <code style={inlineCodeSnippet}>{t('component')}</code> will
+					The associated <code style={inlineCodeSnippet}>
+						{t('component')}
+					</code>{' '}
+					will
 					{t('remain in your code.')}
 				</div>
 				<ModalFooterContainer>

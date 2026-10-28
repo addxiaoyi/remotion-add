@@ -49,7 +49,9 @@ export const getConfigureDefaultAppsMenuItems = ({
 		{
 			id: 'change-default-apps',
 			keyHint: null,
-			label: <span style={menuLabel}>{translate('Configure default apps...')}</span>,
+			label: (
+				<span style={menuLabel}>{translate('Configure default apps...')}</span>
+			),
 			leftItem: null,
 			onClick: onConfigureApps,
 			quickSwitcherLabel: translate('Configure default apps...'),

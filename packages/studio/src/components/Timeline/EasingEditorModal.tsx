@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {
 	canvasKeyframeEasingPresets,
 	type CanvasKeyframeEasingPreset,
@@ -32,6 +31,7 @@ import {
 	isPointerSessionRelease,
 	startCapturedPointerSession,
 } from '../../helpers/pointer-session';
+import {useTranslation} from '../../i18n';
 import {Checkbox} from '../Checkbox';
 import {INSPECTOR_PANEL_HORIZONTAL_PADDING} from '../InspectorPanelLayout';
 import {InputDragger} from '../NewComposition/InputDragger';

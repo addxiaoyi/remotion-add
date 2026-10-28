@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Internals} from 'remotion';
 import {FOCUS_VISIBLE_ONLY_CLASS_NAME} from '../../helpers/hoverable';
+import {useTranslation} from '../../i18n';
 import {ContextMenu} from '../ContextMenu';
 
 export type CurvePoints = readonly (readonly [number, number])[];

@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {
 	getCanvasSequenceReorderInsertionIndex,
 	getCanvasSequenceReorderSelection,
@@ -52,6 +51,7 @@ import {
 	useRuntimeValue,
 	useRuntimeValueSelector,
 } from '../../helpers/use-runtime-values';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {useTimelineSequenceHover} from '../../state/timeline-sequence-hover';
 import {Transform3DModeStateContext} from '../../state/transform-3d-mode';

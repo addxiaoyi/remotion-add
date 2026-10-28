@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {stringifySequenceExpandedRowKey} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {Internals} from 'remotion';
@@ -12,6 +11,7 @@ import {
 	SCHEMA_FIELD_GROUPS,
 } from '../../helpers/timeline-layout';
 import {useRuntimeValueSnapshots} from '../../helpers/use-runtime-values';
+import {useTranslation} from '../../i18n';
 import {SplitIcon} from '../../icons/split';
 import {InspectorInfoHeader} from '../InspectorInfoHeader';
 import {INSPECTOR_PANEL_HORIZONTAL_PADDING} from '../InspectorPanelLayout';
@@ -201,7 +201,9 @@ export const MultiSequenceInspector: React.FC<{
 			</InspectorInfoHeader>
 			<div role="separator" style={sequenceHeaderDivider} />
 			{targets === null ? (
-				<InspectorMessage>{t('Sequence controls unavailable')}</InspectorMessage>
+				<InspectorMessage>
+					{t('Sequence controls unavailable')}
+				</InspectorMessage>
 			) : fields.length === 0 ? (
 				<InspectorMessage>{t('No shared controls')}</InspectorMessage>
 			) : (

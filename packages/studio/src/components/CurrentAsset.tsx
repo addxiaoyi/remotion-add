@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {NewCompositionAsset} from '@remotion/studio-shared';
 import {formatBytes} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
@@ -23,6 +22,7 @@ import {
 import {useImageMetadata} from '../helpers/use-image-metadata';
 import type {MediaMetadata} from '../helpers/use-media-metadata';
 import {useMediaMetadata} from '../helpers/use-media-metadata';
+import {useTranslation} from '../i18n';
 import {BackgroundRemovalIcon} from '../icons/background-removal';
 import {ExpandedFolderIcon} from '../icons/folder';
 import {RemotionConvertIcon} from '../icons/remotion-convert';

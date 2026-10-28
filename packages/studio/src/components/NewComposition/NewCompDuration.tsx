@@ -1,6 +1,6 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback} from 'react';
 import {validateCompositionDuration} from '../../helpers/validate-new-comp-data';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {label, optionRow, rightRow} from '../RenderModal/layout';
 import {InputAndValidationContainer} from './InputAndValidationContainer';
@@ -30,7 +30,7 @@ export const NewCompDuration: React.FC<{
 
 	return (
 		<div style={optionRow}>
-`			<div style={label}>{t('Duration in frames')}</div>
+			` <div style={label}>{t('Duration in frames')}</div>
 			<div style={rightRow}>
 				<InputAndValidationContainer>
 					<InputDragger

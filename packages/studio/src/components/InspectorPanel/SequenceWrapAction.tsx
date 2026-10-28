@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {NodeWrapper} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useState} from 'react';
 import {Internals, isHtmlInCanvasSupported} from 'remotion';
@@ -8,6 +7,7 @@ import type {
 	TimelineTrackData,
 } from '../../helpers/get-timeline-sequence-sort-key';
 import {installRequiredPackages} from '../../helpers/install-required-package';
+import {useTranslation} from '../../i18n';
 import {HtmlInCanvasIcon} from '../../icons/html-in-canvas';
 import {MotionBlurIcon} from '../../icons/motion-blur';
 import {SetSelectedModalContext} from '../../state/modals';

@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {formatBytes} from '@remotion/studio-shared';
 import {
 	canUseVideoMatting,
@@ -15,6 +14,7 @@ import React, {
 	useState,
 } from 'react';
 import {BLUE_DISABLED} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {Checkmark} from '../../icons/Checkmark';
 import {GearIcon} from '../../icons/gear';
 import {ModelsIcon} from '../../icons/models';

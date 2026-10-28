@@ -1,7 +1,7 @@
-import {useTranslation} from '../../../i18n';
 // Schema error messages for studio editor
 import type {CSSProperties, ReactNode} from 'react';
 import {BACKGROUND, BLUE, LIGHT_TEXT} from '../../../helpers/colors';
+import {useTranslation} from '../../../i18n';
 import {Button} from '../../Button';
 import {CompactExplanation} from '../../CompactExplanation';
 import {Spacing} from '../../layout';
@@ -59,7 +59,9 @@ export const ZodNotInstalled: React.FC<{
 }> = ({mode = 'full'}) => {
 	const {t} = useTranslation();
 	if (mode === 'compact') {
-		return <CompactSchemaError>{t('Install zod to edit props.')}</CompactSchemaError>;
+		return (
+			<CompactSchemaError>{t('Install zod to edit props.')}</CompactSchemaError>
+		);
 	}
 
 	return (
@@ -80,7 +82,9 @@ export const NoSchemaDefined: React.FC<{
 	const {t} = useTranslation();
 	if (mode === 'compact') {
 		return (
-			<CompactSchemaError>{t('Add a schema prop to edit props.')}</CompactSchemaError>
+			<CompactSchemaError>
+				{t('Add a schema prop to edit props.')}
+			</CompactSchemaError>
 		);
 	}
 
@@ -159,14 +163,18 @@ export const InvalidSchema: React.FC<{
 	const {t} = useTranslation();
 	return (
 		<div style={errorContainer}>
-			<div style={errorExplanation}>{t('The data does not satisfy the schema:')}</div>
+			<div style={errorExplanation}>
+				{t('The data does not satisfy the schema:')}
+			</div>
 			<Spacing y={1} block />
 			<ZodErrorMessages
 				zodValidationResult={zodValidationResult}
 				viewTab="schema"
 			/>
 			<Spacing y={1} block />
-			<div style={errorExplanation}>{t('Fix the schema using the JSON editor.')}</div>
+			<div style={errorExplanation}>
+				{t('Fix the schema using the JSON editor.')}
+			</div>
 		</div>
 	);
 };

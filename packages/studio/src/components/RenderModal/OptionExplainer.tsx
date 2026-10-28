@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import type {AnyRemotionOption} from '@remotion/renderer';
 import React from 'react';
 import {BLUE, INPUT_BACKGROUND, LIGHT_TEXT, WHITE} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {MenuDivider} from '../Menu/MenuDivider';
 import {CliCopyButton} from './CliCopyButton';

@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {CanvasInternals} from '@remotion/sdk';
 import type {
 	ChangeEventHandler,
@@ -24,6 +23,7 @@ import {
 	getUniqueCompositionName,
 	useCreateComposition,
 } from '../../helpers/use-create-composition';
+import {useTranslation} from '../../i18n';
 import {Checkmark} from '../../icons/Checkmark';
 import {CollapsedFolderIcon} from '../../icons/folder';
 import {FolderContext} from '../../state/folders';
@@ -312,7 +312,7 @@ export const NewCompositionFields: React.FC<{
 	return (
 		<>
 			<div style={optionRow}>
-`				<div style={label}>{t('Folder')}</div>
+				` <div style={label}>{t('Folder')}</div>
 				<div style={rightRow}>
 					<Combobox
 						values={folderValues}
@@ -323,7 +323,7 @@ export const NewCompositionFields: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-`				<div style={label}>{t('ID')}</div>
+				` <div style={label}>{t('ID')}</div>
 				<div style={rightRow}>
 					<InputAndValidationContainer>
 						<RemotionInput
@@ -356,7 +356,7 @@ export const NewCompositionFields: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-`				<div style={label}>{t('Width')}</div>
+				` <div style={label}>{t('Width')}</div>
 				<div style={rightRow}>
 					<InputAndValidationContainer>
 						<InputDragger
@@ -389,7 +389,7 @@ export const NewCompositionFields: React.FC<{
 				</div>
 			</div>
 			<div style={optionRow}>
-`				<div style={label}>{t('Height')}</div>
+				` <div style={label}>{t('Height')}</div>
 				<div style={rightRow}>
 					<InputAndValidationContainer>
 						<InputDragger
@@ -426,7 +426,7 @@ export const NewCompositionFields: React.FC<{
 				setDurationInFrames={setDurationInFrames}
 			/>
 			<div style={optionRow}>
-`				<div style={label}>{t('FPS')}</div>
+				` <div style={label}>{t('FPS')}</div>
 				<div style={rightRow}>
 					<InputDragger
 						aria-label="FPS"

@@ -1,5 +1,4 @@
 import type {CSSProperties} from 'react';
-import {useTranslation} from '../i18n';
 import {useCallback} from 'react';
 import {BLUE} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
@@ -7,6 +6,7 @@ import {
 	useKeyboardShortcutAriaKeyShortcuts,
 	useKeyboardShortcutLabel,
 } from '../helpers/use-keyboard-shortcut-label';
+import {useTranslation} from '../i18n';
 import {VolumeOffIcon, VolumeOnIcon} from '../icons/media-volume';
 import {persistMuteOption} from '../state/mute';
 import {ActionTooltip} from './ActionTooltip';
@@ -23,12 +23,10 @@ export const toggleMute = (
 	});
 };
 
-export const MuteToggle: React.FC<
-{
+export const MuteToggle: React.FC<{
 	muted: boolean;
 	setMuted: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({
-muted, setMuted}) => {
+}> = ({muted, setMuted}) => {
 	const {t} = useTranslation();
 	const shortcut = useKeyboardShortcutLabel('toggleMute');
 	const ariaShortcut = useKeyboardShortcutAriaKeyShortcuts('toggleMute');

@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import React, {useRef} from 'react';
 import {LIGHT_TEXT, TRANSPARENT, WHITE} from '../../helpers/colors';
 import {
@@ -6,6 +5,7 @@ import {
 	HOVERABLE_CLASS_NAME,
 	hoverableStyle,
 } from '../../helpers/hoverable';
+import {useTranslation} from '../../i18n';
 
 export type LevelsValues = {
 	blackPoint: number;

@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import {PlayerInternals} from '@remotion/player';
 import type {
 	AudioCodec,
@@ -19,6 +18,7 @@ import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {WHITE_ALPHA_80} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {useKeyboardShortcutLabel} from '../helpers/use-keyboard-shortcut-label';
+import {useTranslation} from '../i18n';
 import {CaretDown} from '../icons/caret';
 import {ThinRenderIcon} from '../icons/render';
 import {useTimelineInOutFramePosition} from '../state/in-out';
@@ -152,14 +152,20 @@ const RenderButtonInner: React.FC<{
 			message: (
 				<>
 					<p style={serverRenderInstructions}>
-						{t('Render on your computer for full Remotion compatibility and more export formats, including ProRes.')}
+						{t(
+							'Render on your computer for full Remotion compatibility and more export formats, including ProRes.',
+						)}
 					</p>
 					<p style={serverRenderInstructions}>
-						{t('Download and unzip, then run in the project folder (Node.js required):')}
+						{t(
+							'Download and unzip, then run in the project folder (Node.js required):',
+						)}
 					</p>
 					<pre style={serverRenderCommands}>{'npm install\nnpm run dev'}</pre>
 					<p style={{...serverRenderInstructions, marginBottom: 0}}>
-						{t('In the Studio that opens, select your composition and click Render.')}
+						{t(
+							'In the Studio that opens, select your composition and click Render.',
+						)}
 					</p>
 				</>
 			),

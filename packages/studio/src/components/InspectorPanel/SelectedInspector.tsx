@@ -1,5 +1,5 @@
-import {useTranslation} from '../../i18n';
 import React from 'react';
+import {useTranslation} from '../../i18n';
 import type {TimelineSelection} from '../Timeline/TimelineSelection';
 import {InspectorMessage} from './common';
 import {EasingInspector} from './EasingInspector';

@@ -1,8 +1,8 @@
-import {useTranslation} from '../../i18n';
 import React, {useContext, useEffect, useMemo} from 'react';
 import type {_InternalTypes, VideoConfig} from 'remotion';
 import {Internals} from 'remotion';
 import {LIGHT_TEXT} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {inlineCodeSnippet} from '../Menu/styles';
 import {RunningCalculateMetadata} from '../RunningCalculateMetadata';

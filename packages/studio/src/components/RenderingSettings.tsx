@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {
 	AudioCodec,
 	Codec,
@@ -11,6 +10,7 @@ import type {ConfigUpdate} from '@remotion/studio-shared';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {labelx264Preset} from '../helpers/presets-labels';
 import {labelProResProfile} from '../helpers/prores-labels';
+import {useTranslation} from '../i18n';
 import {Checkmark} from '../icons/Checkmark';
 import {Checkbox} from './Checkbox';
 import {sectionHeader} from './InspectorPanel/styles';

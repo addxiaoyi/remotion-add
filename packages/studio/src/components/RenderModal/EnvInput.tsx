@@ -1,5 +1,5 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback} from 'react';
+import {useTranslation} from '../../i18n';
 import {Row, Spacing} from '../layout';
 import {RemotionInput} from '../NewComposition/RemInput';
 import {ValidationMessage} from '../NewComposition/ValidationMessage';

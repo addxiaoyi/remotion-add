@@ -1,7 +1,7 @@
-import {useTranslation} from '../i18n';
 import {useCallback, useContext, useMemo, useState} from 'react';
 import {Internals} from 'remotion';
 import {BLUE, LIGHT_TEXT} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {SetSelectedModalContext} from '../state/modals';
 import {Button} from './Button';
 import {Flex, Spacing} from './layout';

@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import React, {
 	useCallback,
 	useContext,
@@ -20,6 +19,7 @@ import {
 	makeSearchResults,
 	useMenuStructure,
 } from '../../helpers/use-menu-structure';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {useSelectComposition} from '../InitialCompositionLoader';
 import {Spacing} from '../layout';

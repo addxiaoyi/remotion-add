@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {PlayerInternals} from '@remotion/player';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {Internals, useVideoConfig} from 'remotion';
@@ -7,6 +6,7 @@ import {
 	isPointerSessionRelease,
 	startCapturedPointerSession,
 } from '../../helpers/pointer-session';
+import {useTranslation} from '../../i18n';
 import {
 	useTimelineInOutFramePosition,
 	useTimelineSetInOutFramePosition,

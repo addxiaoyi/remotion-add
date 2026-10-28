@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {ExtraPackage, PackageManager, Pkgs} from '@remotion/studio-shared';
 import {
 	apiDocs,
@@ -15,6 +14,7 @@ import {ShortcutHint} from '../error-overlay/remotion-overlay/ShortcutHint';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {BORDER_WHITE_ALPHA_12, LIGHT_TEXT} from '../helpers/colors';
 import {useKeybinding} from '../helpers/use-keybinding';
+import {useTranslation} from '../i18n';
 import {SetSelectedModalContext} from '../state/modals';
 import {Checkbox} from './Checkbox';
 import {InstallablePackageComp} from './InstallablePackage';

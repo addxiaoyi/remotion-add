@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import {useContext} from 'react';
 import {staticFile} from 'remotion';
 import {addAssetCacheBust} from '../helpers/add-asset-cache-bust';
@@ -6,6 +5,7 @@ import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {LIGHT_TEXT, WHITE} from '../helpers/colors';
 import type {AssetMetadata} from '../helpers/get-asset-metadata';
 import {getPreviewFileType} from '../helpers/get-preview-file-type';
+import {useTranslation} from '../i18n';
 import {FilePreview} from './FilePreview';
 import {useStaticFiles} from './use-static-files';
 

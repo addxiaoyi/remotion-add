@@ -1,8 +1,8 @@
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {restartStudio} from '../api/restart-studio';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {BLUE, CURRENT_COLOR, LIGHT_TEXT} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {InspectorOpenInEditor} from './InspectorOpenInEditor';
 import {InspectorQuickAction} from './InspectorPanel/common';
 import {Spacing} from './layout';

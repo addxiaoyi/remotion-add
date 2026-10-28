@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {Internals} from 'remotion';
@@ -7,6 +6,7 @@ import {
 	validateCompositionDimension,
 	validateCompositionName,
 } from '../../helpers/validate-new-comp-data';
+import {useTranslation} from '../../i18n';
 import {Spacing} from '../layout';
 import {ModalFooterContainer} from '../ModalFooter';
 import {ModalHeader} from '../ModalHeader';
@@ -231,7 +231,7 @@ const DuplicateCompositionLoaded: React.FC<{
 						// We allow converting from a composition to a still, but
 						// not the other way around
 						<div style={optionRow}>
-`							<div style={label}>{t('Type')}</div>
+							` <div style={label}>{t('Type')}</div>
 							<div style={rightRow}>
 								<Combobox
 									aria-label="Type of composition"
@@ -244,7 +244,7 @@ const DuplicateCompositionLoaded: React.FC<{
 					) : null}
 
 					<div style={optionRow}>
-`						<div style={label}>{t('ID')}</div>
+						` <div style={label}>{t('ID')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput
@@ -273,7 +273,7 @@ const DuplicateCompositionLoaded: React.FC<{
 					{hadDimensionsDefined ? (
 						<>
 							<div style={optionRow}>
-`								<div style={label}>{t('Width')}</div>
+								` <div style={label}>{t('Width')}</div>
 								<div style={rightRow}>
 									<InputAndValidationContainer>
 										<InputDragger
@@ -305,7 +305,7 @@ const DuplicateCompositionLoaded: React.FC<{
 								</div>
 							</div>
 							<div style={optionRow}>
-`								<div style={label}>{t('Height')}</div>
+								` <div style={label}>{t('Height')}</div>
 								<div style={rightRow}>
 									<InputAndValidationContainer>
 										<InputDragger
@@ -346,7 +346,7 @@ const DuplicateCompositionLoaded: React.FC<{
 					) : null}
 					{type === 'composition' && hadFpsDefined ? (
 						<div style={optionRow}>
-`							<div style={label}>{t('FPS')}</div>
+							` <div style={label}>{t('FPS')}</div>
 							<div style={rightRow}>
 								<InputDragger
 									type="number"

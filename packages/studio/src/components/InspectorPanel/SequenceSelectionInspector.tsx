@@ -1,10 +1,10 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {Internals} from 'remotion';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
 import type {TimelineTrackData} from '../../helpers/get-timeline-sequence-sort-key';
 import {isStudioInteractivityEnabled} from '../../helpers/interactivity-enabled';
 import {useMediaMetadata} from '../../helpers/use-media-metadata';
+import {useTranslation} from '../../i18n';
 import {AudioIcon} from '../../icons/audio';
 import {BackgroundRemovalIcon} from '../../icons/background-removal';
 import {DuplicateIcon} from '../../icons/duplicate';
@@ -458,7 +458,9 @@ const SequenceExpandedInspector: React.FC<{
 		previewServerState.type !== 'connected' &&
 		!window.remotion_isReadOnlyStudio
 	) {
-		return <InspectorMessage>{t('Studio server disconnected')}</InspectorMessage>;
+		return (
+			<InspectorMessage>{t('Studio server disconnected')}</InspectorMessage>
+		);
 	}
 
 	if (
@@ -466,7 +468,9 @@ const SequenceExpandedInspector: React.FC<{
 		sequenceSelection === null ||
 		!hasSequenceControls(track.sequence)
 	) {
-		return <InspectorMessage>{t('Sequence inspector unavailable')}</InspectorMessage>;
+		return (
+			<InspectorMessage>{t('Sequence inspector unavailable')}</InspectorMessage>
+		);
 	}
 
 	return (
@@ -509,7 +513,9 @@ const SequenceExpandedInspector: React.FC<{
 				</>
 			) : (
 				<>
-					<InspectorMessage>{t('Source controls unavailable')}</InspectorMessage>
+					<InspectorMessage>
+						{t('Source controls unavailable')}
+					</InspectorMessage>
 					<CollapsibleInspectorSection
 						bodyPaddingBottom={8}
 						collapsible
@@ -550,7 +556,9 @@ export const SequenceSelectionInspector: React.FC<{
 	const track = useTrackForSelection(selection);
 
 	if (!track) {
-		return <InspectorMessage>{t('Sequence inspector unavailable')}</InspectorMessage>;
+		return (
+			<InspectorMessage>{t('Sequence inspector unavailable')}</InspectorMessage>
+		);
 	}
 
 	return (

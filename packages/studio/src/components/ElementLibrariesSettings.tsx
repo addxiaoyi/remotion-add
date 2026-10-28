@@ -1,7 +1,7 @@
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useState} from 'react';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {CURRENT_COLOR, LIGHT_TEXT, WHITE} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {BookIcon} from '../icons/book';
 import {BrowseElementsIcon} from '../icons/browse-elements';
 import {LinkIcon} from '../icons/link';

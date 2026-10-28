@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import type {DragOverrideValue} from 'remotion';
 import {Internals, useVideoConfig} from 'remotion';
@@ -8,6 +7,7 @@ import {
 	getFieldsToShow,
 } from '../../helpers/timeline-layout';
 import {useRuntimeValues} from '../../helpers/use-runtime-values';
+import {useTranslation} from '../../i18n';
 import {Plus} from '../../icons/plus';
 import {renderFrame} from '../../state/render-frame';
 import {VERTICAL_SCROLLBAR_CLASSNAME} from '../Menu/is-menu-item';

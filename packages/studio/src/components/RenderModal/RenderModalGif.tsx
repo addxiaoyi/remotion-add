@@ -1,6 +1,6 @@
-import {useTranslation} from '../../i18n';
 import type {ChangeEvent} from 'react';
 import React, {useCallback} from 'react';
+import {useTranslation} from '../../i18n';
 import {Checkbox} from '../Checkbox';
 import {Spacing} from '../layout';
 import {label, optionRow, rightRow} from './layout';

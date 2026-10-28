@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import React, {
 	useCallback,
 	useContext,
@@ -7,6 +6,7 @@ import React, {
 	useState,
 } from 'react';
 import {FAIL_COLOR, LIGHT_TEXT} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {
 	type AssetSelectionModalState,
 	SetSelectedModalContext,

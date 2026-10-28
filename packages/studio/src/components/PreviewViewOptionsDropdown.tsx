@@ -1,8 +1,8 @@
 import React, {useContext, useMemo} from 'react';
-import {useTranslation} from '../i18n';
 import {WHITE_ALPHA_80} from '../helpers/colors';
 import {areKeyboardShortcutsDisabled} from '../helpers/use-keybinding';
 import {useKeyboardShortcutLabel} from '../helpers/use-keyboard-shortcut-label';
+import {useTranslation} from '../i18n';
 import {CaretDown} from '../icons/caret';
 import {Checkmark} from '../icons/Checkmark';
 import {EditorShowGuidesContext} from '../state/editor-guides';
@@ -13,11 +13,9 @@ import {ActionTooltip} from './ActionTooltip';
 import {InlineDropdown} from './InlineDropdown';
 import type {ComboboxValue} from './NewComposition/ComboBox';
 
-export const PreviewViewOptionsDropdown: React.FC<
-{
+export const PreviewViewOptionsDropdown: React.FC<{
 	readonly showCompositionControls: boolean;
-}> = ({
-showCompositionControls}) => {
+}> = ({showCompositionControls}) => {
 	const {t} = useTranslation();
 	const {editorShowOutlines, setEditorShowOutlines} = useContext(
 		EditorShowOutlinesContext,

@@ -197,10 +197,7 @@ export const VideoMattingQueueItem: React.FC<{
 					{job.status === 'cancelled' ? (
 						<RenderQueueCancelledMessage />
 					) : job.status === 'failed' ? (
-						<QueueJobError
-							error={job.error}
-							modalTitle={t('')}
-						/>
+						<QueueJobError error={job.error} modalTitle={t('')} />
 					) : (
 						messages.map((message) => (
 							<span key={message} style={subtitle}>

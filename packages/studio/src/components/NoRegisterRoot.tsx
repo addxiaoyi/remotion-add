@@ -1,7 +1,7 @@
-import {useTranslation} from '../i18n';
 import React, {useEffect, useState} from 'react';
 import {Internals} from 'remotion';
 import {WHITE} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 
 const label: React.CSSProperties = {
 	fontSize: 13,
@@ -47,11 +47,7 @@ export const NoRegisterRoot: React.FC = () => {
 			<div style={label}>{t('Waiting for registerRoot() to get called.')}</div>
 			<div style={label}>
 				Learn more:{' '}
-				<a
-					target={'_blank'}
-					style={link}
-					href="https://example.com/docs"
-				>
+				<a target={'_blank'} style={link} href="https://example.com/docs">
 					remotion.dev/docs/register-root
 				</a>
 			</div>

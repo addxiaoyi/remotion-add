@@ -10,9 +10,9 @@ import {Internals} from 'remotion';
 import {BACKGROUND} from '../helpers/colors';
 import {useMobileLayout} from '../helpers/mobile-layout';
 import {resolvedStackToSymbolicated} from '../helpers/resolved-stack-to-symbolicated';
+import {useTranslation} from '../i18n';
 import {useZodIfPossible, useZodTypesIfPossible} from './get-zod-if-possible';
 import {InspectorPanel} from './InspectorPanel';
-import {useTranslation} from '../i18n';
 import {
 	getSameSequenceInspectorSelection,
 	isSequenceSectionSelection,
@@ -57,11 +57,9 @@ export const persistSelectedOptionsSidebarPanel = (
 	localStorage.setItem(localStorageKey, panel);
 };
 
-export const OptionsPanel: React.FC<
-{
+export const OptionsPanel: React.FC<{
 	readonly readOnlyStudio: boolean;
-}> = ({
-readOnlyStudio}) => {
+}> = ({readOnlyStudio}) => {
 	const {t} = useTranslation();
 	const {props, updateProps} = useContext(Internals.EditorPropsContext);
 

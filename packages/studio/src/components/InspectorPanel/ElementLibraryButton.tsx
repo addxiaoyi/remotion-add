@@ -1,6 +1,6 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {LIGHT_TEXT} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {BrowseElementsIcon} from '../../icons/browse-elements';
 import {CaretDown} from '../../icons/caret';
 import {SetSelectedModalContext} from '../../state/modals';
@@ -69,10 +69,7 @@ export const ElementLibraryButton: React.FC = () => {
 	);
 
 	const openElementsLibrary = useCallback(() => {
-		openElementLibrary(
-			'Remotion Elements',
-			'https://example.com/elements',
-		);
+		openElementLibrary('Remotion Elements', 'https://example.com/elements');
 	}, [openElementLibrary]);
 	const openElementLibrarySettings = useCallback(() => {
 		setSelectedModal({

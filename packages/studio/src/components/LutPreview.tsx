@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import {PlayerInternals} from '@remotion/player';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
@@ -14,6 +13,7 @@ import {
 	HOVERABLE_CLASS_NAME,
 	hoverableStyle,
 } from '../helpers/hoverable';
+import {useTranslation} from '../i18n';
 import {useZIndex} from '../state/z-index';
 
 const sampleImage = 'https://remotion.media/transition-bg-blue.jpg';

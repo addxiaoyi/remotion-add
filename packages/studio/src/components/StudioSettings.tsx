@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {LogLevel} from '@remotion/renderer';
 import {BrowserSafeApis} from '@remotion/renderer/client';
 import type {
@@ -9,8 +8,9 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Internals} from 'remotion';
 import {NoReactInternals} from 'remotion/no-react';
 import {BLUE, LIGHT_TEXT} from '../helpers/colors';
-import {UndoIcon} from '../icons/undo';
+import {useTranslation} from '../i18n';
 import {useLocale, useSetLocale} from '../i18n';
+import {UndoIcon} from '../icons/undo';
 import {Button} from './Button';
 import {Checkbox} from './Checkbox';
 import {ConfigSelect} from './ConfigSelect';
@@ -146,7 +146,6 @@ const ConfigNumber = ({
 	);
 };
 
-
 const LanguageSetting: React.FC = () => {
 	const locale = useLocale();
 	const setLocale = useSetLocale();
@@ -157,10 +156,17 @@ const LanguageSetting: React.FC = () => {
 				<select
 					value={locale}
 					onChange={(event) => setLocale(event.target.value as 'en' | 'zh-CN')}
-					style={{padding: '4px 8px', fontSize: 13, borderRadius: 4, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white'}}
+					style={{
+						padding: '4px 8px',
+						fontSize: 13,
+						borderRadius: 4,
+						border: '1px solid rgba(255,255,255,0.2)',
+						background: 'transparent',
+						color: 'white',
+					}}
 				>
-					<option value={"zh-CN"}>简体中文</option>
-					<option value={"en"}>English</option>
+					<option value={'zh-CN'}>简体中文</option>
+					<option value={'en'}>English</option>
 				</select>
 			</div>
 		</div>

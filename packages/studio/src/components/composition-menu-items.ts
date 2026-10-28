@@ -247,7 +247,9 @@ export const getCompositionMenuItems = ({
 							openGitSource({folder: false, location: resolvedLocation});
 						}
 					},
-					quickSwitcherLabel: translate(`Open composition in ${defaultOpenInName}`),
+					quickSwitcherLabel: translate(
+						`Open composition in ${defaultOpenInName}`,
+					),
 					subMenu: null,
 					type: 'item' as const,
 					value:
@@ -294,7 +296,9 @@ export const getCompositionMenuItems = ({
 							openComponentInGitSource().catch(() => undefined);
 						}
 					},
-					quickSwitcherLabel: translate(`Open component in ${defaultOpenInName}`),
+					quickSwitcherLabel: translate(
+						`Open component in ${defaultOpenInName}`,
+					),
 					subMenu: null,
 					type: 'item' as const,
 					value:

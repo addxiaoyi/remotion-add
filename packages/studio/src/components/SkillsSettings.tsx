@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import type {GetRemotionSkillsInfoResponse} from '@remotion/studio-shared';
 import React, {useCallback, useContext, useMemo} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
@@ -8,6 +7,7 @@ import {copyText} from '../helpers/copy-text';
 import {getFileManagerName} from '../helpers/get-file-manager-name';
 import {canEditStudioConfig} from '../helpers/settings-tab-availability';
 import {useCopyFeedback} from '../helpers/use-copy-feedback';
+import {useTranslation} from '../i18n';
 import {BookIcon} from '../icons/book';
 import {CaretDown} from '../icons/caret';
 import {CloudDownloadIcon} from '../icons/cloud-download';
@@ -371,7 +371,9 @@ export const SkillsSettings: React.FC = () => {
 			) : null}
 			{missingSkills > 0 && canInstall ? (
 				<p style={description}>
-					{t('Install skills in this project to use them with your coding agent.')}
+					{t(
+						'Install skills in this project to use them with your coding agent.',
+					)}
 				</p>
 			) : null}
 			{skillActionError ? (

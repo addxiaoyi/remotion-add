@@ -1,6 +1,6 @@
-import {useTranslation} from '../i18n';
 import {useState, type CSSProperties, type ReactNode} from 'react';
 import {CURRENT_COLOR, LIGHT_TEXT, WHITE} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 
 const compactExplanation: CSSProperties = {
 	color: LIGHT_TEXT,

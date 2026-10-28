@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -15,6 +14,7 @@ import {
 import {persistExpandedFolders} from '../../helpers/persist-open-folders';
 import {slugifyName} from '../../helpers/slugify-name';
 import {validateNewFolderName} from '../../helpers/validate-new-folder-name';
+import {useTranslation} from '../../i18n';
 import {FolderContext} from '../../state/folders';
 import {Spacing} from '../layout';
 import {ModalFooterContainer} from '../ModalFooter';
@@ -127,12 +127,12 @@ export const NewFolder: React.FC<{
 				<div style={content}>
 					{parentName ? (
 						<div style={optionRow}>
-`							<div style={label}>{t('Parent')}</div>
+							` <div style={label}>{t('Parent')}</div>
 							<div style={parentNameStyle}>{parentName}</div>
 						</div>
 					) : null}
 					<div style={optionRow}>
-`						<div style={label}>{t('Name')}</div>
+						` <div style={label}>{t('Name')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput

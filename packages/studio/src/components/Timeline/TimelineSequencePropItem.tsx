@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {
 	isSchemaFieldHoldOnly,
 	isSchemaFieldKeyframable,
@@ -27,6 +26,7 @@ import type {
 	TimelineFieldOnSave,
 } from '../../helpers/timeline-layout';
 import {useRuntimeStoreValue} from '../../helpers/use-runtime-values';
+import {useTranslation} from '../../i18n';
 import {ContextMenu} from '../ContextMenu';
 import {INSPECTOR_PANEL_HORIZONTAL_PADDING} from '../InspectorPanelLayout';
 import type {ComboboxValue} from '../NewComposition/ComboBox';

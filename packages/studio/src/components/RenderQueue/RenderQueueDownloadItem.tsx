@@ -1,7 +1,7 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useMemo} from 'react';
 import {CURRENT_COLOR} from '../../helpers/colors';
 import {downloadBlob} from '../../helpers/download-blob';
+import {useTranslation} from '../../i18n';
 import {ActionTooltip} from '../ActionTooltip';
 import type {RenderInlineAction} from '../InlineAction';
 import {InlineAction} from '../InlineAction';
@@ -57,7 +57,12 @@ export const RenderQueueDownloadItem: React.FC<{
 	);
 
 	return (
-		<ActionTooltip label={t('Download')} shortcut={null} delay={800} dismissOnClick>
+		<ActionTooltip
+			label={t('Download')}
+			shortcut={null}
+			delay={800}
+			dismissOnClick
+		>
 			<InlineAction
 				aria-label={t('Download')}
 				variant={null}

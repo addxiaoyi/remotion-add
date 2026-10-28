@@ -6,11 +6,11 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
-import {useTranslation} from '../../i18n';
 import {Internals} from 'remotion';
 import {WHITE_ALPHA_40} from '../../helpers/colors';
 import {isCompositionStill} from '../../helpers/is-composition-still';
 import {resolvedStackToSymbolicated} from '../../helpers/resolved-stack-to-symbolicated';
+import {useTranslation} from '../../i18n';
 import {CaretDown} from '../../icons/caret';
 import {Checkmark} from '../../icons/Checkmark';
 import {renderFrame} from '../../state/render-frame';

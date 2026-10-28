@@ -1,4 +1,3 @@
-import {getStaticT} from '../../i18n';
 import {
 	optimisticAddSequenceKeyframe,
 	optimisticUpdateForPropStatuses,
@@ -10,6 +9,7 @@ import type {
 	SequencePropsSubscriptionKey,
 	InteractivitySchema,
 } from 'remotion';
+import {getStaticT} from '../../i18n';
 import {saveSequenceProps as saveSequencePropsApi} from '../sequence-props-api';
 import type {AddSequenceKeyframeChange} from './call-add-keyframe';
 import {

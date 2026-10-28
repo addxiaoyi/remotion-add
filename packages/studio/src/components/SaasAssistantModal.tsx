@@ -1,10 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import {getStaticT} from '../i18n';
 import {type SaasAssistantAction} from '../saas-features';
-import {ModalHeader} from './ModalHeader';
-import {RemotionInput} from './NewComposition/RemInput';
 import {Button} from './Button';
 import {ModalButton} from './ModalButton';
+import {ModalHeader} from './ModalHeader';
+import {RemotionInput} from './NewComposition/RemInput';
 
 const t = getStaticT();
 
@@ -46,9 +46,7 @@ const userBubble: React.CSSProperties = {
 	alignSelf: 'flex-end',
 };
 
-type Message =
-	| {role: 'assistant'; text: string}
-	| {role: 'user'; text: string};
+type Message = {role: 'assistant'; text: string} | {role: 'user'; text: string};
 
 // SaaS 智能助手：用户用自然语言描述需求，服务端 AI 返回结构化操作指令，
 // 前端将其映射为参数修改。全程不接触 Remotion 代码。
@@ -65,7 +63,14 @@ export const SaasAssistantModal: React.FC<{
 		actions: SaasAssistantAction[],
 	) => {applied: string[]};
 	readonly onExport: () => void;
-}> = ({onClose, assistantEndpoint, compositionId, currentProps, onApplyActions, onExport}) => {
+}> = ({
+	onClose,
+	assistantEndpoint,
+	compositionId,
+	currentProps,
+	onApplyActions,
+	onExport,
+}) => {
 	const [messages, setMessages] = useState<Message[]>([
 		{
 			role: 'assistant',
@@ -121,7 +126,14 @@ export const SaasAssistantModal: React.FC<{
 		} finally {
 			setBusy(false);
 		}
-	}, [input, busy, assistantEndpoint, compositionId, currentProps, onApplyActions]);
+	}, [
+		input,
+		busy,
+		assistantEndpoint,
+		compositionId,
+		currentProps,
+		onApplyActions,
+	]);
 
 	return (
 		<>
@@ -136,15 +148,13 @@ export const SaasAssistantModal: React.FC<{
 							{m.text}
 						</div>
 					))}
-					{busy ? (
-						<div style={assistantBubble}>{t('思考中...')}</div>
-					) : null}
+					{busy ? <div style={assistantBubble}>{t('思考中...')}</div> : null}
 				</div>
 				<div style={{display: 'flex', gap: 8}}>
 					<div style={{flex: 1}}>
 						<RemotionInput
-						status={'ok' as const}
-						rightAlign={false}
+							status={'ok' as const}
+							rightAlign={false}
 							value={input}
 							onChange={(e) => setInput(e.target.value)}
 							placeholder={t('描述您想要的修改...')}

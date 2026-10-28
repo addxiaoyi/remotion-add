@@ -1,6 +1,6 @@
-import {useTranslation} from '../../i18n';
 import React from 'react';
 import {LIGHT_TEXT} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 import {renderQueueItemSubtitleStyle} from './item-style';
 
 const cancelledStyle: React.CSSProperties = {

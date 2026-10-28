@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo, useRef, useState} from 'react';
 import type {SequencePropsSubscriptionKey, InteractivitySchema} from 'remotion';
 import {Internals} from 'remotion';
@@ -15,6 +14,7 @@ import {
 	EXPANDED_SECTION_PADDING_RIGHT,
 	TREE_GROUP_ROW_HEIGHT,
 } from '../../helpers/timeline-layout';
+import {useTranslation} from '../../i18n';
 import {ContextMenu} from '../ContextMenu';
 import {deleteEffects, reorderEffect} from '../effect-operations-api';
 import type {GetIsExpanded} from '../ExpandedTracksProvider';

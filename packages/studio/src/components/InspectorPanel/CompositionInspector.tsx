@@ -1,5 +1,3 @@
-import {useTranslation} from '../../i18n';
-import {isSaasMode} from '../../saas-mode';
 import React, {
 	useContext,
 	useEffect,
@@ -12,12 +10,14 @@ import React, {
 import type {_InternalTypes} from 'remotion';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
 import {isStudioInteractivityEnabled} from '../../helpers/interactivity-enabled';
+import {useTranslation} from '../../i18n';
 import {CloudDownloadIcon} from '../../icons/cloud-download';
 import {FontFileIcon} from '../../icons/font';
 import {PicIcon} from '../../icons/frame';
 import {SolidIcon} from '../../icons/solid';
 import {SparklesIcon} from '../../icons/sparkles';
 import {FilmIcon} from '../../icons/video';
+import {isSaasMode} from '../../saas-mode';
 import {VisualControlsContext} from '../../visual-controls/VisualControls';
 import {DefaultPropsEditor} from '../DefaultPropsEditor';
 import {useZodIfPossible, useZodTypesIfPossible} from '../get-zod-if-possible';

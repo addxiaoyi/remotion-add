@@ -1,6 +1,6 @@
-import {useTranslation} from '../../i18n';
 import React from 'react';
 import {LIGHT_TEXT} from '../../helpers/colors';
+import {useTranslation} from '../../i18n';
 
 const container: React.CSSProperties = {
 	padding: 80,

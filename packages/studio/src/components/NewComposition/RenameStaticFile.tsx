@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {ChangeEventHandler} from 'react';
 import React, {
 	useCallback,
@@ -8,6 +7,7 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {Button} from '../Button';
 import {Row, Spacing} from '../layout';
@@ -113,7 +113,7 @@ export const RenameStaticFileModal: React.FC<{
 			<form onSubmit={onSubmit}>
 				<div style={content}>
 					<div style={optionRow}>
-`						<div style={label}>{t('Name')}</div>
+						` <div style={label}>{t('Name')}</div>
 						<div style={rightRow}>
 							<InputAndValidationContainer>
 								<RemotionInput
@@ -144,7 +144,9 @@ export const RenameStaticFileModal: React.FC<{
 				</div>
 				<ModalFooterContainer>
 					<Row align="center" justify="flex-end">
-						<Button onClick={() => setSelectedModal(null)}>{t('Cancel')}</Button>
+						<Button onClick={() => setSelectedModal(null)}>
+							{t('Cancel')}
+						</Button>
 						<Spacing x={1} />
 						<Button onClick={onRename} disabled={!valid || submitting}>
 							Rename

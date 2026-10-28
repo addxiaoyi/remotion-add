@@ -1,7 +1,7 @@
-import {useTranslation} from '../i18n';
 import React from 'react';
 import {LIGHT_TEXT} from '../helpers/colors';
 import {formatFileLocation} from '../helpers/format-file-location';
+import {useTranslation} from '../i18n';
 import type {ModalState} from '../state/modals';
 import {AgentPrompt} from './AgentPrompt';
 import {getMaxModalHeight, getMaxModalWidth} from './ModalContainer';
@@ -39,7 +39,7 @@ export const GenerateWithAgentModal: React.FC<{readonly state: State}> = ({
 
 	return (
 		<DismissableModal panelStyle={panelStyle}>
-`			<ModalHeader title={t('Generate with agent')} />
+			` <ModalHeader title={t('Generate with agent')} />
 			<div style={container}>
 				<div style={text}>
 					{t('Ask a coding agent to generate content in this composition.')}

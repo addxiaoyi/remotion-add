@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {
 	AudioCodec,
 	ChromeMode,
@@ -39,6 +38,7 @@ import {copyText} from '../../helpers/copy-text';
 import {makeReadOnlyStudioRenderCommand} from '../../helpers/make-render-command';
 import {useRenderModalSections} from '../../helpers/render-modal-sections';
 import {useKeybinding} from '../../helpers/use-keybinding';
+import {useTranslation} from '../../i18n';
 import {AudioIcon} from '../../icons/audio';
 import {Checkmark} from '../../icons/Checkmark';
 import {DataIcon} from '../../icons/data';

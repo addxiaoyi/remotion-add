@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {PlayerInternals} from '@remotion/player';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
@@ -23,6 +22,7 @@ import type {
 	TimelineFieldOnDragValueChange,
 	TimelineFieldOnSave,
 } from '../../helpers/timeline-layout';
+import {useTranslation} from '../../i18n';
 import {CaretDown} from '../../icons/caret';
 import {Checkmark} from '../../icons/Checkmark';
 import {HigherZIndex, useZIndex} from '../../state/z-index';
@@ -833,7 +833,9 @@ export const TimelineFontFamilyField: React.FC<{
 												fontSize: 10,
 											}}
 										>
-													{t('Hover or use arrow keys to preview. Fonts are saved to your composition only when selected.')}
+											{t(
+												'Hover or use arrow keys to preview. Fonts are saved to your composition only when selected.',
+											)}
 										</div>
 									</div>
 								</HigherZIndex>

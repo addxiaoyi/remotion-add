@@ -14,9 +14,7 @@ export type SaasExportPayload = {
 	props: Record<string, any>;
 };
 
-export const buildSaasExportManifest = (
-	payload: SaasExportPayload,
-): string => {
+export const buildSaasExportManifest = (payload: SaasExportPayload): string => {
 	return JSON.stringify(
 		{
 			type: 'saas-template-export',
@@ -55,7 +53,9 @@ export const applyAssistantActions = (
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	actions: SaasAssistantAction[],
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	setProps: (updater: (old: Record<string, any>) => Record<string, any>) => void,
+	setProps: (
+		updater: (old: Record<string, any>) => Record<string, any>,
+	) => void,
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	setCompositionConfig: (config: Record<string, any>) => void,
 ): string[] => {

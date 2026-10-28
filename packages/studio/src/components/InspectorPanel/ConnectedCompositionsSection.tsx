@@ -1,10 +1,10 @@
-import {useTranslation} from '../../i18n';
 import React, {useCallback, useContext, useMemo} from 'react';
 import type {_InternalTypes} from 'remotion';
 import {Internals} from 'remotion';
 import {getConnectedCompositions} from '../../helpers/get-connected-compositions';
 import type {TimelineTrackData} from '../../helpers/get-timeline-sequence-sort-key';
 import {noop} from '../../helpers/noop';
+import {useTranslation} from '../../i18n';
 import {SetSelectedModalContext} from '../../state/modals';
 import {getCompositionContextMenuItems} from '../composition-menu-items';
 import {CompositionOrStillIcon} from '../CompositionOrStillIcon';

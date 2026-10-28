@@ -1,6 +1,6 @@
-import {getStaticT} from '../../i18n';
 import {canUseEffectOperations} from '../../helpers/browser-studio-operations';
 import type {SequenceNodePathInfo} from '../../helpers/get-timeline-sequence-sort-key';
+import {getStaticT} from '../../i18n';
 import type {ConfirmationDialogFunction} from '../ConfirmationDialog-types';
 import {duplicateNodes} from '../duplicate-nodes-api';
 import {duplicateEffects} from '../effect-operations-api';

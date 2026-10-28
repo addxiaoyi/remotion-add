@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import {
 	isSchemaFieldHoldOnly,
 	isSchemaFieldKeyframable,
@@ -24,6 +23,7 @@ import type {SequenceNodePathInfo} from '../../helpers/get-timeline-sequence-sor
 import {openOriginalPositionInEditorAtProperty} from '../../helpers/open-in-editor';
 import type {EffectSchemaFieldInfo} from '../../helpers/timeline-layout';
 import {useRuntimeStoreValue} from '../../helpers/use-runtime-values';
+import {useTranslation} from '../../i18n';
 import {ContextMenu} from '../ContextMenu';
 import {saveEffectProps} from '../effect-operations-api';
 import {getAnnotateWithChatGPTMenuItems} from '../get-annotate-with-chatgpt-menu-item';

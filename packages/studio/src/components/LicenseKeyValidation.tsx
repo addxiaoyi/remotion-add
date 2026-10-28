@@ -1,6 +1,6 @@
-import {useTranslation} from '../i18n';
 import React from 'react';
 import {FAIL_COLOR} from '../helpers/colors';
+import {useTranslation} from '../i18n';
 import {CheckCircleFilled} from '../icons/check-circle-filled';
 import {InspectorQuickAction} from './InspectorPanel/common';
 

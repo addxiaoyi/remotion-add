@@ -1,4 +1,3 @@
-import {useTranslation} from '../../i18n';
 import type {LogLevel} from '@remotion/renderer';
 import {getDefaultOutLocation} from '@remotion/studio-shared';
 import type {
@@ -21,6 +20,7 @@ import {ShortcutHint} from '../../error-overlay/remotion-overlay/ShortcutHint';
 import {getBrowserStudioOperations} from '../../helpers/browser-studio-operations';
 import {StudioServerConnectionCtx} from '../../helpers/client-id';
 import {canEditStudioConfig} from '../../helpers/settings-tab-availability';
+import {useTranslation} from '../../i18n';
 import {AudioIcon} from '../../icons/audio';
 import {CertificateIcon} from '../../icons/certificate';
 import {FileIcon} from '../../icons/file';
@@ -642,7 +642,9 @@ const WebRenderModal: React.FC<WebRenderModalProps> = ({
 
 	return (
 		<div style={outerModalStyle}>
-			<ModalHeader title={`${t('Render')} ${resolvedComposition.id} ${t('in the browser')}`} />
+			<ModalHeader
+				title={`${t('Render')} ${resolvedComposition.id} ${t('in the browser')}`}
+			/>
 			<div style={containerStyle}>
 				<SegmentedControl items={renderTabOptions} needsWrapping={false} />
 				<div style={flexer} />

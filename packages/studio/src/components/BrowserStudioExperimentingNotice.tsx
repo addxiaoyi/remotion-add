@@ -1,4 +1,3 @@
-import {useTranslation} from '../i18n';
 import React, {useCallback, useContext, useState} from 'react';
 import {ShortcutHint} from '../error-overlay/remotion-overlay/ShortcutHint';
 import {LIGHT_TEXT, TRANSPARENT, WHITE} from '../helpers/colors';
@@ -7,6 +6,7 @@ import {
 	HOVERABLE_CLASS_NAME,
 	hoverableStyle,
 } from '../helpers/hoverable';
+import {useTranslation} from '../i18n';
 import {SetSelectedModalContext} from '../state/modals';
 import {Flex, Row} from './layout';
 import {ModalButton} from './ModalButton';

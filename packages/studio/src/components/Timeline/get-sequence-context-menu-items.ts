@@ -1,4 +1,3 @@
-import {getStaticT} from '../../i18n';
 import type {DefaultCodingAgent} from '@remotion/renderer';
 import type {
 	EditorPickerId,
@@ -16,6 +15,7 @@ import {
 } from '../../helpers/get-git-menu-item';
 import {getVisibleAnnotationTarget} from '../../helpers/request-codex-annotation';
 import {getSequenceAnnotationMetadata} from '../../helpers/sequence-annotation';
+import {getStaticT} from '../../i18n';
 import {getAnnotateWithChatGPTMenuItems} from '../get-annotate-with-chatgpt-menu-item';
 import {getOpenInMenuItems} from '../get-open-in-menu-items';
 import type {ComboboxValue} from '../NewComposition/ComboBox';
