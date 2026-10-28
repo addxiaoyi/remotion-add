@@ -17,12 +17,8 @@ import {
 } from '@remotion/web-renderer';
 import {useCallback, useContext, useMemo, useState} from 'react';
 import {ShortcutHint} from '../../error-overlay/remotion-overlay/ShortcutHint';
-import {getBrowserStudioOperations} from '../../helpers/browser-studio-operations';
-import {StudioServerConnectionCtx} from '../../helpers/client-id';
-import {canEditStudioConfig} from '../../helpers/settings-tab-availability';
 import {useTranslation} from '../../i18n';
 import {AudioIcon} from '../../icons/audio';
-import {CertificateIcon} from '../../icons/certificate';
 import {FileIcon} from '../../icons/file';
 import {PicIcon} from '../../icons/frame';
 import {GearIcon} from '../../icons/gear';
@@ -193,7 +189,6 @@ const WebRenderModal: React.FC<WebRenderModalProps> = ({
 	const {setSelectedModal} = useContext(SetSelectedModalContext);
 	const {setSidebarCollapsedState} = useContext(SidebarContext);
 	const {addClientStillJob, addClientVideoJob} = useContext(RenderQueueContext);
-	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	if (!context) {
 		throw new Error(
 			'Should not be able to render without resolving comp first',
@@ -226,12 +221,6 @@ const WebRenderModal: React.FC<WebRenderModalProps> = ({
 				: 'still',
 	);
 	const [tab, setTab] = useState<TabType>('general');
-	const isBrowserStudio = getBrowserStudioOperations() !== null;
-	const canEditConfig = canEditStudioConfig({
-		isBrowserStudio,
-		previewServerConnected: previewServerState.type === 'connected',
-		readOnlyStudio: window.remotion_isReadOnlyStudio,
-	});
 	const [imageFormat, setImageFormat] = useState<RenderStillOnWebImageFormat>(
 		() => initialStillImageFormat ?? 'png',
 	);
@@ -724,27 +713,6 @@ const WebRenderModal: React.FC<WebRenderModalProps> = ({
 					>
 						Other
 					</VerticalTab>
-					{canEditConfig ? (
-						<VerticalTab
-							style={horizontalTab}
-							selected={false}
-							onClick={() =>
-								setSelectedModal({
-									type: 'settings',
-									initialStudioPane: null,
-									initialTab: 'license',
-									initialPublicLicenseKey: publicLicenseKey,
-								})
-							}
-							renderIcon={(color) => (
-								<div style={iconContainer}>
-									<CertificateIcon color={color} style={icon} />
-								</div>
-							)}
-						>
-							License
-						</VerticalTab>
-					) : null}
 				</div>
 				<div style={optionsPanel} className={VERTICAL_SCROLLBAR_CLASSNAME}>
 					{tab === 'general' ? (

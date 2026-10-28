@@ -1,7 +1,6 @@
 import type {SetStateAction} from 'react';
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
-import {canShowUpdates} from '../helpers/can-show-updates';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {BACKGROUND, BORDER_BLACK, WHITE} from '../helpers/colors';
 import {useMobileLayout} from '../helpers/mobile-layout';
@@ -54,11 +53,6 @@ export const MenuToolbar: React.FC<{
 		!readOnlyStudio ||
 		(previewServerState.type === 'connected' &&
 			browserStudioOperations !== null);
-	const showUpdates = canShowUpdates({
-		connectionStatus: previewServerState.type,
-		isBrowserStudio: browserStudioOperations !== null,
-		readOnlyStudio,
-	});
 
 	const mobileLayout = useMobileLayout();
 
@@ -217,7 +211,7 @@ export const MenuToolbar: React.FC<{
 			<div style={flex} />
 			<div style={fixedWidthRight}>
 				{canUndoAndRedo ? <UndoRedoButtons /> : null}
-				<SettingsButton showUpdates={showUpdates} />
+				<SettingsButton showUpdates={false} />
 				<StudioThemeToggle />
 				<SidebarCollapserControl side="right" />
 			</div>
