@@ -1,4 +1,3 @@
-import {isSaasMode} from '../saas-mode';
 import type {EditorPickerId} from '@remotion/studio-shared';
 import {useContext, useEffect, useMemo} from 'react';
 import type {ResolvedStackLocation, _InternalTypes} from 'remotion';
@@ -17,12 +16,13 @@ import {showNotification} from '../components/Notifications/NotificationCenter';
 import type {TQuickSwitcherResult} from '../components/QuickSwitcher/QuickSwitcherResult';
 import {openInFileExplorer} from '../components/RenderQueue/actions';
 import {getSidebarMenuItems} from '../components/sidebar-menu-items';
-import {useTranslation} from '../i18n';
 import {getPreviewSizeLabel, getUniqueSizes} from '../components/SizeSelector';
 import {useResolvedStack} from '../components/Timeline/use-resolved-stack';
 import {inOutHandles} from '../components/TimelineInOutToggle';
 import {useOpenInMenuApps} from '../components/use-open-in-menu-apps';
+import {useTranslation} from '../i18n';
 import {Checkmark} from '../icons/Checkmark';
+import {isSaasMode} from '../saas-mode';
 import {drawRef} from '../state/canvas-ref';
 import {CheckerboardContext} from '../state/checkerboard';
 import {EditorShowGuidesContext} from '../state/editor-guides';
@@ -922,7 +922,8 @@ const useMenuStructureBase = ({
 								quickSwitcherLabel: t('Color Picker'),
 							}
 						: null,
-					!canInstallPackages() || isSaasMode() ||
+					!canInstallPackages() ||
+					isSaasMode() ||
 					(browserStudioOperations === null &&
 						(remotion_packageManager === 'unknown' || type !== 'connected'))
 						? null
@@ -948,158 +949,6 @@ const useMenuStructureBase = ({
 							},
 				].filter(Internals.truthy),
 				quickSwitcherLabel: null,
-			},
-			{
-				id: 'help' as const,
-				label: t('Help'),
-				leaveLeftPadding: false,
-				items: [
-					{
-						id: 'shortcuts',
-						value: 'shortcuts',
-						label: keyboardShortcutsDisabled
-							? 'Shortcuts (disabled)'
-							: 'Shortcuts',
-						onClick: () => {
-							closeMenu();
-
-							setSelectedModal({
-								type: 'settings',
-								initialStudioPane: null,
-								initialTab: 'shortcuts',
-								initialPublicLicenseKey:
-									window.remotion_renderDefaults?.publicLicenseKey ?? null,
-							});
-						},
-						keyHint: keyboardShortcutsDisabled
-							? null
-							: showKeyboardShortcutsShortcut || null,
-						leftItem: null,
-						subMenu: null,
-						type: 'item' as const,
-						quickSwitcherLabel: keyboardShortcutsDisabled
-							? 'Show all Keyboard Shortcuts (disabled)'
-							: 'Show all Keyboard Shortcuts',
-					},
-					{
-						id: 'docs',
-						value: 'docs',
-						label: t('Docs'),
-						onClick: () => {
-							closeMenu();
-							openExternal('https://example.com/help');
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: t('Docs'),
-					},
-					{
-						id: 'file-issue',
-						value: 'file-issue',
-						label: t('File an issue'),
-						onClick: () => {
-							closeMenu();
-							openExternal(
-								'https://github.com/remotion-dev/remotion/issues/new/choose',
-							);
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: t('File an issue'),
-					},
-					{
-						id: 'discord',
-						value: 'discord',
-						label: t('Join Discord community'),
-						onClick: () => {
-							closeMenu();
-							openExternal('https://discord.com/invite/6VzzNDwUwV');
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: null,
-					},
-					{
-						id: 'help-divider-6',
-						type: 'divider' as const,
-					},
-					{
-						id: 'insta',
-						value: 'insta',
-						label: 'Instagram',
-						onClick: () => {
-							closeMenu();
-							openExternal('https://instagram.com/remotion');
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: t('Instagram'),
-					},
-					{
-						id: 'x',
-						value: 'x',
-						label: 'X',
-						onClick: () => {
-							closeMenu();
-							openExternal('https://x.com/remotion');
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: t('X (Twitter)'),
-					},
-					{
-						id: 'youtube',
-						value: 'youtube',
-						label: 'YouTube',
-						onClick: () => {
-							closeMenu();
-							openExternal('https://www.youtube.com/@remotion_dev');
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: t('YouTube'),
-					},
-					{
-						id: 'linkedin',
-						value: 'linkedin',
-						label: 'LinkedIn',
-						onClick: () => {
-							closeMenu();
-							openExternal('https://www.linkedin.com/company/remotion-dev/');
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: t('LinkedIn'),
-					},
-					{
-						id: 'tiktok',
-						value: 'tiktok',
-						label: 'TikTok',
-						onClick: () => {
-							closeMenu();
-							openExternal('https://www.tiktok.com/@remotion');
-						},
-						type: 'item' as const,
-						keyHint: null,
-						leftItem: null,
-						subMenu: null,
-						quickSwitcherLabel: t('TikTok'),
-					},
-				],
 			},
 		].filter(Internals.truthy);
 		if (mobileLayout) {
