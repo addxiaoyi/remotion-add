@@ -13,6 +13,7 @@ import {MenuItem} from './Menu/MenuItem';
 import {MenuBuildIndicator} from './MenuBuildIndicator';
 import {SettingsButton} from './SettingsButton';
 import {SidebarCollapserControl} from './SidebarCollapserControls';
+import {StudioThemeToggle} from './StudioThemeToggle';
 import {
 	CompositionToolbarMenuItem,
 	FileToolbarMenuItem,
@@ -217,6 +218,7 @@ export const MenuToolbar: React.FC<{
 			<div style={fixedWidthRight}>
 				{canUndoAndRedo ? <UndoRedoButtons /> : null}
 				<SettingsButton showUpdates={showUpdates} />
+				<StudioThemeToggle />
 				<SidebarCollapserControl side="right" />
 			</div>
 		</Row>

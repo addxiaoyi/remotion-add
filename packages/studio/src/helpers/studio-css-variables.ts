@@ -100,4 +100,64 @@ export const studioCssVariables = `
   --remotion-studio-prism-line-highlight-background: #f7ebc6;
   --remotion-studio-prism-line-highlight-border-color: #f7d87c;
 }
+
+/* Light theme. The attribute selector outranks :where(:root) above, so these
+   values win no matter in which order the documents inject their CSS. */
+:root[data-remotion-studio-theme='light'] {
+  --remotion-studio-black: rgba(15, 18, 21, 0.14);
+  --remotion-studio-white: #16191c;
+  --remotion-studio-background: #f7f8fa;
+  --remotion-studio-background-transparent: rgba(247, 248, 250, 0);
+  --remotion-studio-input-background: #ffffff;
+  --remotion-studio-tab-hover-background: #e9ecf0;
+  --remotion-studio-light-color: #2b2f33;
+  --remotion-studio-light-text: #5f6670;
+  --remotion-studio-ruler-color: #9aa0a6;
+  --remotion-studio-white-alpha-05: rgba(0, 0, 0, 0.03);
+  --remotion-studio-white-alpha-06: rgba(0, 0, 0, 0.04);
+  --remotion-studio-white-alpha-08: rgba(0, 0, 0, 0.05);
+  --remotion-studio-white-alpha-10: rgba(0, 0, 0, 0.06);
+  --remotion-studio-white-alpha-12: rgba(0, 0, 0, 0.07);
+  --remotion-studio-white-alpha-15: rgba(0, 0, 0, 0.08);
+  --remotion-studio-white-alpha-20: rgba(0, 0, 0, 0.1);
+  --remotion-studio-white-alpha-25: rgba(0, 0, 0, 0.12);
+  --remotion-studio-white-alpha-30: rgba(0, 0, 0, 0.14);
+  --remotion-studio-white-alpha-35: rgba(0, 0, 0, 0.16);
+  --remotion-studio-white-alpha-40: rgba(0, 0, 0, 0.18);
+  --remotion-studio-white-alpha-45: rgba(0, 0, 0, 0.2);
+  --remotion-studio-white-alpha-50: rgba(0, 0, 0, 0.24);
+  --remotion-studio-white-alpha-60: rgba(0, 0, 0, 0.3);
+  --remotion-studio-white-alpha-70: rgba(0, 0, 0, 0.38);
+  --remotion-studio-white-alpha-72: rgba(0, 0, 0, 0.4);
+  --remotion-studio-white-alpha-80: rgba(0, 0, 0, 0.48);
+  --remotion-studio-white-alpha-90: rgba(0, 0, 0, 0.58);
+  --remotion-studio-black-alpha-22: rgba(0, 0, 0, 0.08);
+  --remotion-studio-black-alpha-28: rgba(0, 0, 0, 0.1);
+  --remotion-studio-black-alpha-30: rgba(0, 0, 0, 0.1);
+  --remotion-studio-black-alpha-40: rgba(0, 0, 0, 0.12);
+  --remotion-studio-black-alpha-50: rgba(0, 0, 0, 0.14);
+  --remotion-studio-black-alpha-60: rgba(0, 0, 0, 0.16);
+  --remotion-studio-black-alpha-80: rgba(0, 0, 0, 0.2);
+  --remotion-studio-black-alpha-85: rgba(0, 0, 0, 0.24);
+  --remotion-studio-black-alpha-90: rgba(0, 0, 0, 0.28);
+  --remotion-studio-blue: #0969da;
+  --remotion-studio-blue-hovered: #0b84f3;
+  --remotion-studio-blue-disabled: #a3c4e8;
+  --remotion-studio-unselected-guide: #e0a1a6;
+  --remotion-studio-line-color: #dcdfe3;
+  --remotion-studio-timeline-track-separator: #e3e6ea;
+  --remotion-studio-light-gray: #4a5057;
+  --remotion-studio-keyboard-shortcut-key-color: #333a40;
+  --remotion-studio-notification-background: #ffffff;
+  --remotion-studio-render-status-background: #ffffff;
+  --remotion-studio-error-link-color: #0969da;
+  --remotion-studio-info-blue: #2563eb;
+  --remotion-studio-timeline-background-color: #ffffff;
+  --remotion-studio-timeline-negative-start-background-color: #e8ebef;
+  --remotion-studio-timeline-negative-start-border-color: #cfd4da;
+  --remotion-studio-timeline-selected-background-color: #d5dae0;
+  --remotion-studio-timeline-selected-label-background-color: #555b62;
+  --remotion-studio-focus-color: #9aa0a6;
+  --remotion-studio-font-family-error-color: #c0262d;
+}
 `;

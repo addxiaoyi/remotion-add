@@ -10,6 +10,7 @@ import {SequenceActivitySettingsProvider} from './components/SequenceActivitySet
 import {StaticFilesProvider} from './components/use-static-files';
 import {FastRefreshProvider} from './FastRefreshProvider';
 import {injectCSS} from './helpers/inject-css';
+import {applyTheme, getStoredTheme} from './helpers/theme';
 import {ResolveCompositionConfigInStudio} from './ResolveCompositionConfigInStudio';
 import {CompositionListProvider} from './state/composition-list';
 
@@ -73,6 +74,7 @@ export const Studio: React.FC<{
 	readonly readOnly: boolean;
 }> = ({rootComponent, readOnly}) => {
 	useLayoutEffect(() => {
+		applyTheme(getStoredTheme());
 		injectCSS();
 		window.remotion_studioStartup?.dismiss();
 	}, []);
