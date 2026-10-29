@@ -28,7 +28,6 @@ import {FilmIcon} from '../icons/video';
 import {isSaasMode} from '../saas-mode';
 import {SetSelectedModalContext} from '../state/modals';
 import {DefaultEditorSettings} from './ConfigureDefaultEditorModal';
-import {LicenseSettings} from './ConfigureLicenseModal';
 import {ElementLibrariesSettings} from './ElementLibrariesSettings';
 import {InstallPackageSettings} from './InstallPackage';
 import {KeyboardShortcutsSettings} from './KeyboardShortcutsSettings';
@@ -349,15 +348,6 @@ export const SettingsModal: React.FC<{
 							className={VERTICAL_SCROLLBAR_CLASSNAME}
 						>
 							<ModelsSettings />
-						</div>
-					) : null}
-					{availableTabs.includes('license') &&
-					openedTabs.includes('license') ? (
-						<div
-							style={tab === 'license' ? settingsOptionsPanel : hiddenPanel}
-							className={VERTICAL_SCROLLBAR_CLASSNAME}
-						>
-							<LicenseSettings />
 						</div>
 					) : null}
 					{availableTabs.includes('skills') && openedTabs.includes('skills') ? (
