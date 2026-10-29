@@ -2,28 +2,32 @@ import {readFileSync, existsSync} from 'fs';
 import path from 'path';
 import {$} from 'bun';
 
-const staged = await $`git diff --cached --name-only --diff-filter=ACMR`.text();
-const unstaged = await $`git diff --name-only`.text();
-const stagedFiles = staged.trim().split('\n').filter(Boolean);
-const changedFiles = [
-	...new Set([...stagedFiles, ...unstaged.trim().split('\n')]),
-].filter(Boolean);
+// Only the files that are part of this commit get formatted. Formatting whole
+// package directories (the previous `bun run --cwd <pkg> format`) rewrote every
+// file in the package, so a one line change turned into hundreds of unrelated
+// modifications showing up in later diffs.
+const formattable = /\.(?:[cm]?[jt]sx?|css|json|mdx?)$/;
 
-if (changedFiles.length === 0) {
+const staged = await $`git diff --cached --name-only --diff-filter=ACMR`.text();
+const stagedFiles = staged.trim().split('\n').filter(Boolean);
+
+if (stagedFiles.length === 0) {
 	process.exit(0);
 }
 
-const formatPackageDirs = new Set<string>();
-const lintPackageNames = new Set<string>();
+const filesToFormat: string[] = [];
 
-for (const file of changedFiles) {
+for (const file of stagedFiles) {
+	if (!formattable.test(file)) {
+		continue;
+	}
+
 	const match = file.match(/^packages\/([^/]+)\//);
 	if (!match) {
 		continue;
 	}
 
-	const dir = match[1];
-	const pkgJsonPath = path.join('packages', dir, 'package.json');
+	const pkgJsonPath = path.join('packages', match[1], 'package.json');
 
 	if (!existsSync(pkgJsonPath)) {
 		continue;
@@ -31,22 +35,18 @@ for (const file of changedFiles) {
 
 	const pkgJson = JSON.parse(readFileSync(pkgJsonPath, 'utf-8'));
 
-	if (pkgJson.scripts?.format) {
-		formatPackageDirs.add(path.resolve('packages', dir));
+	if (!pkgJson.scripts?.format) {
+		continue;
 	}
 
-	if (pkgJson.scripts?.lint) {
-		lintPackageNames.add(pkgJson.name);
-	}
+	filesToFormat.push(file);
 }
 
-if (formatPackageDirs.size > 0) {
-	for (const dir of formatPackageDirs) {
-		await $`bun run --cwd ${dir} format`;
-	}
-
-	// Re-stage originally staged files so formatting changes are included in this commit
-	if (stagedFiles.length > 0) {
-		await $`git add ${stagedFiles}`;
-	}
+if (filesToFormat.length === 0) {
+	process.exit(0);
 }
+
+await $`bun x oxfmt ${filesToFormat}`;
+
+// Re-stage the staged files so formatting changes are included in this commit.
+await $`git add ${stagedFiles}`;
