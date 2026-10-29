@@ -10,9 +10,6 @@ import React, {
 } from 'react';
 import {VERSION} from 'remotion';
 import {restartStudio} from '../api/restart-studio';
-import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
-import {canShowUpdates} from '../helpers/can-show-updates';
-import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {callApi} from './call-api';
 import {updateAvailable} from './RenderQueue/actions';
 
@@ -44,7 +41,6 @@ export const UpdateStatusProvider: React.FC<{
 	readonly children: React.ReactNode;
 	readonly skillsRevision: number;
 }> = ({children, skillsRevision}) => {
-	const {previewServerState} = useContext(StudioServerConnectionCtx);
 	const [upgradeState, setUpgradeState] = useState<UpgradeState>('idle');
 	const [upgradeError, setUpgradeError] = useState<string | null>(null);
 	const busy = useRef(false);
@@ -86,11 +82,9 @@ export const UpdateStatusProvider: React.FC<{
 	const [info, setInfo] = useState<UpdateAvailableResponse | null>(null);
 	const [knownBugs, setKnownBugs] = useState<Bug[] | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	const showUpdates = canShowUpdates({
-		connectionStatus: previewServerState.type,
-		isBrowserStudio: getBrowserStudioOperations() !== null,
-		readOnlyStudio: window.remotion_isReadOnlyStudio,
-	});
+	// White-labelled builds must not phone home to remotion.dev, so the
+	// update and known-bugs lookups stay switched off.
+	const showUpdates = false;
 
 	useEffect(() => {
 		if (!showUpdates) {

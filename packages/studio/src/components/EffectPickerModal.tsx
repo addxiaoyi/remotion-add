@@ -1,8 +1,6 @@
 import {
 	EFFECT_CATALOG,
 	getEffectDocumentationLink,
-	getEffectPreviewAlt,
-	getEffectPreviewSource,
 	type EffectCatalogItem,
 } from '@remotion/studio-shared';
 import React, {
@@ -135,14 +133,6 @@ const previewFrame: React.CSSProperties = {
 	overflow: 'hidden',
 };
 
-const preview: React.CSSProperties = {
-	position: 'absolute',
-	inset: 0,
-	width: '100%',
-	height: '100%',
-	objectFit: 'cover',
-};
-
 const label: React.CSSProperties = {
 	fontSize: QUICK_SWITCHER_RESULT_LABEL_FONT_SIZE - 2,
 	overflowWrap: 'anywhere',
@@ -153,7 +143,6 @@ const EffectPickerResult: React.FC<{
 	readonly selected: boolean;
 	readonly onSelected: (item: EffectCatalogItem) => void;
 }> = ({item, selected, onSelected}) => {
-	const [previewLoaded, setPreviewLoaded] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
 	useScrollIntoViewOnSelected(ref, selected);
@@ -203,18 +192,7 @@ const EffectPickerResult: React.FC<{
 				className={HOVERABLE_CLASS_NAME}
 				onClick={onClick}
 			>
-				<div style={previewFrame}>
-					<img
-						src={`https://www.remotion.dev${getEffectPreviewSource(item)}`}
-						alt={getEffectPreviewAlt(item)}
-						style={{
-							...preview,
-							visibility: previewLoaded ? 'visible' : 'hidden',
-						}}
-						loading="lazy"
-						onLoad={() => setPreviewLoaded(true)}
-					/>
-				</div>
+				<div style={previewFrame} />
 				<div style={label}>{item.label}</div>
 			</div>
 		</ContextMenu>
