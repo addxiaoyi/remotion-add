@@ -46,3 +46,4 @@ packages/skills-evals/.playground
 
 packages/studio/scripts/
 studio.log
+.worktrees/
