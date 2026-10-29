@@ -427,7 +427,6 @@ export const SettingsModal: React.FC<{
 				  tab === 'skills' ? null : (
 					<SettingsModalFooter
 						showAboutElements={tab === 'studio' && studioPane === 'elements'}
-						showLicenseFaq={tab === 'license'}
 					/>
 				)}
 			</>

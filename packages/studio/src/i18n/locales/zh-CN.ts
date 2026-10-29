@@ -270,7 +270,7 @@ export const zhCN: Record<string, string> = {
 	Destination: '目标',
 	'Add to': '添加到',
 	'Add new library': '添加新库',
-	'Remotion Elements': 'Remotion 元素',
+	Elements: '元素库',
 	'Default editor': '默认编辑器',
 	'Default coding agent': '默认编码智能体',
 	'Loading installed editors...': '正在加载已安装的编辑器...',

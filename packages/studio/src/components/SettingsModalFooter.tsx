@@ -49,8 +49,7 @@ const externalLinkIndicator: React.CSSProperties = {
 
 export const SettingsModalFooter: React.FC<{
 	readonly showAboutElements: boolean;
-	readonly showLicenseFaq: boolean;
-}> = ({showAboutElements, showLicenseFaq}) => {
+}> = ({showAboutElements}) => {
 	const {t} = useTranslation();
 	const {restartRequired} = useContext(StudioServerConnectionCtx);
 	const [restarting, setRestarting] = useState(false);
@@ -60,13 +59,6 @@ export const SettingsModalFooter: React.FC<{
 			line: 1,
 			column: 1,
 		};
-	}, []);
-	const openLicenseFaq = useCallback(() => {
-		window.open(
-			'https://example.com/license-faq',
-			'_blank',
-			'noopener,noreferrer',
-		);
 	}, []);
 	const openAboutElements = useCallback(() => {
 		window.open(
@@ -114,18 +106,14 @@ export const SettingsModalFooter: React.FC<{
 					>
 						{restarting ? 'Restarting...' : 'Restart Studio'}
 					</ModalButton>
-				) : showLicenseFaq || showAboutElements ? (
+				) : showAboutElements ? (
 					<InspectorQuickAction
 						disabled={false}
-						onClick={showLicenseFaq ? openLicenseFaq : openAboutElements}
+						onClick={openAboutElements}
 						style={{flex: 'none', width: 'fit-content'}}
-						aria-label={
-							showLicenseFaq
-								? 'Open the Remotion License FAQ in a new tab'
-								: 'Open Remotion Elements in a new tab'
-						}
+						aria-label="Open Elements in a new tab"
 					>
-						{showLicenseFaq ? 'License FAQ' : 'About Elements'}
+						About Elements
 						<svg
 							aria-hidden="true"
 							viewBox="0 0 16 16"

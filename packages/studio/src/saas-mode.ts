@@ -11,10 +11,35 @@ declare global {
 	}
 }
 
+// 商用白标构建默认启用 SaaS 模式，由 studio-html.ts 注入 remotion_saasMode。
+// 本地开发需要完整 Remotion 能力时，两种方式退出：
+// - 首次加载的地址带 ?saas=0（Studio 跳转到具体合成后会丢掉查询参数）
+// - 或在控制台执行 localStorage.setItem('remotion.studio.saasMode', 'off') 后刷新
+const SAAS_STORAGE_KEY = 'remotion.studio.saasMode';
+
+const saasQueryParam =
+	typeof window === 'undefined'
+		? null
+		: new URLSearchParams(window.location.search).get('saas');
+
+const saasOptedOut = (() => {
+	if (typeof localStorage === 'undefined') {
+		return false;
+	}
+
+	try {
+		return localStorage.getItem(SAAS_STORAGE_KEY) === 'off';
+	} catch {
+		// Storage can be unavailable (private mode, quota). Keep SaaS mode on.
+		return false;
+	}
+})();
+
 const isSaaSMode =
 	typeof window !== 'undefined' &&
-	(window.remotion_saasMode === true ||
-		new URLSearchParams(window.location.search).get('saas') === '1');
+	saasQueryParam !== '0' &&
+	!saasOptedOut &&
+	window.remotion_saasMode !== false;
 
 export const isSaasMode = (): boolean => {
 	return isSaaSMode;

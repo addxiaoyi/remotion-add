@@ -182,7 +182,7 @@ const WelcomeActions: React.FC = () => {
 	const browseElements = useCallback(() => {
 		setSelectedModal({
 			type: 'element-library',
-			name: 'Remotion Elements',
+			name: '元素库',
 			url: 'https://example.com/elements',
 		});
 	}, [setSelectedModal]);

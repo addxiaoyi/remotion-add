@@ -69,7 +69,7 @@ export const ElementLibraryButton: React.FC = () => {
 	);
 
 	const openElementsLibrary = useCallback(() => {
-		openElementLibrary('Remotion Elements', 'https://example.com/elements');
+		openElementLibrary('元素库', 'https://example.com/elements');
 	}, [openElementLibrary]);
 	const openElementLibrarySettings = useCallback(() => {
 		setSelectedModal({
@@ -116,7 +116,7 @@ export const ElementLibraryButton: React.FC = () => {
 						disabled: false,
 						id: 'remotion-elements',
 						keyHint: null,
-						label: t('Remotion Elements'),
+						label: t('Elements'),
 						leftItem: null,
 						onClick: openElementsLibrary,
 						quickSwitcherLabel: null,

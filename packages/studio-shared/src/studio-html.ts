@@ -199,6 +199,7 @@ export const studioHtml = ({
 			renderDefaults,
 		)};</script>
 		<script>window.remotion_cwd = ${JSON.stringify(remotionRoot)};</script>
+		<script>window.remotion_saasMode = true;</script>
 		<script>window.remotion_fileSystemPlatform = ${JSON.stringify(fileSystemPlatform)};</script>
 		<script>window.remotion_studioServerCommand = ${
 			studioServerCommand ? JSON.stringify(studioServerCommand) : 'null'

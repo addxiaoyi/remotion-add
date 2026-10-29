@@ -745,7 +745,7 @@ export const TranscriptionModal: React.FC<TranscriptionModalState> = ({
 	const [libraryUrl, setLibraryUrl] = useState(REMOTION_CAPTION_STYLES_URL);
 	const {studioRuntimeConfig} = useSettings();
 	const libraryOptions: ComboboxValue[] = [
-		{url: REMOTION_CAPTION_STYLES_URL, displayName: 'Remotion Elements'},
+		{url: REMOTION_CAPTION_STYLES_URL, displayName: '元素库'},
 		...(studioRuntimeConfig?.elementLibraries ?? []).flatMap(
 			({captionStylesUrl, displayName: libraryName}) =>
 				captionStylesUrl === null ||
