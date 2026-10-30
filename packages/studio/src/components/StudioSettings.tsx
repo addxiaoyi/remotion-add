@@ -4,10 +4,11 @@ import type {
 	ConfigFileStudioSettings,
 	ConfigUpdate,
 } from '@remotion/studio-shared';
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Internals} from 'remotion';
 import {NoReactInternals} from 'remotion/no-react';
 import {BLUE, LIGHT_TEXT} from '../helpers/colors';
+import {shouldApplyExternalStudioSettings} from '../helpers/should-apply-external-studio-settings';
 import {useTranslation} from '../i18n';
 import {useLocale, useSetLocale} from '../i18n';
 import {UndoIcon} from '../icons/undo';
@@ -195,11 +196,51 @@ export const StudioSettings: React.FC = () => {
 	const [syncedRevision, setSyncedRevision] = useState(-1);
 	const [error, setError] = useState<string | null>(null);
 
+	// Mirror of state the effect reads but must not depend on: the effect
+	// writes it, so listing it as a dependency would make the effect re-arm
+	// itself on every commit.
+	// The sequence-activity limit is a free-text field: keystrokes live in
+	// `sequenceActivityLimitText` and only reach `settings` on blur, so
+	// `editedSetters` alone would report the panel as clean while the user is
+	// still mid-edit. Parse the buffered text so the guard can see a genuinely
+	// pending value. `undefined` is the "not parseable" sentinel because `null`
+	// is already the legitimate value for `Infinity`.
+	const typedSequenceActivityLimit =
+		sequenceActivityLimitText.trim() === ''
+			? undefined
+			: sequenceActivityLimitText.trim() === 'Infinity'
+				? null
+				: parseInputDraggerNumber(sequenceActivityLimitText.trim());
+
+	const hasLocalEditsRef = useRef(false);
+	hasLocalEditsRef.current =
+		editedSetters.size > 0 ||
+		(typedSequenceActivityLimit !== undefined &&
+			typedSequenceActivityLimit !== settings.sequenceActivityLimit);
+
 	useEffect(() => {
 		if (studioRuntimeConfig === null) {
 			return;
 		}
-
+		// A revision can arrive while this panel holds edits the user has not
+		// saved yet (another Studio client wrote the config). Adopting the
+		// external snapshot then would silently throw those edits away.
+		//
+		// `editedSetters` is read through a ref on purpose: the effect resets it
+		// to a fresh Set, so listing it as a dependency would re-arm the effect
+		// on its own commit and loop forever.
+		// `isSaving` is `null` on purpose: `useAutoSaveConfig` exposes no
+		// in-flight signal, so passing `false` here would assert something this
+		// component cannot observe. `null` means "not observable" and does not
+		// block the update.
+		if (
+			!shouldApplyExternalStudioSettings({
+				hasLocalEdits: hasLocalEditsRef.current,
+				isSaving: null,
+			})
+		) {
+			return;
+		}
 		setSettings(
 			studioRuntimeConfig.configFileStudioSettings ?? initialSettings,
 		);

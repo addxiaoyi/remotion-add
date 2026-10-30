@@ -11,9 +11,11 @@ import React, {
 	useContext,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from 'react';
 import {getBrowserStudioOperations} from '../helpers/browser-studio-operations';
+import {canShowUpdates} from '../helpers/can-show-updates';
 import {StudioServerConnectionCtx} from '../helpers/client-id';
 import {
 	appSelectedEvent,
@@ -72,6 +74,15 @@ export const SettingsProvider: React.FC<{
 		skillActionError: null,
 	});
 	const [skillsRevision, setSkillsRevision] = useState(0);
+	const mounted = useRef(true);
+	const skillActionGeneration = useRef(0);
+	const skillActionBusy = useRef(false);
+
+	useEffect(() => {
+		return () => {
+			mounted.current = false;
+		};
+	}, []);
 
 	useEffect(() => {
 		if (
@@ -222,6 +233,11 @@ export const SettingsProvider: React.FC<{
 	}, []);
 	const changeSkill = useCallback(
 		async (skill: string, action: 'install' | 'remove' | 'upgrade') => {
+			if (skillActionBusy.current) {
+				return;
+			}
+			skillActionBusy.current = true;
+			const generation = ++skillActionGeneration.current;
 			setSettings((currentSettings) => ({
 				...currentSettings,
 				skillAction: {
@@ -245,6 +261,10 @@ export const SettingsProvider: React.FC<{
 				const remotionSkillsInfo = await callApi(endpoint, {
 					skill,
 				});
+				if (!mounted.current || generation !== skillActionGeneration.current) {
+					skillActionBusy.current = false;
+					return;
+				}
 				setSettings((currentSettings) => ({
 					...currentSettings,
 					remotionSkillsInfo,
@@ -264,6 +284,10 @@ export const SettingsProvider: React.FC<{
 					'/api/remotion-skills-info',
 					{},
 				).catch(() => null);
+				if (!mounted.current || generation !== skillActionGeneration.current) {
+					skillActionBusy.current = false;
+					return;
+				}
 				setSettings((currentSettings) => ({
 					...currentSettings,
 					remotionSkillsInfo:
@@ -274,6 +298,8 @@ export const SettingsProvider: React.FC<{
 				if (remotionSkillsInfo !== null) {
 					setSkillsRevision((revision) => revision + 1);
 				}
+			} finally {
+				skillActionBusy.current = false;
 			}
 		},
 		[],
@@ -300,9 +326,18 @@ export const SettingsProvider: React.FC<{
 		};
 	}, [installSkill, removeSkill, setPublicLicenseKey, settings, upgradeSkill]);
 
+	const updatesEnabled = canShowUpdates({
+		connectionStatus: previewServerState.type,
+		isBrowserStudio: getBrowserStudioOperations() !== null,
+		readOnlyStudio: window.remotion_isReadOnlyStudio,
+	});
+
 	return (
 		<SettingsContext.Provider value={value}>
-			<UpdateStatusProvider skillsRevision={skillsRevision}>
+			<UpdateStatusProvider
+				enabled={updatesEnabled}
+				skillsRevision={skillsRevision}
+			>
 				{children}
 			</UpdateStatusProvider>
 		</SettingsContext.Provider>

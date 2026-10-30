@@ -9,6 +9,12 @@ export const studioCssVariables = `
   --remotion-studio-current-color: currentColor;
   --remotion-studio-background: rgb(31,36,40);
   --remotion-studio-background-transparent: rgba(31,36,40, 0);
+  /* Floating layers (menus, dropdowns, modals, popovers) must never share the
+     page background, otherwise they visually merge with whatever is behind
+     them. These are deliberately distinct from --remotion-studio-background. */
+  --remotion-studio-overlay-background: rgb(44,50,57);
+  --remotion-studio-overlay-border: rgba(255, 255, 255, 0.14);
+  --remotion-studio-overlay-shadow: 0 12px 28px rgba(0,0,0, 0.55), 0 2px 6px rgba(0,0,0, 0.4);
   --remotion-studio-input-background: #2f363d;
   --remotion-studio-tab-hover-background: #232629;
   --remotion-studio-light-color: #ddd;
@@ -108,6 +114,9 @@ export const studioCssVariables = `
   --remotion-studio-white: #16191c;
   --remotion-studio-background: #f7f8fa;
   --remotion-studio-background-transparent: rgba(247, 248, 250, 0);
+  --remotion-studio-overlay-background: #ffffff;
+  --remotion-studio-overlay-border: rgba(15, 18, 21, 0.14);
+  --remotion-studio-overlay-shadow: 0 12px 28px rgba(15,18,21, 0.18), 0 2px 6px rgba(15,18,21, 0.08);
   --remotion-studio-input-background: #ffffff;
   --remotion-studio-tab-hover-background: #e9ecf0;
   --remotion-studio-light-color: #2b2f33;

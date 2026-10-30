@@ -22,10 +22,35 @@ export type Bug = {
 };
 
 type UpgradeState = 'idle' | 'upgrading' | 'upgraded' | 'restarting';
+export type UpdateCheckState = 'disabled' | 'loading' | 'error' | 'ready';
+
+export const getUpdateCheckState = ({
+	enabled,
+	loading,
+	error,
+}: {
+	readonly enabled: boolean;
+	readonly loading: boolean;
+	readonly error: string | null;
+}): UpdateCheckState => {
+	if (!enabled) {
+		return 'disabled';
+	}
+	if (loading) {
+		return 'loading';
+	}
+	if (error !== null) {
+		return 'error';
+	}
+	return 'ready';
+};
 
 type UpdateStatusContextValue = {
 	readonly upgradeState: UpgradeState;
 	readonly upgradeError: string | null;
+	readonly checkState: UpdateCheckState;
+	readonly loading: boolean;
+	readonly retry: () => void;
 	readonly upgrade: (version: string) => Promise<void>;
 	readonly restart: () => Promise<void>;
 	readonly error: string | null;
@@ -40,10 +65,17 @@ const UpdateStatusContext = createContext<UpdateStatusContextValue | null>(
 export const UpdateStatusProvider: React.FC<{
 	readonly children: React.ReactNode;
 	readonly skillsRevision: number;
-}> = ({children, skillsRevision}) => {
+	readonly enabled: boolean;
+}> = ({children, skillsRevision, enabled}) => {
 	const [upgradeState, setUpgradeState] = useState<UpgradeState>('idle');
 	const [upgradeError, setUpgradeError] = useState<string | null>(null);
 	const busy = useRef(false);
+	const mounted = useRef(true);
+	useEffect(() => {
+		return () => {
+			mounted.current = false;
+		};
+	}, []);
 	const upgrade = useCallback(async (version: string) => {
 		if (busy.current) {
 			return;
@@ -54,10 +86,14 @@ export const UpdateStatusProvider: React.FC<{
 		setUpgradeError(null);
 		try {
 			await callApi('/api/upgrade-remotion', {version});
-			setUpgradeState('upgraded');
+			if (mounted.current) {
+				setUpgradeState('upgraded');
+			}
 		} catch (err) {
-			setUpgradeError((err as Error).message);
-			setUpgradeState('idle');
+			if (mounted.current) {
+				setUpgradeError((err as Error).message);
+				setUpgradeState('idle');
+			}
 		} finally {
 			busy.current = false;
 		}
@@ -73,8 +109,10 @@ export const UpdateStatusProvider: React.FC<{
 		try {
 			await restartStudio();
 		} catch (err) {
-			setUpgradeError((err as Error).message);
-			setUpgradeState('upgraded');
+			if (mounted.current) {
+				setUpgradeError((err as Error).message);
+				setUpgradeState('upgraded');
+			}
 		} finally {
 			busy.current = false;
 		}
@@ -82,32 +120,46 @@ export const UpdateStatusProvider: React.FC<{
 	const [info, setInfo] = useState<UpdateAvailableResponse | null>(null);
 	const [knownBugs, setKnownBugs] = useState<Bug[] | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	// White-labelled builds must not phone home to remotion.dev, so the
-	// update and known-bugs lookups stay switched off.
-	const showUpdates = false;
-
+	const [loading, setLoading] = useState(false);
+	const [retryGeneration, setRetryGeneration] = useState(0);
 	useEffect(() => {
-		if (!showUpdates) {
+		if (!enabled) {
 			setInfo(null);
 			setKnownBugs(null);
 			setError(null);
+			setLoading(false);
+			setUpgradeState('idle');
+			setUpgradeError(null);
 			return;
 		}
 
 		const updateController = new AbortController();
+		let active = true;
+		setInfo(null);
+		setKnownBugs(null);
+		setError(null);
+		setLoading(true);
 		const bugsController = new AbortController();
 
 		updateAvailable(updateController.signal)
 			.then((response) => {
+				if (!active || updateController.signal.aborted) {
+					return;
+				}
 				setInfo(response);
 				setError(null);
+				setLoading(false);
 			})
 			.catch((err: Error) => {
 				if (updateController.signal.aborted) {
 					return;
 				}
 
+				if (!active) {
+					return;
+				}
 				setError(err.message);
+				setLoading(false);
 			});
 
 		fetch('https://bugs.remotion.dev/api/' + VERSION, {
@@ -115,7 +167,9 @@ export const UpdateStatusProvider: React.FC<{
 		})
 			.then(async (response) => {
 				const body = await response.json();
-				setKnownBugs(body.bugs);
+				if (active) {
+					setKnownBugs(body.bugs);
+				}
 			})
 			.catch((err: Error) => {
 				if (bugsController.signal.aborted) {
@@ -127,13 +181,22 @@ export const UpdateStatusProvider: React.FC<{
 			});
 
 		return () => {
+			active = false;
 			updateController.abort();
 			bugsController.abort();
 		};
-	}, [showUpdates, skillsRevision]);
+	}, [enabled, retryGeneration, skillsRevision]);
+
+	const retry = useCallback(() => {
+		setRetryGeneration((generation) => generation + 1);
+	}, []);
+	const checkState = getUpdateCheckState({enabled, loading, error});
 
 	const value = useMemo<UpdateStatusContextValue>(() => {
 		return {
+			checkState,
+			loading,
+			retry,
 			error,
 			info,
 			knownBugs,
@@ -142,7 +205,18 @@ export const UpdateStatusProvider: React.FC<{
 			upgrade,
 			restart,
 		};
-	}, [error, info, knownBugs, upgradeState, upgradeError, upgrade, restart]);
+	}, [
+		checkState,
+		error,
+		info,
+		knownBugs,
+		loading,
+		retry,
+		upgradeState,
+		upgradeError,
+		upgrade,
+		restart,
+	]);
 
 	return (
 		<UpdateStatusContext.Provider value={value}>

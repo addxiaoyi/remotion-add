@@ -15,6 +15,9 @@ export const BACKGROUND = 'var(--remotion-studio-background)';
 export const BACKGROUND_HEX = 'var(--remotion-studio-background)';
 export const BACKGROUND__TRANSPARENT =
 	'var(--remotion-studio-background-transparent)';
+export const OVERLAY_BACKGROUND = 'var(--remotion-studio-overlay-background)';
+export const OVERLAY_BORDER = 'var(--remotion-studio-overlay-border)';
+export const OVERLAY_SHADOW = 'var(--remotion-studio-overlay-shadow)';
 export const INPUT_BACKGROUND = 'var(--remotion-studio-input-background)';
 export const TAB_HOVER_BACKGROUND =
 	'var(--remotion-studio-tab-hover-background)';

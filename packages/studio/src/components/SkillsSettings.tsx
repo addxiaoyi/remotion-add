@@ -151,7 +151,7 @@ export const SkillSettingsRow: React.FC<{
 					: null;
 	const menuItems = useMemo((): ComboboxValue[] => {
 		const items: ComboboxValue[] = [];
-		if (canManageSkills && installed && upgradeAvailable) {
+		if (canManageSkills && installed) {
 			items.push({
 				id: 'delete',
 				value: 'delete',
@@ -276,7 +276,7 @@ export const SkillSettingsRow: React.FC<{
 		result.push({
 			ariaLabel: `More actions for ${skill.name}`,
 			buttonId: null,
-			disabled: false,
+			disabled: skillAction !== null,
 			idleColor: LIGHT_TEXT,
 			leaveLeftSpace: true,
 			onOpenChange: null,

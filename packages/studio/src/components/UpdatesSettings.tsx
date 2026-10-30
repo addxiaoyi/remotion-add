@@ -252,8 +252,18 @@ const RenderedReleaseNotes: React.FC<{
 export const UpdatesSettings: React.FC = () => {
 	const {t} = useTranslation();
 	const {remotionSkillsInfo} = useSettings();
-	const {error, info, knownBugs, upgradeState, upgradeError, upgrade, restart} =
-		useUpdateStatus();
+	const {
+		checkState,
+		error,
+		info,
+		knownBugs,
+		loading,
+		retry,
+		upgradeState,
+		upgradeError,
+		upgrade,
+		restart,
+	} = useUpdateStatus();
 	const [releaseNotes, setReleaseNotes] = useState<
 		| (GetReleaseNotesResponse & {
 				currentVersion: string;
@@ -331,6 +341,14 @@ export const UpdatesSettings: React.FC = () => {
 		}
 	}, [info, upgrade]);
 
+	if (checkState === 'disabled') {
+		return (
+			<div style={container}>
+				<div style={title}>Updates are unavailable in this Studio.</div>
+			</div>
+		);
+	}
+
 	if (upgradeState !== 'idle') {
 		return (
 			<div style={container}>
@@ -369,6 +387,21 @@ export const UpdatesSettings: React.FC = () => {
 		);
 	}
 
+	if (checkState === 'error') {
+		return (
+			<div style={container}>
+				<div style={{paddingTop: 12}}>
+					<ValidationMessage
+						message={'Could not check for updates: ' + error}
+						align="flex-start"
+						type="error"
+					/>
+					<ModalButton onClick={retry}>Retry</ModalButton>
+				</div>
+			</div>
+		);
+	}
+
 	if (info === null) {
 		return (
 			<div style={container}>
@@ -379,9 +412,12 @@ export const UpdatesSettings: React.FC = () => {
 							align="flex-start"
 							type="error"
 						/>
+						<ModalButton onClick={retry}>Retry</ModalButton>
 					</div>
-				) : (
+				) : loading ? (
 					<div style={title}>Checking for updates...</div>
+				) : (
+					<div style={title}>No update information is available.</div>
 				)}
 			</div>
 		);
@@ -392,6 +428,7 @@ export const UpdatesSettings: React.FC = () => {
 			<div style={container}>
 				<div style={title}>Could not check for updates.</div>
 				<div style={text}>The update check timed out. Try again later.</div>
+				<ModalButton onClick={retry}>Retry</ModalButton>
 			</div>
 		);
 	}

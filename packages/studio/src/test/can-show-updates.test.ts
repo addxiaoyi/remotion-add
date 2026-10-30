@@ -1,4 +1,5 @@
 import {expect, test} from 'bun:test';
+import {getUpdateCheckState} from '../components/UpdateStatusContext';
 import {canShowUpdates} from '../helpers/can-show-updates';
 
 test('only shows updates in a connected, writable desktop Studio', () => {
@@ -34,4 +35,19 @@ test('only shows updates in a connected, writable desktop Studio', () => {
 	]) {
 		expect(canShowUpdates(environment)).toBe(false);
 	}
+});
+
+test('classifies update checks without treating disabled as loading', () => {
+	expect(
+		getUpdateCheckState({enabled: false, loading: false, error: null}),
+	).toBe('disabled');
+	expect(getUpdateCheckState({enabled: true, loading: true, error: null})).toBe(
+		'loading',
+	);
+	expect(
+		getUpdateCheckState({enabled: true, loading: false, error: 'network'}),
+	).toBe('error');
+	expect(
+		getUpdateCheckState({enabled: true, loading: false, error: null}),
+	).toBe('ready');
 });

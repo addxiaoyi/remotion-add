@@ -32,6 +32,7 @@ export const getAvailableSettingsTabs = ({
 	packageManagerAvailable,
 	previewServerConnected,
 	readOnlyStudio,
+	showUpdates,
 }: StudioMode & {
 	readonly packageManagerAvailable: boolean;
 	readonly showUpdates: boolean;
@@ -52,7 +53,8 @@ export const getAvailableSettingsTabs = ({
 		...(canInstallPackages ? (['packages'] as const) : []),
 		...(canEditConfig ? (['skills'] as const) : []),
 		...(isBrowserStudio || !readOnlyStudio ? (['models'] as const) : []),
-		...(canEditConfig ? (['apps'] as const) : []),
+		...(canEditConfig ? (['apps', 'license'] as const) : []),
+		...(showUpdates ? (['updates'] as const) : []),
 	];
 };
 

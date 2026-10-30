@@ -1,7 +1,8 @@
 import type React from 'react';
 import {
-	BACKGROUND,
 	BLUE,
+	OVERLAY_BACKGROUND,
+	OVERLAY_BORDER,
 	SHADOW_BLACK_ALPHA_50_TOWARDS_BOTTOM,
 	SHADOW_BLACK_ALPHA_50_TOWARDS_TOP,
 	WHITE,
@@ -14,7 +15,11 @@ export const MAX_MENU_WIDTH = 400;
 export const MAX_MOBILE_MENU_WIDTH = 300;
 
 const menuContainer: React.CSSProperties = {
-	backgroundColor: BACKGROUND,
+	// Dedicated overlay surface, not the page background: a menu painted the same
+	// colour as the surface behind it reads as unpainted instead of floating.
+	backgroundColor: OVERLAY_BACKGROUND,
+	border: `1px solid ${OVERLAY_BORDER}`,
+	borderRadius: 6,
 	position: 'fixed',
 	color: WHITE,
 	userSelect: 'none',
